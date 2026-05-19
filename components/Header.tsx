@@ -12,6 +12,9 @@ export default function Header({ locale }: { locale: Locale }) {
   const navLinks = [
     { label: t.personalized, href: "/personalized" },
     { label: t.programs, href: "/programs" },
+    { label: t.about, href: "/about" },
+    { label: t.faq, href: "/#faq" },
+    { label: t.contact, href: "/#contact" },
   ];
 
   return (
@@ -25,7 +28,7 @@ export default function Header({ locale }: { locale: Locale }) {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-7">
+          <nav className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -38,7 +41,7 @@ export default function Header({ locale }: { locale: Locale }) {
           </nav>
 
           {/* Desktop right side */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3">
             <LanguageSwitcher locale={locale} />
             <Link href="/personalized" className="btn-primary text-xs px-5 py-3">
               {t.buildMyProgram}
@@ -66,18 +69,19 @@ export default function Header({ locale }: { locale: Locale }) {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-zinc-300 hover:text-white text-sm font-medium tracking-wide uppercase py-2"
+                className="text-zinc-300 hover:text-white text-sm font-medium tracking-wide uppercase py-2 border-b border-brand-border last:border-0"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <div className="pt-2">
+            <div className="flex items-center justify-between pt-2">
+              <span className="text-zinc-700 text-[10px] uppercase tracking-widest">{t.languageLabel}</span>
               <LanguageSwitcher locale={locale} />
             </div>
             <Link
               href="/personalized"
-              className="btn-primary mt-2 text-xs justify-center"
+              className="btn-primary text-xs justify-center"
               onClick={() => setMobileOpen(false)}
             >
               {t.buildMyProgram}
