@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -93,6 +94,13 @@ function HubCard({ label, title, subtitle, cta, href, comingSoon, featured }: Hu
   );
 
   if (comingSoon) return <div>{inner}</div>;
+  if (href.startsWith("http")) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer">
+        {inner}
+      </a>
+    );
+  }
   return <Link href={href}>{inner}</Link>;
 }
 
@@ -121,16 +129,14 @@ const HUB_ITEMS: HubCardProps[] = [
     title: "Transformation Content",
     subtitle: "Training clips, progress, discipline and education.",
     cta: "Watch Content",
-    href: "#content",
-    comingSoon: true,
+    href: "https://www.tiktok.com/@artur.contentalb?is_from_webapp=1&sender_device=pc",
   },
   {
     label: "YouTube",
     title: "YouTube",
     subtitle: "Long-form training breakdowns and lifting education.",
-    cta: "Coming Soon",
-    href: "#youtube",
-    comingSoon: true,
+    cta: "Watch on YouTube",
+    href: "https://youtube.com/@artur.mehmetii?si=ILYBKWUIkXGrS9Nu",
   },
   {
     label: "Community",
@@ -181,8 +187,15 @@ export default function BrandHub() {
 
         {/* Profile */}
         <div className="flex flex-col items-center text-center mb-8">
-          <div className="w-24 h-24 rounded-full bg-gradient-to-br from-red-800 via-red-700 to-red-900 border-2 border-red-600/50 flex items-center justify-center mb-5 shadow-lg shadow-red-900/30">
-            <span className="text-white font-black text-3xl select-none">A</span>
+          <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-red-600/50 mb-5 shadow-lg shadow-red-900/30 shrink-0">
+            <Image
+              src="/Profile.jpg"
+              alt="Artur"
+              width={96}
+              height={96}
+              className="w-full h-full object-cover object-top"
+              priority
+            />
           </div>
 
           <h1 className="text-white font-black text-2xl uppercase tracking-tight">Artur</h1>
@@ -201,15 +214,36 @@ export default function BrandHub() {
         {/* Social row */}
         <div className="flex items-center justify-center gap-6 mb-9">
           {[
-            { icon: <InstagramIcon />, label: "Instagram", href: "#" },
-            { icon: <TikTokIcon />, label: "TikTok", href: "#" },
-            { icon: <YouTubeIcon />, label: "YouTube", href: "#" },
-            { icon: <EmailIcon />, label: "Email", href: `mailto:${contactEmail}` },
-          ].map(({ icon, label, href }) => (
+            {
+              icon: <InstagramIcon />,
+              label: "Instagram",
+              href: "https://www.instagram.com/artur.mehmetii?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+              external: true,
+            },
+            {
+              icon: <TikTokIcon />,
+              label: "TikTok",
+              href: "https://www.tiktok.com/@artur.contentalb?is_from_webapp=1&sender_device=pc",
+              external: true,
+            },
+            {
+              icon: <YouTubeIcon />,
+              label: "YouTube",
+              href: "https://youtube.com/@artur.mehmetii?si=ILYBKWUIkXGrS9Nu",
+              external: true,
+            },
+            {
+              icon: <EmailIcon />,
+              label: "Email",
+              href: `mailto:${contactEmail}`,
+              external: false,
+            },
+          ].map(({ icon, label, href, external }) => (
             <a
               key={label}
               href={href}
               aria-label={label}
+              {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               className="flex flex-col items-center gap-1.5 text-zinc-500 hover:text-white transition-colors duration-200"
             >
               {icon}
