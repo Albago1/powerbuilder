@@ -198,10 +198,20 @@ export default function BrandHub() {
             />
           </div>
 
-          <h1 className="text-white font-black text-2xl uppercase tracking-tight">Artur</h1>
+          <h1 className="text-white font-black text-2xl uppercase tracking-tight">
+            Artur Mehmeti
+          </h1>
           <p className="text-red-500 text-[10px] font-bold uppercase tracking-[0.25em] mt-1">
             PowerBuilder
           </p>
+
+          <div className="flex items-center gap-2 mt-3">
+            <span className="text-zinc-500 text-xs">20</span>
+            <span className="text-zinc-700 text-xs">·</span>
+            <span className="text-zinc-500 text-xs">Berlin, Germany</span>
+            <span className="text-zinc-700 text-xs">·</span>
+            <span className="text-zinc-600 text-xs italic">Baustelle Genetik Albaner</span>
+          </div>
 
           <p className="text-white font-bold text-base mt-4 tracking-tight">
             Strength. Muscle. Discipline.
