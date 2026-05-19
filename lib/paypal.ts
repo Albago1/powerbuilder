@@ -35,7 +35,8 @@ async function getAccessToken(): Promise<string> {
 
 export async function createOrder(
   returnUrl: string,
-  cancelUrl: string
+  cancelUrl: string,
+  options?: { amount?: string; description?: string; referenceId?: string }
 ): Promise<{ orderID: string; approvalUrl: string }> {
   const token = await getAccessToken();
 
@@ -49,8 +50,9 @@ export async function createOrder(
       intent: "CAPTURE",
       purchase_units: [
         {
-          amount: { currency_code: "EUR", value: "99.00" },
-          description: "Personalized Training & Nutrition System — 4 Weeks",
+          reference_id: options?.referenceId,
+          amount: { currency_code: "EUR", value: options?.amount ?? "99.00" },
+          description: options?.description ?? "Personalized Training & Nutrition System — 4 Weeks",
         },
       ],
       application_context: {
@@ -84,6 +86,7 @@ interface CaptureResult {
   status: string;
   amount: string;
   currency: string;
+  referenceId: string;
 }
 
 export async function captureOrder(orderID: string): Promise<CaptureResult> {
@@ -102,7 +105,7 @@ export async function captureOrder(orderID: string): Promise<CaptureResult> {
     const body = await res.json().catch(() => ({})) as { name?: string };
     // PayPal returns ORDER_ALREADY_CAPTURED when trying to capture twice
     if (body?.name === "ORDER_ALREADY_CAPTURED") {
-      return { status: "ALREADY_CAPTURED", amount: "", currency: "" };
+      return { status: "ALREADY_CAPTURED", amount: "", currency: "", referenceId: "" };
     }
     throw new Error(`PayPal capture failed (${res.status}): ${JSON.stringify(body)}`);
   }
@@ -110,6 +113,7 @@ export async function captureOrder(orderID: string): Promise<CaptureResult> {
   const order = (await res.json()) as {
     status: string;
     purchase_units: Array<{
+      reference_id?: string;
       payments: {
         captures: Array<{
           amount: { value: string; currency_code: string };
@@ -118,11 +122,13 @@ export async function captureOrder(orderID: string): Promise<CaptureResult> {
     }>;
   };
 
-  const capture = order.purchase_units?.[0]?.payments?.captures?.[0];
+  const unit = order.purchase_units?.[0];
+  const capture = unit?.payments?.captures?.[0];
 
   return {
     status: order.status,
     amount: capture?.amount?.value ?? "",
     currency: capture?.amount?.currency_code ?? "",
+    referenceId: unit?.reference_id ?? "",
   };
 }

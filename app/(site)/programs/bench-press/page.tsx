@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getProgramById } from "@/lib/programs";
-import PayPalButton from "@/components/PayPalButton";
+import StaticProgramBuyButton from "@/components/StaticProgramBuyButton";
 import ProgramFAQ from "@/components/ProgramFAQ";
 import { getLocale } from "@/lib/locale";
 import { getT } from "@/lib/translations";
@@ -60,12 +60,7 @@ export default async function BenchPressPage() {
                 <span className="text-white font-black text-6xl">€{program.price}</span>
                 <p className="text-zinc-600 text-sm mt-1">{pd.priceNote}</p>
               </div>
-              <PayPalButton
-                price={program.price}
-                productName={program.title}
-                paypalLink={process.env.NEXT_PUBLIC_PAYPAL_BENCH_PRESS_LINK ?? program.paypalLink}
-                className="mb-4"
-              />
+              <StaticProgramBuyButton slug="bench-press" price={program.price} className="mb-4" />
               <div className="border-t border-brand-border pt-6 flex flex-col gap-3">
                 {program.features.map((f, i) => (
                   <div key={i} className="flex items-center gap-3">
@@ -171,12 +166,7 @@ export default async function BenchPressPage() {
             <span className="text-red-600">{bp.ctaTitle2}</span>
           </h2>
           <p className="text-zinc-400 text-lg mb-10">{bp.ctaSubtitle}</p>
-          <PayPalButton
-            price={program.price}
-            productName={program.title}
-            paypalLink={process.env.NEXT_PUBLIC_PAYPAL_BENCH_PRESS_LINK ?? program.paypalLink}
-            className="max-w-xs mx-auto"
-          />
+          <StaticProgramBuyButton slug="bench-press" price={program.price} className="max-w-xs mx-auto" />
           <p className="text-zinc-700 text-xs mt-4">{pd.ctaNote(program.price)}</p>
           <div className="mt-6">
             <Link href="/personalized" className="text-zinc-500 text-xs hover:text-zinc-300 transition-colors">
