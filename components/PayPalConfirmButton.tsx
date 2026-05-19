@@ -3,49 +3,87 @@
 // ============================================================
 // PAYPAL CONFIRM BUTTON — Personalized Program (€99)
 // ============================================================
-// Shown on /questionnaire/confirmation after form submission.
+// Calls /api/paypal/create-order to create a PayPal order,
+// then redirects the user to the PayPal approval page.
 //
-// TO ACTIVATE:
-//   1. Create a PayPal payment link for €99
-//   2. Add to .env.local: NEXT_PUBLIC_PAYPAL_PERSONALIZED_LINK=https://...
-//   3. Redeploy — the button will automatically use the real link.
+// After payment, PayPal returns the user to:
+//   /programs/success?product=personalized&token={orderID}
 //
-// Until configured, falls back to an order-by-email flow.
+// The success page then calls /api/paypal/capture-order to
+// verify the payment server-side before sending any email.
+//
+// REQUIRED ENV VARS:
+//   PAYPAL_CLIENT_ID     — from developer.paypal.com
+//   PAYPAL_CLIENT_SECRET — from developer.paypal.com
+//   PAYPAL_ENV           — "sandbox" or "production"
 // ============================================================
 
-export default function PayPalConfirmButton() {
-  const paypalLink = process.env.NEXT_PUBLIC_PAYPAL_PERSONALIZED_LINK;
-  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contact@powerbuilder.com";
-  const isLive = paypalLink?.startsWith("http");
+import { useState } from "react";
 
-  const mailtoHref = `mailto:${contactEmail}?subject=${encodeURIComponent(
-    "Personalized Program Payment — €99"
-  )}&body=${encodeURIComponent(
-    "Hi, I have completed the questionnaire and would like to pay for my Personalized Training & Nutrition System (€99).\n\nPlease send me payment instructions."
-  )}`;
+type State = "idle" | "loading" | "error";
+
+export default function PayPalConfirmButton() {
+  const [state, setState] = useState<State>("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const handlePay = async () => {
+    setState("loading");
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/api/paypal/create-order", { method: "POST" });
+      const data = (await res.json()) as { approvalUrl?: string; error?: string };
+
+      if (!res.ok || !data.approvalUrl) {
+        throw new Error(data.error ?? `Server error ${res.status}`);
+      }
+
+      window.location.href = data.approvalUrl;
+    } catch (err) {
+      setErrorMsg(
+        err instanceof Error ? err.message : "Could not connect to PayPal — please try again"
+      );
+      setState("error");
+    }
+  };
 
   return (
     <div className="flex flex-col items-center gap-3">
-      {isLive ? (
-        <a
-          href={paypalLink}
-          className="btn-primary px-10 py-4 text-base"
-          rel="noopener noreferrer"
-        >
-          Pay €99 via PayPal →
-        </a>
-      ) : (
-        <a
-          href={mailtoHref}
-          className="btn-primary px-10 py-4 text-base"
-        >
-          Complete Order via Email →
-        </a>
+      <button
+        onClick={handlePay}
+        disabled={state === "loading"}
+        className="btn-primary px-10 py-4 text-base disabled:opacity-60 disabled:cursor-not-allowed"
+      >
+        {state === "loading" ? (
+          <span className="flex items-center gap-2">
+            <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              />
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+              />
+            </svg>
+            Connecting to PayPal…
+          </span>
+        ) : (
+          "Pay €99 via PayPal →"
+        )}
+      </button>
+
+      {state === "error" && (
+        <p className="text-red-500 text-xs max-w-xs text-center leading-relaxed">{errorMsg}</p>
       )}
+
       <p className="text-zinc-600 text-xs">
-        {isLive
-          ? "Secure checkout via PayPal · Your data stays private"
-          : "We'll reply within a few hours with payment instructions"}
+        Secure checkout · Verified by PayPal
       </p>
     </div>
   );

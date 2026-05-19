@@ -567,22 +567,16 @@ export default function QuestionnaireFlow() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     if (!validate()) return;
     setSubmitting(true);
     try {
-      await fetch("/api/questionnaire", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (process.env.NODE_ENV === "development") {
-        sessionStorage.setItem("dev_questionnaire_data", JSON.stringify(data));
-      }
+      // Save to localStorage — email is sent AFTER payment on the success page
+      localStorage.setItem("pb_questionnaire_pending", JSON.stringify(data));
       router.push(`/questionnaire/confirmation?email=${encodeURIComponent(data.email)}`);
     } catch {
       setSubmitting(false);
-      alert("Something went wrong. Please try again or contact us directly.");
+      alert("Could not save your questionnaire. Please check your browser settings and try again.");
     }
   };
 

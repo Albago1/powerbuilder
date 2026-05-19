@@ -1,31 +1,30 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PayPalConfirmButton from "@/components/PayPalConfirmButton";
-import DevTestButton from "@/components/DevTestButton";
 
 export const metadata: Metadata = {
-  title: "Questionnaire Submitted | PowerBuilder",
-  description: "Your questionnaire has been submitted. Artur will deliver your personalized program within 48 hours.",
+  title: "Complete Payment | PowerBuilder",
+  description: "Your questionnaire is saved. Complete your payment to activate your personalized program.",
 };
 
 const nextSteps = [
   {
     number: "01",
-    title: "Payment Confirmation",
+    title: "Complete Payment",
     description:
-      "Complete the PayPal payment below. A receipt will be sent to your email address.",
+      "Click the PayPal button below to complete your €99 payment securely.",
   },
   {
     number: "02",
-    title: "Artur Reviews Your Profile",
+    title: "Submit Your Profile",
     description:
-      "Artur personally reads your questionnaire and begins building your custom training and nutrition system.",
+      "After payment you will be prompted to submit your questionnaire to Artur with one click.",
   },
   {
     number: "03",
     title: "Program Delivered",
     description:
-      "Your personalized system is delivered as a PDF to your email within 48 hours. Ready to start immediately.",
+      "Artur personally builds your custom training and nutrition system and delivers the PDF within 48 hours.",
   },
 ];
 
@@ -39,7 +38,7 @@ export default async function ConfirmationPage({
   return (
     <div className="bg-brand-bg min-h-screen pt-16">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
-        {/* Success indicator */}
+        {/* Status indicator */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-red-600/10 border border-red-600/30 mb-6">
             <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -47,27 +46,27 @@ export default async function ConfirmationPage({
             </svg>
           </div>
 
-          <p className="section-label mb-4">Order Received</p>
+          <p className="section-label mb-4">Questionnaire Saved</p>
           <h1 className="section-heading mb-6">
-            You&apos;re In.
+            One Step Left.
             <br />
-            <span className="text-red-600">Now We Build.</span>
+            <span className="text-red-600">Complete Payment.</span>
           </h1>
           <p className="text-zinc-400 text-lg leading-relaxed max-w-xl mx-auto">
-            Your questionnaire has been submitted successfully. Artur will
-            personally review your answers and build your custom program.
+            Your questionnaire is saved securely in your browser. Complete the
+            €99 payment below to activate your order — Artur will receive your
+            full profile and begin building your program after payment is
+            confirmed.
           </p>
           {email && (
             <p className="text-zinc-500 text-sm mt-3">
-              Your program will be delivered to{" "}
+              Program will be delivered to{" "}
               <span className="text-white font-medium">{email}</span>
             </p>
           )}
         </div>
 
-        {/* ===== PAYPAL INTEGRATION ===== */}
-        {/* This section should only appear if payment was NOT already completed via PayPal redirect */}
-        {/* Once PayPal is integrated, this payment card can be removed — PayPal handles the confirmation */}
+        {/* Payment card */}
         <div className="bg-brand-card border border-red-600/20 p-8 mb-12 text-center">
           <div className="h-0.5 bg-red-600 -mt-8 -mx-8 mb-6" />
           <p className="text-red-600 text-xs font-bold uppercase tracking-widest mb-3">
@@ -77,16 +76,15 @@ export default async function ConfirmationPage({
             Complete Your Payment
           </h2>
           <p className="text-zinc-400 text-sm leading-relaxed mb-6">
-            Your questionnaire is saved. Complete the €99 PayPal payment below
-            to activate your order. Artur will receive your profile and begin
-            building your program immediately after payment is confirmed.
+            After payment PayPal will return you to a confirmation page where
+            you can submit your questionnaire to Artur with a single click.
           </p>
-          {/* ===== PAYPAL INTEGRATION ===== */}
-          {/* Replace PayPalConfirmButton with your real PayPal button */}
-          {/* See components/PayPalButton.tsx for integration instructions */}
+          {/* ===== PAYPAL INTEGRATION =====
+              PayPal return URL must be set to:
+              {NEXT_PUBLIC_BASE_URL}/programs/success?product=personalized
+              Configure this in your PayPal payment link settings.
+          */}
           <PayPalConfirmButton />
-          {/* ===== END PAYPAL INTEGRATION ===== */}
-          {process.env.NODE_ENV === "development" && <DevTestButton />}
         </div>
 
         {/* What happens next */}
@@ -111,11 +109,10 @@ export default async function ConfirmationPage({
         <div className="text-center border-t border-brand-border pt-10">
           <p className="text-zinc-500 text-sm mb-2">Questions about your order?</p>
           <a
-            href="mailto:contact@powerbuilder.com"
+            href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contact@powerbuilder.com"}`}
             className="text-red-500 hover:text-red-400 text-sm font-medium transition-colors"
           >
-            {/* TODO: Replace with your actual email address */}
-            contact@powerbuilder.com
+            {process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contact@powerbuilder.com"}
           </a>
           <div className="mt-8">
             <Link href="/" className="btn-secondary text-xs">
