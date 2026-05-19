@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { getLocale } from "@/lib/locale";
+import { getT } from "@/lib/translations";
 
 export const metadata: Metadata = {
   title: "Artur | PowerBuilder",
@@ -82,7 +85,7 @@ function HubCard({ label, title, subtitle, cta, href, comingSoon, featured }: Hu
       <div className="shrink-0 pl-2">
         {comingSoon ? (
           <span className="text-zinc-600 text-[10px] font-bold uppercase tracking-widest border border-zinc-700 px-2 py-1">
-            Soon
+            {cta}
           </span>
         ) : (
           <span className="text-red-600 font-black text-xl group-hover:translate-x-1 transition-transform duration-200 inline-block">
@@ -104,67 +107,31 @@ function HubCard({ label, title, subtitle, cta, href, comingSoon, featured }: Hu
   return <Link href={href}>{inner}</Link>;
 }
 
+// ─── Hub hrefs (non-translatable) ─────────────────────────────────────────────
+
+const HUB_HREFS = [
+  { href: "/personalized", featured: true },
+  { href: "/programs" },
+  { href: "https://www.tiktok.com/@artur.contentalb?is_from_webapp=1&sender_device=pc" },
+  { href: "https://youtube.com/@artur.mehmetii?si=ILYBKWUIkXGrS9Nu" },
+  { href: "#community", comingSoon: true },
+  { href: "#supplements", comingSoon: true },
+  { href: "#apparel", comingSoon: true },
+];
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contact@powerbuilder.com";
 
-const HUB_ITEMS: HubCardProps[] = [
-  {
-    label: "Coaching",
-    title: "Personalized Coaching",
-    subtitle: "4-week training & nutrition system built for your goals.",
-    cta: "Start Coaching",
-    href: "/personalized",
-    featured: true,
-  },
-  {
-    label: "Programs",
-    title: "Artur's Programs",
-    subtitle: "Bench press, strict curl, cheat curl and strength systems.",
-    cta: "View Programs",
-    href: "/programs",
-  },
-  {
-    label: "Content",
-    title: "Transformation Content",
-    subtitle: "Training clips, progress, discipline and education.",
-    cta: "Watch Content",
-    href: "https://www.tiktok.com/@artur.contentalb?is_from_webapp=1&sender_device=pc",
-  },
-  {
-    label: "YouTube",
-    title: "YouTube",
-    subtitle: "Long-form training breakdowns and lifting education.",
-    cta: "Watch on YouTube",
-    href: "https://youtube.com/@artur.mehmetii?si=ILYBKWUIkXGrS9Nu",
-  },
-  {
-    label: "Community",
-    title: "Community",
-    subtitle: "Join the PowerBuilder training community.",
-    cta: "Coming Soon",
-    href: "#community",
-    comingSoon: true,
-  },
-  {
-    label: "Supplements",
-    title: "Supplements",
-    subtitle: "Recommended products and future affiliate picks.",
-    cta: "Coming Soon",
-    href: "#supplements",
-    comingSoon: true,
-  },
-  {
-    label: "Apparel",
-    title: "Apparel",
-    subtitle: "PowerBuilder clothing and lifting gear.",
-    cta: "Coming Soon",
-    href: "#apparel",
-    comingSoon: true,
-  },
-];
+export default async function BrandHub() {
+  const locale = await getLocale();
+  const t = getT(locale).brandHub;
 
-export default function BrandHub() {
+  const hubItems: HubCardProps[] = t.hub.map((item, i) => ({
+    ...item,
+    ...HUB_HREFS[i],
+  }));
+
   return (
     <div className="min-h-screen bg-brand-bg flex flex-col">
 
@@ -174,12 +141,15 @@ export default function BrandHub() {
           <span className="text-red-600 font-black text-lg tracking-tight">POWER</span>
           <span className="text-white font-black text-lg tracking-tight">BUILDER</span>
         </div>
-        <Link
-          href="/home"
-          className="text-zinc-600 hover:text-zinc-300 text-xs uppercase tracking-widest transition-colors"
-        >
-          Full Site
-        </Link>
+        <div className="flex items-center gap-3">
+          <LanguageSwitcher locale={locale} />
+          <Link
+            href="/home"
+            className="text-zinc-600 hover:text-zinc-300 text-xs uppercase tracking-widest transition-colors"
+          >
+            {getT(locale).nav.fullSite}
+          </Link>
+        </div>
       </header>
 
       {/* ── Main content ───────────────────────────────────────────── */}
@@ -208,16 +178,16 @@ export default function BrandHub() {
           <div className="flex items-center gap-2 mt-3">
             <span className="text-zinc-500 text-xs">20</span>
             <span className="text-zinc-700 text-xs">·</span>
-            <span className="text-zinc-500 text-xs">Berlin, Germany</span>
+            <span className="text-zinc-500 text-xs">{t.location}</span>
             <span className="text-zinc-700 text-xs">·</span>
             <span className="text-zinc-600 text-xs italic">Baustelle Genetik Albaner</span>
           </div>
 
           <p className="text-white font-bold text-base mt-4 tracking-tight">
-            Strength. Muscle. Discipline.
+            {t.tagline}
           </p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-2 max-w-xs">
-            Powerbuilding programs, coaching, transformations, and training systems.
+            {t.subtitle}
           </p>
         </div>
 
@@ -226,25 +196,25 @@ export default function BrandHub() {
           {[
             {
               icon: <InstagramIcon />,
-              label: "Instagram",
+              label: t.social.instagram,
               href: "https://www.instagram.com/artur.mehmetii?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
               external: true,
             },
             {
               icon: <TikTokIcon />,
-              label: "TikTok",
+              label: t.social.tiktok,
               href: "https://www.tiktok.com/@artur.contentalb?is_from_webapp=1&sender_device=pc",
               external: true,
             },
             {
               icon: <YouTubeIcon />,
-              label: "YouTube",
+              label: t.social.youtube,
               href: "https://youtube.com/@artur.mehmetii?si=ILYBKWUIkXGrS9Nu",
               external: true,
             },
             {
               icon: <EmailIcon />,
-              label: "Email",
+              label: t.social.email,
               href: `mailto:${contactEmail}`,
               external: false,
             },
@@ -265,14 +235,14 @@ export default function BrandHub() {
         {/* Divider */}
         <div className="flex items-center gap-3 mb-7">
           <div className="flex-1 h-px bg-brand-border" />
-          <span className="text-zinc-700 text-[9px] uppercase tracking-widest font-bold">Links</span>
+          <span className="text-zinc-700 text-[9px] uppercase tracking-widest font-bold">{t.linksLabel}</span>
           <div className="flex-1 h-px bg-brand-border" />
         </div>
 
         {/* Hub cards */}
         <div className="flex flex-col gap-2.5 mb-9">
-          {HUB_ITEMS.map((item) => (
-            <HubCard key={item.title} {...item} />
+          {hubItems.map((item) => (
+            <HubCard key={item.href} {...item} />
           ))}
         </div>
 
@@ -280,17 +250,17 @@ export default function BrandHub() {
         <div className="border border-red-600/30 bg-red-600/5 p-6 mb-2">
           <div className="h-0.5 bg-red-600 -mt-6 -mx-6 mb-5" />
           <p className="text-red-500 text-[10px] font-bold uppercase tracking-[0.2em] mb-2">
-            Featured Offer
+            {t.featuredBadge}
           </p>
           <h2 className="text-white font-black text-lg uppercase tracking-tight leading-tight mb-1">
-            4 Week Personalized Program
+            {t.featuredTitle}
           </h2>
           <p className="text-zinc-400 text-sm mb-5">
-            Training &amp; Nutrition System —{" "}
-            <span className="text-white font-bold">€99</span>
+            {t.featuredSubtitle} —{" "}
+            <span className="text-white font-bold">{t.featuredPrice}</span>
           </p>
           <Link href="/personalized" className="btn-primary w-full justify-center">
-            Build My Program →
+            {t.featuredCta}
           </Link>
         </div>
 

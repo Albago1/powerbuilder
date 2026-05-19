@@ -1,43 +1,36 @@
 import type { Metadata } from "next";
 import { staticPrograms } from "@/lib/programs";
 import ProgramCard from "@/components/ProgramCard";
+import { getLocale } from "@/lib/locale";
+import { getT } from "@/lib/translations";
 
-export const metadata: Metadata = {
-  title: "Programs | PowerBuilder",
-  description:
-    "Personalized coaching and instant-download specialization programs by Artur. Bench Press, Strict Curl, Cheat Curl, and a fully custom training & nutrition system.",
-};
-
-const personalizedFeatures = [
-  "Personalized training plan",
-  "Personalized nutrition plan",
-  "Strength & hypertrophy focused",
-  "Recovery optimized",
-  "Built around your goals & schedule",
-  "Directly created by Artur",
-];
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const m = getT(locale).programs.meta;
+  return { title: m.title, description: m.description };
+}
 
 const specialistPrograms = staticPrograms.filter(
   (p) => p.id !== "8-week-powerbuilder"
 );
 
-export default function ProgramsPage() {
+export default async function ProgramsPage() {
+  const locale = await getLocale();
+  const { hero, personalizedCard: pc } = getT(locale).programs;
+
   return (
     <div className="bg-brand-bg pt-16">
       {/* Hero */}
       <section className="py-24 md:py-32 border-b border-brand-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <p className="section-label mb-5">Choose Your Program</p>
+            <p className="section-label mb-5">{hero.label}</p>
             <h1 className="section-heading mb-6">
-              Your Program.
+              {hero.title1}
               <br />
-              <span className="text-red-600">Real Results.</span>
+              <span className="text-red-600">{hero.title2}</span>
             </h1>
-            <p className="text-zinc-400 text-lg leading-relaxed">
-              Personalized coaching or instant-download specialization programs.
-              Built for serious lifters — choose the format that fits your situation.
-            </p>
+            <p className="text-zinc-400 text-lg leading-relaxed">{hero.subtitle}</p>
           </div>
         </div>
       </section>
@@ -48,14 +41,14 @@ export default function ProgramsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
             {/* Personalized card — first position */}
             <ProgramCard
-              accentLabel="Personalized"
-              title="4 Week Personalized Training & Nutrition Program"
-              tagline="100% Custom To You"
-              description="A fully personalized 4-week training and nutrition program built around your goals, experience, lifestyle, and recovery. You answer a few questions — Artur creates your plan."
-              duration="4 Weeks"
-              sessionsPerWeek="Custom Plan"
+              accentLabel={pc.accentLabel}
+              title={pc.title}
+              tagline={pc.tagline}
+              description={pc.description}
+              duration={pc.duration}
+              sessionsPerWeek={pc.sessionsPerWeek}
               price={99}
-              features={personalizedFeatures}
+              features={pc.features}
               href="/personalized"
             />
 

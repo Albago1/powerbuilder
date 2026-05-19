@@ -1,12 +1,15 @@
 import Link from "next/link";
+import { getT, type Locale } from "@/lib/translations";
 
-const programs = [
-  { label: "6-Week Bench Press", href: "/programs/bench-press" },
-  { label: "6-Week Strict Curl", href: "/programs/strict-curl" },
-  { label: "6-Week Cheat Curl", href: "/programs/cheat-curl" },
-];
+export default function Footer({ locale }: { locale: Locale }) {
+  const t = getT(locale).footer;
 
-export default function Footer() {
+  const programs = [
+    { label: "6-Week Bench Press", href: "/programs/bench-press" },
+    { label: "6-Week Strict Curl", href: "/programs/strict-curl" },
+    { label: "6-Week Cheat Curl", href: "/programs/cheat-curl" },
+  ];
+
   return (
     <footer className="bg-brand-surface border-t border-brand-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -17,17 +20,15 @@ export default function Footer() {
               <span className="text-red-600 font-black text-lg tracking-tight">POWER</span>
               <span className="text-white font-black text-lg tracking-tight">BUILDER</span>
             </div>
-            <p className="text-zinc-500 text-sm leading-relaxed max-w-xs">
-              Premium strength and hypertrophy systems by Artur. Built for athletes who are serious about results.
-            </p>
+            <p className="text-zinc-500 text-sm leading-relaxed max-w-xs">{t.tagline}</p>
           </div>
 
           {/* Programs */}
           <div className="flex flex-col gap-4">
-            <h3 className="text-white font-bold text-xs uppercase tracking-widest">Programs</h3>
+            <h3 className="text-white font-bold text-xs uppercase tracking-widest">{t.programsHeading}</h3>
             <div className="flex flex-col gap-3">
               <Link href="/personalized" className="text-zinc-500 hover:text-white text-sm transition-colors">
-                Personalized System
+                {t.personalizedSystem}
               </Link>
               {programs.map((p) => (
                 <Link key={p.href} href={p.href} className="text-zinc-500 hover:text-white text-sm transition-colors">
@@ -39,13 +40,13 @@ export default function Footer() {
 
           {/* Navigate */}
           <div className="flex flex-col gap-4">
-            <h3 className="text-white font-bold text-xs uppercase tracking-widest">Navigate</h3>
+            <h3 className="text-white font-bold text-xs uppercase tracking-widest">{t.navigateHeading}</h3>
             <div className="flex flex-col gap-3">
               {[
-                { label: "Home", href: "/" },
-                { label: "About Artur", href: "/about" },
-                { label: "FAQ", href: "/#faq" },
-                { label: "Contact", href: "/#contact" },
+                { label: t.home, href: "/" },
+                { label: t.aboutArtur, href: "/about" },
+                { label: t.faq, href: "/#faq" },
+                { label: t.contact, href: "/#contact" },
               ].map((link) => (
                 <Link key={link.href} href={link.href} className="text-zinc-500 hover:text-white text-sm transition-colors">
                   {link.label}
@@ -56,7 +57,7 @@ export default function Footer() {
 
           {/* Legal */}
           <div className="flex flex-col gap-4">
-            <h3 className="text-white font-bold text-xs uppercase tracking-widest">Legal</h3>
+            <h3 className="text-white font-bold text-xs uppercase tracking-widest">{t.legalHeading}</h3>
             <div className="flex flex-col gap-3">
               {[
                 { label: "Impressum", href: "/legal/impressum" },
@@ -74,11 +75,9 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 pt-8 border-t border-brand-border flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-zinc-600 text-xs">
-            © {new Date().getFullYear()} PowerBuilder by Artur. All rights reserved.
+            © {new Date().getFullYear()} {t.copyright}
           </p>
-          <p className="text-zinc-700 text-xs">
-            Digital products — PDF delivery after purchase.
-          </p>
+          <p className="text-zinc-700 text-xs">{t.digitalNote}</p>
         </div>
       </div>
     </footer>

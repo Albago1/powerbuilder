@@ -2,17 +2,17 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { getT, type Locale } from "@/lib/translations";
 
-const navLinks = [
-  { label: "Personalized", href: "/personalized" },
-  { label: "Programs", href: "/programs" },
-  { label: "About", href: "/about" },
-  { label: "FAQ", href: "/#faq" },
-  { label: "Contact", href: "/#contact" },
-];
-
-export default function Header() {
+export default function Header({ locale }: { locale: Locale }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const t = getT(locale).nav;
+
+  const navLinks = [
+    { label: t.personalized, href: "/personalized" },
+    { label: t.programs, href: "/programs" },
+  ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-brand-bg/90 backdrop-blur-sm border-b border-brand-border">
@@ -37,10 +37,11 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:flex items-center">
+          {/* Desktop right side */}
+          <div className="hidden md:flex items-center gap-4">
+            <LanguageSwitcher locale={locale} />
             <Link href="/personalized" className="btn-primary text-xs px-5 py-3">
-              Build My Program
+              {t.buildMyProgram}
             </Link>
           </div>
 
@@ -71,12 +72,15 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+            <div className="pt-2">
+              <LanguageSwitcher locale={locale} />
+            </div>
             <Link
               href="/personalized"
               className="btn-primary mt-2 text-xs justify-center"
               onClick={() => setMobileOpen(false)}
             >
-              Build My Program
+              {t.buildMyProgram}
             </Link>
           </div>
         </div>
