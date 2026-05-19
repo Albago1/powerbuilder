@@ -1,21 +1,273 @@
-import Hero from "@/components/Hero";
-import PersonalizedSection from "@/components/PersonalizedSection";
-import StaticPrograms from "@/components/StaticPrograms";
-import Benefits from "@/components/Benefits";
-import Testimonials from "@/components/Testimonials";
-import FAQ from "@/components/FAQ";
-import ContactSection from "@/components/ContactSection";
+import type { Metadata } from "next";
+import Link from "next/link";
 
-export default function HomePage() {
+export const metadata: Metadata = {
+  title: "Artur | PowerBuilder",
+  description:
+    "Strength. Muscle. Discipline. Powerbuilding programs, coaching, transformations, and training systems.",
+};
+
+// ─── Social icons ─────────────────────────────────────────────────────────────
+
+function InstagramIcon() {
   return (
-    <>
-      <Hero />
-      <PersonalizedSection />
-      <StaticPrograms />
-      <Benefits />
-      <Testimonials />
-      <FAQ />
-      <ContactSection />
-    </>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function TikTokIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z" />
+    </svg>
+  );
+}
+
+function YouTubeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+      <path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.55 3.5 12 3.5 12 3.5s-7.55 0-9.38.55A3.02 3.02 0 0 0 .5 6.19C0 8.02 0 12 0 12s0 3.98.5 5.81a3.02 3.02 0 0 0 2.12 2.14C4.45 20.5 12 20.5 12 20.5s7.55 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14C24 15.98 24 12 24 12s0-3.98-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z" />
+    </svg>
+  );
+}
+
+function EmailIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+      <rect x="2" y="4" width="20" height="16" rx="2" />
+      <path d="M2 7l10 7 10-7" />
+    </svg>
+  );
+}
+
+// ─── Hub card ─────────────────────────────────────────────────────────────────
+
+interface HubCardProps {
+  label: string;
+  title: string;
+  subtitle: string;
+  cta: string;
+  href: string;
+  comingSoon?: boolean;
+  featured?: boolean;
+}
+
+function HubCard({ label, title, subtitle, cta, href, comingSoon, featured }: HubCardProps) {
+  const inner = (
+    <div
+      className={`
+        flex items-center gap-4 p-5 border transition-all duration-200 group
+        ${comingSoon
+          ? "border-brand-border bg-brand-card opacity-50 cursor-not-allowed"
+          : featured
+            ? "border-red-600/40 bg-red-600/5 hover:border-red-600/70 hover:bg-red-600/8"
+            : "border-brand-border bg-brand-card hover:border-zinc-600 hover:bg-[#1a1a1f]"
+        }
+      `}
+    >
+      <div className="flex-1 min-w-0">
+        <p className="text-red-500 text-[10px] font-bold uppercase tracking-[0.2em] mb-0.5">
+          {label}
+        </p>
+        <h3 className="text-white font-black text-sm uppercase tracking-tight leading-tight">
+          {title}
+        </h3>
+        <p className="text-zinc-500 text-xs mt-1 leading-relaxed">{subtitle}</p>
+      </div>
+      <div className="shrink-0 pl-2">
+        {comingSoon ? (
+          <span className="text-zinc-600 text-[10px] font-bold uppercase tracking-widest border border-zinc-700 px-2 py-1">
+            Soon
+          </span>
+        ) : (
+          <span className="text-red-600 font-black text-xl group-hover:translate-x-1 transition-transform duration-200 inline-block">
+            →
+          </span>
+        )}
+      </div>
+    </div>
+  );
+
+  if (comingSoon) return <div>{inner}</div>;
+  return <Link href={href}>{inner}</Link>;
+}
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
+
+const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contact@powerbuilder.com";
+
+const HUB_ITEMS: HubCardProps[] = [
+  {
+    label: "Coaching",
+    title: "Personalized Coaching",
+    subtitle: "4-week training & nutrition system built for your goals.",
+    cta: "Start Coaching",
+    href: "/personalized",
+    featured: true,
+  },
+  {
+    label: "Programs",
+    title: "Artur's Programs",
+    subtitle: "Bench press, strict curl, cheat curl and strength systems.",
+    cta: "View Programs",
+    href: "/programs",
+  },
+  {
+    label: "Content",
+    title: "Transformation Content",
+    subtitle: "Training clips, progress, discipline and education.",
+    cta: "Watch Content",
+    href: "#content",
+    comingSoon: true,
+  },
+  {
+    label: "YouTube",
+    title: "YouTube",
+    subtitle: "Long-form training breakdowns and lifting education.",
+    cta: "Coming Soon",
+    href: "#youtube",
+    comingSoon: true,
+  },
+  {
+    label: "Community",
+    title: "Community",
+    subtitle: "Join the PowerBuilder training community.",
+    cta: "Coming Soon",
+    href: "#community",
+    comingSoon: true,
+  },
+  {
+    label: "Supplements",
+    title: "Supplements",
+    subtitle: "Recommended products and future affiliate picks.",
+    cta: "Coming Soon",
+    href: "#supplements",
+    comingSoon: true,
+  },
+  {
+    label: "Apparel",
+    title: "Apparel",
+    subtitle: "PowerBuilder clothing and lifting gear.",
+    cta: "Coming Soon",
+    href: "#apparel",
+    comingSoon: true,
+  },
+];
+
+export default function BrandHub() {
+  return (
+    <div className="min-h-screen bg-brand-bg flex flex-col">
+
+      {/* ── Minimal top bar ────────────────────────────────────────── */}
+      <header className="flex items-center justify-between px-4 py-4 border-b border-brand-border">
+        <div className="flex items-center">
+          <span className="text-red-600 font-black text-lg tracking-tight">POWER</span>
+          <span className="text-white font-black text-lg tracking-tight">BUILDER</span>
+        </div>
+        <Link
+          href="/home"
+          className="text-zinc-600 hover:text-zinc-300 text-xs uppercase tracking-widest transition-colors"
+        >
+          Full Site
+        </Link>
+      </header>
+
+      {/* ── Main content ───────────────────────────────────────────── */}
+      <main className="flex-1 w-full max-w-md mx-auto px-4 pt-10 pb-12">
+
+        {/* Profile */}
+        <div className="flex flex-col items-center text-center mb-8">
+          <div className="w-24 h-24 rounded-full bg-gradient-to-br from-red-800 via-red-700 to-red-900 border-2 border-red-600/50 flex items-center justify-center mb-5 shadow-lg shadow-red-900/30">
+            <span className="text-white font-black text-3xl select-none">A</span>
+          </div>
+
+          <h1 className="text-white font-black text-2xl uppercase tracking-tight">Artur</h1>
+          <p className="text-red-500 text-[10px] font-bold uppercase tracking-[0.25em] mt-1">
+            PowerBuilder
+          </p>
+
+          <p className="text-white font-bold text-base mt-4 tracking-tight">
+            Strength. Muscle. Discipline.
+          </p>
+          <p className="text-zinc-400 text-sm leading-relaxed mt-2 max-w-xs">
+            Powerbuilding programs, coaching, transformations, and training systems.
+          </p>
+        </div>
+
+        {/* Social row */}
+        <div className="flex items-center justify-center gap-6 mb-9">
+          {[
+            { icon: <InstagramIcon />, label: "Instagram", href: "#" },
+            { icon: <TikTokIcon />, label: "TikTok", href: "#" },
+            { icon: <YouTubeIcon />, label: "YouTube", href: "#" },
+            { icon: <EmailIcon />, label: "Email", href: `mailto:${contactEmail}` },
+          ].map(({ icon, label, href }) => (
+            <a
+              key={label}
+              href={href}
+              aria-label={label}
+              className="flex flex-col items-center gap-1.5 text-zinc-500 hover:text-white transition-colors duration-200"
+            >
+              {icon}
+              <span className="text-[9px] uppercase tracking-widest font-bold">{label}</span>
+            </a>
+          ))}
+        </div>
+
+        {/* Divider */}
+        <div className="flex items-center gap-3 mb-7">
+          <div className="flex-1 h-px bg-brand-border" />
+          <span className="text-zinc-700 text-[9px] uppercase tracking-widest font-bold">Links</span>
+          <div className="flex-1 h-px bg-brand-border" />
+        </div>
+
+        {/* Hub cards */}
+        <div className="flex flex-col gap-2.5 mb-9">
+          {HUB_ITEMS.map((item) => (
+            <HubCard key={item.title} {...item} />
+          ))}
+        </div>
+
+        {/* Featured offer */}
+        <div className="border border-red-600/30 bg-red-600/5 p-6 mb-2">
+          <div className="h-0.5 bg-red-600 -mt-6 -mx-6 mb-5" />
+          <p className="text-red-500 text-[10px] font-bold uppercase tracking-[0.2em] mb-2">
+            Featured Offer
+          </p>
+          <h2 className="text-white font-black text-lg uppercase tracking-tight leading-tight mb-1">
+            4 Week Personalized Program
+          </h2>
+          <p className="text-zinc-400 text-sm mb-5">
+            Training &amp; Nutrition System —{" "}
+            <span className="text-white font-bold">€99</span>
+          </p>
+          <Link href="/personalized" className="btn-primary w-full justify-center">
+            Build My Program →
+          </Link>
+        </div>
+
+      </main>
+
+      {/* ── Minimal footer ─────────────────────────────────────────── */}
+      <footer className="border-t border-brand-border py-6 px-4">
+        <div className="max-w-md mx-auto flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs">
+          <span className="text-zinc-500 font-bold uppercase tracking-wide">PowerBuilder</span>
+          <Link href="/legal/impressum" className="text-zinc-600 hover:text-zinc-300 transition-colors">
+            Impressum
+          </Link>
+          <Link href="/legal/datenschutz" className="text-zinc-600 hover:text-zinc-300 transition-colors">
+            Datenschutz
+          </Link>
+          <Link href="/legal/agb" className="text-zinc-600 hover:text-zinc-300 transition-colors">
+            AGB
+          </Link>
+        </div>
+      </footer>
+
+    </div>
   );
 }

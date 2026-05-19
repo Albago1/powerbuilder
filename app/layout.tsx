@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -11,9 +9,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "PowerBuilder | 8-Week Strength & Muscle Program by Artur",
+  title: "Artur | PowerBuilder",
   description:
-    "Stop wasting time in the gym. The 8-Week PowerBuilder Program delivers a science-backed system for building serious strength and muscle. €39 — instant PDF delivery.",
+    "Strength. Muscle. Discipline. Powerbuilding programs, coaching, transformations, and training systems by Artur.",
   keywords: [
     "powerbuilding",
     "strength training",
@@ -22,11 +20,11 @@ export const metadata: Metadata = {
     "powerlifting",
     "bodybuilding",
     "progressive overload",
+    "personalized coaching",
   ],
   openGraph: {
-    title: "PowerBuilder | 8-Week Strength & Muscle Program",
-    description:
-      "Stop wasting time in the gym. Build serious strength and muscle in 8 weeks.",
+    title: "Artur | PowerBuilder",
+    description: "Strength. Muscle. Discipline. Programs, coaching, and training systems by Artur.",
     type: "website",
   },
 };
@@ -39,9 +37,7 @@ export default function RootLayout({
   return (
     <html lang="de" className={inter.variable}>
       <body className="bg-brand-bg text-white antialiased">
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );
