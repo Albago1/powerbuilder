@@ -12,6 +12,7 @@ export type NutritionPreference =
   | "no_preference"
   | "";
 export type SleepQuality = "poor" | "average" | "good" | "excellent" | "";
+export type ProgramLanguage = "english" | "german" | "albanian" | "";
 
 export interface QuestionnaireData {
   // Step 1: Profile
@@ -42,7 +43,10 @@ export interface QuestionnaireData {
   // Step 6: Notes
   additionalNotes: string;
 
-  // Step 7: Contact & Delivery
+  // Step 7: Program Language
+  programLanguage: ProgramLanguage;
+
+  // Step 8: Contact & Delivery
   firstName: string;
   lastName: string;
   email: string;
@@ -58,7 +62,8 @@ export const STEP_TITLES: Record<number, string> = {
   4: "Your Body",
   5: "Your Lifestyle",
   6: "Review",
-  7: "Contact & Delivery",
+  7: "Program Language",
+  8: "Contact & Delivery",
 };
 
-export const TOTAL_STEPS = 7;
+export const TOTAL_STEPS = 8;

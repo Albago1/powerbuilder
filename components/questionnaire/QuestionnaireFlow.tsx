@@ -19,6 +19,7 @@ const initial: QuestionnaireData = {
   weakBodyParts: [], strongBodyParts: [], injuries: "",
   nutritionPreference: "", sleepQuality: "",
   additionalNotes: "",
+  programLanguage: "",
   firstName: "", lastName: "", email: "", confirmEmail: "", instagram: "", phone: "",
 };
 
@@ -395,9 +396,9 @@ function Step6({ data, update }: StepProps) {
     <div className="flex flex-col gap-6">
       <div>
         <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight mb-1">
-          Review &amp; <span className="text-red-600">Payment</span>
+          Review &amp; <span className="text-red-600">Notes</span>
         </h2>
-        <p className="text-zinc-500 text-sm">Check your answers, add any notes, then proceed to payment.</p>
+        <p className="text-zinc-500 text-sm">Check your answers and add any final notes for Artur.</p>
       </div>
 
       {/* Summary */}
@@ -429,7 +430,7 @@ function Step6({ data, update }: StepProps) {
       {/* Step note */}
       <div className="bg-brand-surface border border-brand-border p-5">
         <p className="text-zinc-400 text-sm leading-relaxed">
-          <span className="text-white font-bold">Almost there:</span> Review your answers above, then continue to provide your contact and delivery details before payment.
+          <span className="text-white font-bold">Almost there:</span> Review your answers above, then select your program language and provide your contact details before payment.
         </p>
       </div>
     </div>
@@ -437,6 +438,44 @@ function Step6({ data, update }: StepProps) {
 }
 
 function Step7({ data, errors, update }: StepProps) {
+  return (
+    <div className="flex flex-col gap-6">
+      <div>
+        <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight mb-1">
+          Program <span className="text-red-600">Language</span>
+        </h2>
+        <p className="text-zinc-500 text-sm">What language should your program be written in?</p>
+      </div>
+
+      <div>
+        <div className="grid grid-cols-1 gap-3">
+          {[
+            { label: "English", sub: "Program delivered in English", value: "english" },
+            { label: "German", sub: "Programm auf Deutsch", value: "german" },
+            { label: "Albanian", sub: "Programi në Shqip", value: "albanian" },
+          ].map((o) => (
+            <OptionCard
+              key={o.value}
+              label={o.label}
+              sub={o.sub}
+              selected={data.programLanguage === o.value}
+              onClick={() => update("programLanguage", o.value)}
+            />
+          ))}
+        </div>
+        <Error msg={errors.programLanguage} />
+      </div>
+
+      <div className="bg-brand-surface border border-brand-border p-5">
+        <p className="text-zinc-400 text-sm leading-relaxed">
+          <span className="text-white font-bold">Note:</span> Artur will write your full training and nutrition system in the language you select above.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function Step8({ data, errors, update }: StepProps) {
   return (
     <div className="flex flex-col gap-6">
       <div>
@@ -543,6 +582,9 @@ export default function QuestionnaireFlow() {
       if (!data.sleepQuality) e.sleepQuality = "Please select an option";
     }
     if (step === 7) {
+      if (!data.programLanguage) e.programLanguage = "Please select a language for your program";
+    }
+    if (step === 8) {
       if (!data.firstName.trim()) e.firstName = "First name is required";
       if (!data.lastName.trim()) e.lastName = "Last name is required";
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -607,6 +649,7 @@ export default function QuestionnaireFlow() {
           {step === 5 && <Step5 {...stepProps} />}
           {step === 6 && <Step6 {...stepProps} />}
           {step === 7 && <Step7 {...stepProps} />}
+          {step === 8 && <Step8 {...stepProps} />}
         </div>
 
         {/* Navigation */}

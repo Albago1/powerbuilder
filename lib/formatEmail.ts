@@ -9,6 +9,7 @@ const labelMap: Record<string, string> = {
   bulk: "Bulk", cut: "Cut", maintain: "Maintain",
   flexible: "Flexible", strict: "Strict Tracking", vegetarian: "Vegetarian", vegan: "Vegan", no_preference: "No Preference",
   poor: "Poor (< 6h)", average: "Average (6–7h)", good: "Good (7–8h)", excellent: "Excellent (8h+)",
+  english: "English", german: "German", albanian: "Albanian",
 };
 
 const label = (val: string) => labelMap[val] ?? val;
@@ -32,6 +33,9 @@ CUSTOMER DETAILS
   Email:            ${data.email}
   Instagram:        ${data.instagram || "—"}
   Phone/WhatsApp:   ${data.phone || "—"}
+
+PROGRAM LANGUAGE
+  Language:         ${label(data.programLanguage)}
 
 PROFILE
   Age:              ${data.age} years
@@ -64,7 +68,7 @@ ${data.additionalNotes || "None"}
 ==========================================
 NEXT STEPS
   1. Confirm payment received in PayPal
-  2. Build personalized training + nutrition program
+  2. Build personalized training + nutrition program IN ${label(data.programLanguage).toUpperCase()}
   3. Deliver PDF to client within 48 hours
 ==========================================
 Source: powerbuilder.com/questionnaire

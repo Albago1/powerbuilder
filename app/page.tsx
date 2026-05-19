@@ -259,7 +259,7 @@ export default async function BrandHub() {
             {t.featuredSubtitle} —{" "}
             <span className="text-white font-bold">{t.featuredPrice}</span>
           </p>
-          <Link href="/personalized" className="btn-primary w-full justify-center">
+          <Link href="/programs/bench-press" className="btn-primary w-full justify-center">
             {t.featuredCta}
           </Link>
         </div>
