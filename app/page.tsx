@@ -136,18 +136,18 @@ export default async function BrandHub() {
     <div className="min-h-screen bg-brand-bg flex flex-col">
 
       {/* ── Minimal top bar ────────────────────────────────────────── */}
-      <header className="flex items-center justify-between px-4 py-4 border-b border-brand-border">
+      <header className="flex items-center justify-between px-4 py-3.5 border-b border-brand-border">
         <div className="flex items-center">
-          <span className="text-red-600 font-black text-lg tracking-tight">POWER</span>
-          <span className="text-white font-black text-lg tracking-tight">BUILDER</span>
+          <span className="text-red-600 font-black text-base tracking-tight">POWER</span>
+          <span className="text-white font-black text-base tracking-tight">BUILDER</span>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
           <LanguageSwitcher locale={locale} />
           <Link
             href="/home"
-            className="text-zinc-600 hover:text-zinc-300 text-xs uppercase tracking-widest transition-colors"
+            className="text-zinc-600 hover:text-zinc-300 text-[10px] font-bold uppercase tracking-widest transition-colors"
           >
-            {getT(locale).nav.fullSite}
+            Site →
           </Link>
         </div>
       </header>

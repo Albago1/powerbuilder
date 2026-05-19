@@ -27,8 +27,8 @@ export default function Header({ locale }: { locale: Locale }) {
             <span className="text-white font-black text-xl tracking-tight">BUILDER</span>
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-6">
+          {/* Desktop Nav — only at lg+ to avoid overflow */}
+          <nav className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -41,47 +41,46 @@ export default function Header({ locale }: { locale: Locale }) {
           </nav>
 
           {/* Desktop right side */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <LanguageSwitcher locale={locale} />
             <Link href="/personalized" className="btn-primary text-xs px-5 py-3">
               {t.buildMyProgram}
             </Link>
           </div>
 
-          {/* Mobile toggle */}
-          <button
-            className="md:hidden flex flex-col gap-1.5 p-2"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-          >
-            <span className={`block w-6 h-0.5 bg-white transition-all duration-200 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
-            <span className={`block w-6 h-0.5 bg-white transition-all duration-200 ${mobileOpen ? "opacity-0" : ""}`} />
-            <span className={`block w-6 h-0.5 bg-white transition-all duration-200 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
-          </button>
+          {/* Mobile/tablet: lang switcher always visible + hamburger */}
+          <div className="lg:hidden flex items-center gap-3">
+            <LanguageSwitcher locale={locale} />
+            <button
+              className="flex flex-col gap-1.5 p-2"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+            >
+              <span className={`block w-6 h-0.5 bg-white transition-all duration-200 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
+              <span className={`block w-6 h-0.5 bg-white transition-all duration-200 ${mobileOpen ? "opacity-0" : ""}`} />
+              <span className={`block w-6 h-0.5 bg-white transition-all duration-200 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile/tablet menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-brand-surface border-t border-brand-border">
-          <div className="px-4 py-6 flex flex-col gap-4">
+        <div className="lg:hidden bg-brand-surface border-t border-brand-border">
+          <div className="px-4 py-4 flex flex-col">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-zinc-300 hover:text-white text-sm font-medium tracking-wide uppercase py-2 border-b border-brand-border last:border-0"
+                className="text-zinc-300 hover:text-white text-sm font-medium tracking-wide uppercase py-3.5 border-b border-brand-border last:border-0 transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <div className="flex items-center justify-between pt-2">
-              <span className="text-zinc-700 text-[10px] uppercase tracking-widest">{t.languageLabel}</span>
-              <LanguageSwitcher locale={locale} />
-            </div>
             <Link
               href="/personalized"
-              className="btn-primary text-xs justify-center"
+              className="btn-primary mt-5 text-xs justify-center"
               onClick={() => setMobileOpen(false)}
             >
               {t.buildMyProgram}
