@@ -3,42 +3,22 @@ import Link from "next/link";
 import { getProgramById } from "@/lib/programs";
 import PayPalButton from "@/components/PayPalButton";
 import ProgramFAQ from "@/components/ProgramFAQ";
+import { getLocale } from "@/lib/locale";
+import { getT } from "@/lib/translations";
 
-export const metadata: Metadata = {
-  title: "6 Week Bench Press Program | PowerBuilder",
-  description:
-    "A laser-focused 6-week bench press specialization program. Build serious pressing strength and chest power. €49 — instant PDF delivery.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "6 Week Bench Press Program | PowerBuilder",
+    description:
+      "A laser-focused 6-week bench press specialization program. Build serious pressing strength and chest power. €49 — instant PDF delivery.",
+  };
+}
 
-const faqs = [
-  {
-    question: "Do I need a strong bench press to start this program?",
-    answer:
-      "No. You need a solid bench press technique and at least 6 months of consistent training experience. The starting weight doesn't matter — the program builds from wherever you are right now. What matters is that you can execute the movement safely under load.",
-  },
-  {
-    question: "Can I run this alongside my regular training?",
-    answer:
-      "This is a specialization program — it's designed to be your primary upper body focus for 6 weeks. You can add leg training on off days, but adding additional heavy pressing or chest work will interfere with recovery and reduce results. Follow the program as written.",
-  },
-  {
-    question: "Will this program add chest size or just strength?",
-    answer:
-      "Both. The program combines heavy strength work (1–5 rep range) on the main bench variations with hypertrophy-focused accessory pressing (6–12 reps). You'll build the chest thickness and pressing strength at the same time.",
-  },
-  {
-    question: "What equipment do I need?",
-    answer:
-      "A barbell, bench press station, and access to cables or dumbbells for accessory work. A full commercial gym is ideal. You cannot run this program effectively with dumbbells only — the main movements require a barbell.",
-  },
-  {
-    question: "How much weight will I add to my bench in 6 weeks?",
-    answer:
-      "Results depend on your starting point, consistency, and nutrition. Most lifters see 5–15kg added to their working max over 6 weeks when following the program correctly. The program is structured to push your ceiling each week — what you get out of it reflects what you put in.",
-  },
-];
-
-export default function BenchPressPage() {
+export default async function BenchPressPage() {
+  const locale = await getLocale();
+  const t = getT(locale);
+  const pd = t.programDetail;
+  const bp = t.benchPress;
   const program = getProgramById("bench-press")!;
 
   return (
@@ -62,10 +42,10 @@ export default function BenchPressPage() {
                 Program
               </h1>
               <p className="text-zinc-400 text-lg leading-relaxed mb-8 max-w-xl">
-                {program.description} 4 sessions per week, progressive overload built in, strength and hypertrophy combined.
+                {program.description}
               </p>
               <div className="flex flex-wrap gap-3">
-                {[program.duration, program.sessionsPerWeek, "Instant PDF", ...program.focus].map((tag) => (
+                {[program.duration, program.sessionsPerWeek, pd.instantPdf, ...program.focus].map((tag) => (
                   <span key={tag} className="border border-brand-border text-zinc-400 text-xs font-bold uppercase tracking-wider px-3 py-1.5">
                     {tag}
                   </span>
@@ -78,16 +58,14 @@ export default function BenchPressPage() {
               <div className="h-1 -mt-8 -mx-8 md:-mt-10 md:-mx-10 mb-8 bg-red-600" />
               <div className="mb-6">
                 <span className="text-white font-black text-6xl">€{program.price}</span>
-                <p className="text-zinc-600 text-sm mt-1">One-time · no subscription</p>
+                <p className="text-zinc-600 text-sm mt-1">{pd.priceNote}</p>
               </div>
-
               <PayPalButton
                 price={program.price}
                 productName={program.title}
                 paypalLink={process.env.NEXT_PUBLIC_PAYPAL_BENCH_PRESS_LINK ?? program.paypalLink}
                 className="mb-4"
               />
-
               <div className="border-t border-brand-border pt-6 flex flex-col gap-3">
                 {program.features.map((f, i) => (
                   <div key={i} className="flex items-center gap-3">
@@ -107,11 +85,10 @@ export default function BenchPressPage() {
       <section className="py-24 md:py-32 border-b border-brand-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <p className="section-label mb-4">Program Structure</p>
+            <p className="section-label mb-4">{pd.structureLabel}</p>
             <h2 className="section-heading">
-              4 Days.
-              <br />
-              <span className="text-red-600">Maximum Bench Gains.</span>
+              {bp.structureTitle1}<br />
+              <span className="text-red-600">{bp.structureTitle2}</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -140,28 +117,14 @@ export default function BenchPressPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-              <p className="section-label mb-4">Focus Areas</p>
+              <p className="section-label mb-4">{pd.focusLabel}</p>
               <h2 className="section-heading">
-                The Three
-                <br />
-                <span className="text-red-600">Pillars.</span>
+                {pd.threeTitle1}<br />
+                <span className="text-red-600">{pd.threeTitle2}</span>
               </h2>
             </div>
             <div className="md:col-span-2 flex flex-col gap-4">
-              {[
-                {
-                  title: "Bench Strength",
-                  description: "Heavy work in the 1–5 rep range on main bench variations. Every session pushes the top-end strength ceiling higher.",
-                },
-                {
-                  title: "Chest Power",
-                  description: "Hypertrophy-range pressing (6–12 reps) using incline, cable, and dumbbell variations builds the chest thickness that transfers to the bar.",
-                },
-                {
-                  title: "Pressing Mechanics",
-                  description: "Technique cues, paused reps, and touch-and-go variations refine your form under load — the fastest way to add sustainable weight.",
-                },
-              ].map((pillar, i) => (
+              {bp.pillars.map((pillar, i) => (
                 <div key={i} className="flex gap-5 p-6 border border-brand-border">
                   <span className="text-red-600 font-black text-4xl leading-none mt-1 shrink-0">{i + 1}</span>
                   <div>
@@ -179,8 +142,10 @@ export default function BenchPressPage() {
       <section className="py-24 md:py-32 border-b border-brand-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="section-label mb-4">Who Is This For</p>
-            <h2 className="section-heading">Built for <span className="text-red-600">Pressers.</span></h2>
+            <p className="section-label mb-4">{pd.whoForLabel}</p>
+            <h2 className="section-heading">
+              {bp.builtFor} <span className="text-red-600">{bp.builtForAccent}</span>
+            </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
             {program.whoIsItFor.map((item, i) => (
@@ -196,26 +161,26 @@ export default function BenchPressPage() {
       </section>
 
       {/* FAQ */}
-      <ProgramFAQ faqs={faqs} />
+      <ProgramFAQ faqs={bp.faqs} />
 
       {/* Bottom CTA */}
       <section className="py-24 md:py-32">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="section-heading mb-6">
-            6 Weeks From Now,<br />
-            <span className="text-red-600">Your Bench Is Different.</span>
+            {bp.ctaTitle1}<br />
+            <span className="text-red-600">{bp.ctaTitle2}</span>
           </h2>
-          <p className="text-zinc-400 text-lg mb-10">One program. Six weeks. Serious strength.</p>
+          <p className="text-zinc-400 text-lg mb-10">{bp.ctaSubtitle}</p>
           <PayPalButton
             price={program.price}
             productName={program.title}
             paypalLink={process.env.NEXT_PUBLIC_PAYPAL_BENCH_PRESS_LINK ?? program.paypalLink}
             className="max-w-xs mx-auto"
           />
-          <p className="text-zinc-700 text-xs mt-4">Instant PDF · One-time €{program.price} · Lifetime access</p>
+          <p className="text-zinc-700 text-xs mt-4">{pd.ctaNote(program.price)}</p>
           <div className="mt-6">
             <Link href="/personalized" className="text-zinc-500 text-xs hover:text-zinc-300 transition-colors">
-              Want something built specifically for you? → Personalized System
+              {pd.personalizedLink}
             </Link>
           </div>
         </div>

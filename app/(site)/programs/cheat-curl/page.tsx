@@ -3,42 +3,22 @@ import Link from "next/link";
 import { getProgramById } from "@/lib/programs";
 import PayPalButton from "@/components/PayPalButton";
 import ProgramFAQ from "@/components/ProgramFAQ";
+import { getLocale } from "@/lib/locale";
+import { getT } from "@/lib/translations";
 
-export const metadata: Metadata = {
-  title: "6 Week Cheat Curl Program | PowerBuilder",
-  description:
-    "6 weeks of supramaximal overload training for maximum arm mass. Heavy loads, eccentric control, serious bicep thickness. €39 — instant PDF delivery.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "6 Week Cheat Curl Program | PowerBuilder",
+    description:
+      "6 weeks of supramaximal overload training for maximum arm mass. Heavy loads, eccentric control, serious bicep thickness. €39 — instant PDF delivery.",
+  };
+}
 
-const faqs = [
-  {
-    question: "Is the cheat curl safe? Won't it hurt my back?",
-    answer:
-      "The cheat curl is safe when performed correctly. The controlled hip drive in this program is deliberate and structured — not random swinging. The lower back stress is minimal when technique is solid. The eccentric (lowering) phase, which is the most important part of this program, is always done with strict control. Follow the technique cues in the program.",
-  },
-  {
-    question: "How is this different from the Strict Curl program?",
-    answer:
-      "The Strict Curl program builds strength through full ROM controlled curling with no body swing. The Cheat Curl program uses supramaximal loads — weights heavier than you could curl strictly — to overload the muscle and then control the descent. Strict curls build peak and strength foundation; cheat curls build raw arm thickness and mass. Both are effective, but they target different adaptations.",
-  },
-  {
-    question: "What weight should I start with?",
-    answer:
-      "Start with a weight you can cheat curl for the prescribed rep range while still controlling the eccentric. The point is supramaximal load on the way down — you need to actually be able to lower it under control. If you can't slow the negative to 3–4 seconds, the weight is too heavy. Start conservative and add weekly.",
-  },
-  {
-    question: "Do I need a training partner for this program?",
-    answer:
-      "No. A training partner helps for motivation and safety on very heavy sets, but is not required. The program is structured so you can run it solo. Make sure your starting weights are manageable on your own and use a power rack or pins as a safety measure on heavier attempts.",
-  },
-  {
-    question: "Can I run both the Strict Curl and Cheat Curl programs together?",
-    answer:
-      "Not simultaneously — that's too much arm volume for most people. Run one at a time. The recommended approach is to run the Strict Curl program first to build your strength foundation, then run the Cheat Curl program to capitalize on that base with supramaximal loads. Wait at least 1–2 weeks between programs.",
-  },
-];
-
-export default function CheatCurlPage() {
+export default async function CheatCurlPage() {
+  const locale = await getLocale();
+  const t = getT(locale);
+  const pd = t.programDetail;
+  const cc = t.cheatCurl;
   const program = getProgramById("cheat-curl")!;
 
   return (
@@ -56,10 +36,10 @@ export default function CheatCurlPage() {
                 Program
               </h1>
               <p className="text-zinc-400 text-lg leading-relaxed mb-8 max-w-xl">
-                {program.description} Supramaximal loads, brutal eccentric work, maximum arm mass.
+                {program.description}
               </p>
               <div className="flex flex-wrap gap-3">
-                {[program.duration, program.sessionsPerWeek, "Instant PDF", ...program.focus].map((tag) => (
+                {[program.duration, program.sessionsPerWeek, pd.instantPdf, ...program.focus].map((tag) => (
                   <span key={tag} className="border border-brand-border text-zinc-400 text-xs font-bold uppercase tracking-wider px-3 py-1.5">
                     {tag}
                   </span>
@@ -72,16 +52,14 @@ export default function CheatCurlPage() {
               <div className="h-1 -mt-8 -mx-8 md:-mt-10 md:-mx-10 mb-8 bg-red-600" />
               <div className="mb-6">
                 <span className="text-white font-black text-6xl">€{program.price}</span>
-                <p className="text-zinc-600 text-sm mt-1">One-time · no subscription</p>
+                <p className="text-zinc-600 text-sm mt-1">{pd.priceNote}</p>
               </div>
-
               <PayPalButton
                 price={program.price}
                 productName={program.title}
                 paypalLink={process.env.NEXT_PUBLIC_PAYPAL_CHEAT_CURL_LINK ?? program.paypalLink}
                 className="mb-4"
               />
-
               <div className="border-t border-brand-border pt-6 flex flex-col gap-3">
                 {program.features.map((f, i) => (
                   <div key={i} className="flex items-center gap-3">
@@ -101,10 +79,10 @@ export default function CheatCurlPage() {
       <section className="py-24 md:py-32 border-b border-brand-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <p className="section-label mb-4">Program Structure</p>
+            <p className="section-label mb-4">{pd.structureLabel}</p>
             <h2 className="section-heading">
-              3 Days.<br />
-              <span className="text-red-600">Maximum Arm Mass.</span>
+              {cc.structureTitle1}<br />
+              <span className="text-red-600">{cc.structureTitle2}</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -133,18 +111,14 @@ export default function CheatCurlPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-              <p className="section-label mb-4">Training Focus</p>
+              <p className="section-label mb-4">{pd.focusLabel}</p>
               <h2 className="section-heading">
-                The Three<br />
-                <span className="text-red-600">Pillars.</span>
+                {pd.threeTitle1}<br />
+                <span className="text-red-600">{pd.threeTitle2}</span>
               </h2>
             </div>
             <div className="md:col-span-2 flex flex-col gap-4">
-              {[
-                { title: "Supramaximal Loading", description: "Cheat mechanics let you load 20–40% more than your strict max. This supramaximal stimulus forces adaptation that strict work cannot replicate." },
-                { title: "Eccentric Overload", description: "The eccentric (lowering) phase is the strongest phase of the curl. Controlled 3–4 second negatives under heavy load are the most potent mass builder in this program." },
-                { title: "Arm Mass & Thickness", description: "Combined with strict accessory work, the cheat curl develops the brachialis and overall arm girth that gives you thick, powerful arms from every angle." },
-              ].map((pillar, i) => (
+              {cc.pillars.map((pillar, i) => (
                 <div key={i} className="flex gap-5 p-6 border border-brand-border">
                   <span className="text-red-600 font-black text-4xl leading-none mt-1 shrink-0">{i + 1}</span>
                   <div>
@@ -162,8 +136,10 @@ export default function CheatCurlPage() {
       <section className="py-24 md:py-32 border-b border-brand-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="section-label mb-4">Who Is This For</p>
-            <h2 className="section-heading">Built for <span className="text-red-600">Mass Builders.</span></h2>
+            <p className="section-label mb-4">{pd.whoForLabel}</p>
+            <h2 className="section-heading">
+              {cc.builtFor} <span className="text-red-600">{cc.builtForAccent}</span>
+            </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
             {program.whoIsItFor.map((item, i) => (
@@ -179,26 +155,26 @@ export default function CheatCurlPage() {
       </section>
 
       {/* FAQ */}
-      <ProgramFAQ faqs={faqs} />
+      <ProgramFAQ faqs={cc.faqs} />
 
       {/* Bottom CTA */}
       <section className="py-24 md:py-32">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="section-heading mb-6">
-            6 Weeks.<br />
-            <span className="text-red-600">Arm Mass That Shows.</span>
+            {cc.ctaTitle1}<br />
+            <span className="text-red-600">{cc.ctaTitle2}</span>
           </h2>
-          <p className="text-zinc-400 text-lg mb-10">Supramaximal loads. Eccentric overload. Serious thickness.</p>
+          <p className="text-zinc-400 text-lg mb-10">{cc.ctaSubtitle}</p>
           <PayPalButton
             price={program.price}
             productName={program.title}
             paypalLink={process.env.NEXT_PUBLIC_PAYPAL_CHEAT_CURL_LINK ?? program.paypalLink}
             className="max-w-xs mx-auto"
           />
-          <p className="text-zinc-700 text-xs mt-4">Instant PDF · One-time €{program.price} · Lifetime access</p>
+          <p className="text-zinc-700 text-xs mt-4">{pd.ctaNote(program.price)}</p>
           <div className="mt-6">
             <Link href="/programs/strict-curl" className="text-zinc-500 text-xs hover:text-zinc-300 transition-colors">
-              Want strict curl strength too? → Check the Strict Curl Program
+              {cc.crossSellLink}
             </Link>
           </div>
         </div>

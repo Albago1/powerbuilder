@@ -249,6 +249,7 @@ const en = {
       { question: "How much weight should I start with?", answer: "Start lighter than you think. Strict curls with no momentum feel significantly harder than cheat curls or casual dumbbell curls. Choose a weight you can lift for the prescribed reps with perfect form — no swing at all. You'll increase from there each week as the program builds." },
       { question: "Is this program only for people competing in arm strength?", answer: "No. Most people who run this program are doing it for arm size and strength — not competition. The strict curl is simply one of the most effective tools for building peak bicep strength and size with proper form. Competitors use it, but so do anyone who wants genuinely strong and developed arms." },
     ],
+    crossSellLink: "Want more arm mass? → Cheat Curl Program",
   },
 
   // ── Cheat Curl page ─────────────────────────────────────────────────────────
@@ -266,6 +267,7 @@ const en = {
       { title: "Overload Progression", description: "Each week adds load and volume. The program builds systematically toward weights you couldn't handle at the start — that's the point." },
     ],
     faqs: [] as { question: string; answer: string }[],
+    crossSellLink: "Want strict curl strength too? → Strict Curl Program",
   },
 };
 
@@ -501,6 +503,7 @@ const de: typeof en = {
       { question: "Mit wie viel Gewicht soll ich anfangen?", answer: "Fange leichter an als du denkst. Strict Curls ohne Schwung fühlen sich deutlich schwerer an als Cheat Curls oder lässige Kurzhantel-Curls. Wähle ein Gewicht, das du für die vorgeschriebenen Wiederholungen mit perfekter Form heben kannst — kein Schwung überhaupt. Du wirst von dort aus jede Woche steigern, während das Programm aufbaut." },
       { question: "Ist dieses Programm nur für Wettkämpfer?", answer: "Nein. Die meisten Menschen, die dieses Programm ausführen, tun es für Armgröße und -kraft — nicht für Wettkämpfe. Der Strict Curl ist einfach eines der effektivsten Werkzeuge zum Aufbau von Peak-Bizeps-Kraft und -Größe mit korrekter Form." },
     ],
+    crossSellLink: "Mehr Armmasse gewünscht? → Cheat Curl Programm",
   },
   cheatCurl: {
     structureTitle1: "3 Tage.",
@@ -516,6 +519,7 @@ const de: typeof en = {
       { title: "Überbelastungs-Progression", description: "Jede Woche fügt Last und Volumen hinzu. Das Programm baut systematisch auf Gewichte hin, die du zu Beginn nicht handhaben konntest — das ist der Punkt." },
     ],
     faqs: [],
+    crossSellLink: "Strict Curl Kraft auch? → Strict Curl Programm",
   },
 };
 
@@ -751,6 +755,7 @@ const sq: typeof en = {
       { question: "Sa peshë duhet të filloj?", answer: "Fillo më lehtë nga sa mendon. Strict curls pa vrull ndihen dukshëm më të vështira se cheat curls ose curl casual gjevrekësh. Zgjidh një peshë që mund ta ngresh për pérsëritjet e përshkruara me formë perfekte — aspak lëkundje. Do të rritesh nga aty çdo javë ndërsa programi ndërtοhet." },
       { question: "A është ky program vetëm për njerëzit që garojnë?", answer: "Jo. Shumica e njerëzve që drejtojnë këtë program e bëjnë për madhësi dhe forcë krahësh — jo garë. Strict curl është thjesht një nga mjetet më efektive për ndërtimin e forcës dhe madhësisë maksimale të biceps me formë korrekte." },
     ],
+    crossSellLink: "Dëshiron më shumë masë krahësh? → Programi Cheat Curl",
   },
   cheatCurl: {
     structureTitle1: "3 Ditë.",
@@ -766,6 +771,7 @@ const sq: typeof en = {
       { title: "Progresion Mbingarkese", description: "Çdo javë shton ngarkesë dhe vëllim. Programi ndërtοhet sistematikisht drejt peshave që nuk mund t'i menaxhoje në fillim — kjo është pikësynimi." },
     ],
     faqs: [],
+    crossSellLink: "Dëshiron gjithashtu forcë strict curl? → Programi Strict Curl",
   },
 };
 
