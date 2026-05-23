@@ -1,6 +1,23 @@
 import crypto from "crypto";
 
-const SECRET = process.env.DOWNLOAD_SECRET ?? "dev-secret-change-in-production";
+function getSecret(): string {
+  const secret = process.env.DOWNLOAD_SECRET;
+  if (secret && secret.length > 0) return secret;
+
+  if (process.env.NODE_ENV === "production") {
+    throw new Error(
+      "DOWNLOAD_SECRET environment variable is required in production. " +
+        "Generate one with: openssl rand -base64 32"
+    );
+  }
+
+  console.warn(
+    "[downloadToken] DOWNLOAD_SECRET not set — using insecure dev fallback. " +
+      "This must be set in production."
+  );
+  return "dev-secret-change-in-production";
+}
+
 const TOKEN_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
 
 interface TokenPayload {
@@ -10,7 +27,7 @@ interface TokenPayload {
 }
 
 function sign(data: string): string {
-  return crypto.createHmac("sha256", SECRET).update(data).digest("base64url");
+  return crypto.createHmac("sha256", getSecret()).update(data).digest("base64url");
 }
 
 export function createDownloadToken(slug: string, orderID: string): string {

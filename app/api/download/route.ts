@@ -30,7 +30,7 @@ export async function GET(req: NextRequest) {
   const { slug } = payload;
 
   try {
-    const filePath = path.join(process.cwd(), "public", "downloads", slug, `${lang}.pdf`);
+    const filePath = path.join(process.cwd(), "private", "downloads", slug, `${lang}.pdf`);
     const fileBuffer = await readFile(filePath);
     const filename = `powerbuilder-${slug}-${lang}.pdf`;
 
