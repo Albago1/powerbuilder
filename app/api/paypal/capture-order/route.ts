@@ -5,6 +5,7 @@ import { formatSubmissionEmail } from "@/lib/formatEmail";
 
 const EXPECTED_AMOUNT = "99.00";
 const EXPECTED_CURRENCY = "EUR";
+const EXPECTED_REFERENCE_ID = "personalized";
 
 export async function POST(req: NextRequest) {
   try {
@@ -58,8 +59,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if (result.referenceId && result.referenceId !== EXPECTED_REFERENCE_ID) {
+      console.error(
+        `[capture-order] referenceId mismatch — got ${result.referenceId}, expected ${EXPECTED_REFERENCE_ID}, order: ${orderID}`
+      );
+      return NextResponse.json(
+        { error: "Order does not match the personalized program. Please contact support." },
+        { status: 400 }
+      );
+    }
+
     console.log(
-      `[capture-order] Payment verified — ${result.amount} ${result.currency}, order: ${orderID}`
+      `[capture-order] Payment verified — ${result.amount} ${result.currency}, referenceId: ${result.referenceId}, order: ${orderID}`
     );
     console.log(
       `[capture-order] Customer: ${questionnaireData.firstName} ${questionnaireData.lastName} <${questionnaireData.email}>`

@@ -16,7 +16,8 @@ export async function POST(req: NextRequest) {
 
     const { orderID, approvalUrl } = await createOrder(
       `${base}/programs/success?product=personalized`,
-      `${base}/programs/cancel`
+      `${base}/programs/cancel`,
+      { referenceId: "personalized" }
     );
 
     return NextResponse.json({ orderID, approvalUrl });
