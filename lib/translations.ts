@@ -18,7 +18,7 @@ const en = {
 
   // ── Footer ──────────────────────────────────────────────────────────────────
   footer: {
-    tagline: "Premium strength and hypertrophy systems by Artur. Built for athletes who are serious about results.",
+    tagline: "Premium strength and hypertrophy systems featuring fitness expert Artur Mehmeti. Built for athletes who are serious about results.",
     programsHeading: "Programs",
     navigateHeading: "Navigate",
     legalHeading: "Legal",
@@ -27,7 +27,7 @@ const en = {
     aboutArtur: "About Artur",
     faq: "FAQ",
     contact: "Contact",
-    copyright: "PowerBuilder by Artur. All rights reserved.",
+    copyright: "Enrik Gani · Power Builder. All rights reserved.",
     digitalNote: "Digital products — PDF delivery after purchase.",
   },
 
@@ -292,7 +292,7 @@ const de: typeof en = {
     languageLabel: "Sprache",
   },
   footer: {
-    tagline: "Premium Kraft- und Hypertrophiesysteme von Artur. Für Athleten, die ernsthafte Ergebnisse wollen.",
+    tagline: "Premium Kraft- und Hypertrophiesysteme mit Fitnessexperte Artur Mehmeti. Für Athleten, die ernsthafte Ergebnisse wollen.",
     programsHeading: "Programme",
     navigateHeading: "Navigation",
     legalHeading: "Rechtliches",
@@ -301,7 +301,7 @@ const de: typeof en = {
     aboutArtur: "Über Artur",
     faq: "FAQ",
     contact: "Kontakt",
-    copyright: "PowerBuilder by Artur. Alle Rechte vorbehalten.",
+    copyright: "Enrik Gani · Power Builder. Alle Rechte vorbehalten.",
     digitalNote: "Digitale Produkte — PDF-Lieferung nach dem Kauf.",
   },
   brandHub: {
@@ -552,7 +552,7 @@ const sq: typeof en = {
     languageLabel: "Gjuha",
   },
   footer: {
-    tagline: "Sisteme premium të forcës dhe hipertrofisë nga Arturi. Ndërtuar për atletë seriozë.",
+    tagline: "Sisteme premium të forcës dhe hipertrofisë me ekspertin e fitnesit Artur Mehmeti. Ndërtuar për atletë seriozë.",
     programsHeading: "Programet",
     navigateHeading: "Navigim",
     legalHeading: "Juridike",
@@ -561,7 +561,7 @@ const sq: typeof en = {
     aboutArtur: "Rreth Arturit",
     faq: "Pyetje",
     contact: "Kontakt",
-    copyright: "PowerBuilder nga Arturi. Të gjitha të drejtat e rezervuara.",
+    copyright: "Enrik Gani · Power Builder. Të gjitha të drejtat e rezervuara.",
     digitalNote: "Produkte dixhitale — dorëzim PDF pas blerjes.",
   },
   brandHub: {

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { owner } from "@/lib/owner";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,10 +9,11 @@ const inter = Inter({
   display: "swap",
 });
 
+const siteDescription = `Strength. Muscle. Discipline. Training programs, personalized coaching, and lifting systems featuring fitness expert ${owner.talentName}. A platform by ${owner.name}.`;
+
 export const metadata: Metadata = {
-  title: "Artur | PowerBuilder",
-  description:
-    "Strength. Muscle. Discipline. Powerbuilding programs, coaching, transformations, and training systems by Artur.",
+  title: owner.brandName,
+  description: siteDescription,
   keywords: [
     "powerbuilding",
     "strength training",
@@ -23,8 +25,8 @@ export const metadata: Metadata = {
     "personalized coaching",
   ],
   openGraph: {
-    title: "Artur | PowerBuilder",
-    description: "Strength. Muscle. Discipline. Programs, coaching, and training systems by Artur.",
+    title: owner.brandName,
+    description: siteDescription,
     type: "website",
   },
 };

@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
+import { owner } from "@/lib/owner";
 
 export const metadata: Metadata = {
-  title: "Impressum | PowerBuilder",
+  title: `Impressum | ${owner.brandName}`,
 };
-
-const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contact@powerbuilder.com";
 
 export default function ImpressumPage() {
   return (
@@ -19,15 +18,14 @@ export default function ImpressumPage() {
 
         <div className="prose prose-invert max-w-none">
           <div className="bg-brand-card border border-brand-border p-8 flex flex-col gap-8 text-zinc-400 text-sm leading-relaxed">
-            {/* TODO: Fill in your actual legal details */}
             <div>
               <h2 className="text-white font-bold text-base uppercase tracking-widest mb-3">
-                Angaben gemäß § 5 TMG
+                Angaben gemäß § 5 DDG
               </h2>
-              <p>[Vorname Nachname]</p>
-              <p>[Straße und Hausnummer]</p>
-              <p>[PLZ Ort]</p>
-              <p>[Land]</p>
+              <p>{owner.name}</p>
+              <p>{owner.addressStreet}</p>
+              <p>{owner.addressCity}</p>
+              <p>{owner.addressCountry}</p>
             </div>
 
             <div>
@@ -37,30 +35,35 @@ export default function ImpressumPage() {
               <p>
                 E-Mail:{" "}
                 <a
-                  href={`mailto:${contactEmail}`}
+                  href={`mailto:${owner.email}`}
                   className="text-red-500 hover:text-red-400"
                 >
-                  {contactEmail}
+                  {owner.email}
                 </a>
               </p>
             </div>
 
-            <div>
-              <h2 className="text-white font-bold text-base uppercase tracking-widest mb-3">
-                Umsatzsteuer-ID
-              </h2>
-              <p>
-                Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:
-              </p>
-              <p>[USt-IdNr. eintragen oder Abschnitt entfernen wenn nicht vorhanden]</p>
-            </div>
+            {owner.vatId && (
+              <div>
+                <h2 className="text-white font-bold text-base uppercase tracking-widest mb-3">
+                  Umsatzsteuer-ID
+                </h2>
+                <p>
+                  Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:
+                </p>
+                <p>{owner.vatId}</p>
+              </div>
+            )}
 
             <div>
               <h2 className="text-white font-bold text-base uppercase tracking-widest mb-3">
-                Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
+                Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV
               </h2>
-              <p>[Vorname Nachname]</p>
-              <p>[Adresse wie oben]</p>
+              <p>{owner.name}</p>
+              <p>{owner.addressStreet}</p>
+              <p>
+                {owner.addressCity}, {owner.addressCountry}
+              </p>
             </div>
 
             <div>
@@ -80,15 +83,16 @@ export default function ImpressumPage() {
                 </a>
               </p>
               <p className="mt-2">
-                Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren
-                vor einer Verbraucherschlichtungsstelle teilzunehmen.
+                Wir sind nicht bereit oder verpflichtet, an
+                Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle
+                teilzunehmen.
               </p>
             </div>
 
             <div className="border-t border-brand-border pt-6">
               <p className="text-zinc-600 text-xs">
-                TODO: Ersetze alle Platzhalter in eckigen Klammern durch deine echten Angaben.
-                Dieser Inhalt stellt keine Rechtsberatung dar.
+                Dieser Inhalt stellt keine Rechtsberatung dar. Vor dem Launch
+                durch einen Rechtsanwalt prüfen lassen.
               </p>
             </div>
           </div>

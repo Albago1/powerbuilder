@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { owner, ownerFullAddress } from "@/lib/owner";
 
 export const metadata: Metadata = {
-  title: "Datenschutzerklärung | PowerBuilder",
+  title: `Datenschutzerklärung | ${owner.brandName}`,
 };
 
-const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contact@powerbuilder.com";
+const contactEmail = owner.email;
 
 export default function DatenschutzPage() {
   return (
@@ -36,11 +37,14 @@ export default function DatenschutzPage() {
               2. Verantwortlicher
             </h2>
             <p>
-              Verantwortlich für die Datenverarbeitung auf dieser Website ist der im{" "}
-              <a href="/legal/impressum" className="text-red-500 hover:text-red-400">
-                Impressum
-              </a>{" "}
-              genannte Betreiber. Kontakt:{" "}
+              Verantwortlicher im Sinne der DSGVO ist:
+            </p>
+            <p className="mt-3">
+              {owner.name}
+              <br />
+              {ownerFullAddress}
+              <br />
+              E-Mail:{" "}
               <a
                 href={`mailto:${contactEmail}`}
                 className="text-red-500 hover:text-red-400"
