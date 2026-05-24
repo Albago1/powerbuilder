@@ -132,13 +132,14 @@ export default function AGBPage() {
               § 5 Preise &amp; Zahlung
             </h2>
             <p>
-              Alle Preise verstehen sich als Endpreise in Euro (€) inklusive
-              gesetzlicher Umsatzsteuer, sofern anwendbar. Da es sich um
-              ausschließlich digital lieferbare Produkte handelt, fallen keine
-              Versandkosten an. Die Zahlung erfolgt über PayPal (PayPal-Konto,
-              Kreditkarte als Gast-Zahlung, SEPA-Lastschrift sowie weitere von
-              PayPal angebotene Zahlungsmethoden). Empfänger der Zahlung ist
-              ausschließlich {owner.name}.
+              Alle Preise verstehen sich als Endpreise in Euro (€). Gemäß § 19
+              UStG (Kleinunternehmerregelung) wird keine Umsatzsteuer berechnet
+              und in den Preisen nicht ausgewiesen. Da es sich um ausschließlich
+              digital lieferbare Produkte handelt, fallen keine Versandkosten
+              an. Die Zahlung erfolgt über PayPal (PayPal-Konto, Kreditkarte als
+              Gast-Zahlung, SEPA-Lastschrift sowie weitere von PayPal angebotene
+              Zahlungsmethoden). Empfänger der Zahlung ist ausschließlich{" "}
+              {owner.name}.
             </p>
           </div>
 
