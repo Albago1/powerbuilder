@@ -4,6 +4,8 @@ export const metadata: Metadata = {
   title: "AGB | PowerBuilder",
 };
 
+const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contact@powerbuilder.com";
+
 export default function AGBPage() {
   return (
     <div className="bg-brand-bg pt-16 min-h-screen">
@@ -21,8 +23,10 @@ export default function AGBPage() {
               § 1 Geltungsbereich
             </h2>
             <p>
-              Diese Allgemeinen Geschäftsbedingungen gelten für alle Käufe digitaler
-              Produkte über diese Website, betrieben von Artur [Nachname], [Adresse].
+              Diese Allgemeinen Geschäftsbedingungen (nachfolgend „AGB&ldquo;) gelten für
+              alle Verträge über den Kauf digitaler Produkte zwischen dem im Impressum
+              genannten Anbieter (nachfolgend „Anbieter&ldquo;) und dem Käufer
+              (nachfolgend „Kunde&ldquo;), die über diese Website abgeschlossen werden.
             </p>
           </div>
 
@@ -30,12 +34,31 @@ export default function AGBPage() {
             <h2 className="text-white font-bold text-base uppercase tracking-widest mb-3">
               § 2 Vertragsgegenstand
             </h2>
-            <p>
-              Gegenstand des Vertrages ist der Kauf des digitalen Produkts
-              &quot;8 Week PowerBuilder Program&quot; in Form einer PDF-Datei.
-              Das Produkt wird nach erfolgreicher Zahlung per E-Mail als Download
-              zur Verfügung gestellt.
-            </p>
+            <p>Gegenstand des Vertrages ist der Kauf eines der folgenden digitalen Produkte:</p>
+            <ul className="mt-3 ml-6 list-disc flex flex-col gap-2">
+              <li>
+                <strong className="text-zinc-300">Personalized Training &amp; Nutrition System (€99)</strong>{" "}
+                — individuelles, auf den Fragebogen des Kunden zugeschnittenes Trainings-
+                und Ernährungsprogramm, das nach Zahlungseingang innerhalb von 48 Stunden
+                per E-Mail vom Trainer erstellt und an die vom Kunden angegebene
+                E-Mail-Adresse übermittelt wird.
+              </li>
+              <li>
+                <strong className="text-zinc-300">6 Week Bench Press Program (€49)</strong>{" "}
+                — vorgefertigtes Trainingsprogramm im PDF-Format, sofortiger Download
+                nach erfolgreicher Zahlung.
+              </li>
+              <li>
+                <strong className="text-zinc-300">6 Week Strict Curl Program (€39)</strong>{" "}
+                — vorgefertigtes Trainingsprogramm im PDF-Format, sofortiger Download
+                nach erfolgreicher Zahlung.
+              </li>
+              <li>
+                <strong className="text-zinc-300">6 Week Cheat Curl Program (€39)</strong>{" "}
+                — vorgefertigtes Trainingsprogramm im PDF-Format, sofortiger Download
+                nach erfolgreicher Zahlung.
+              </li>
+            </ul>
           </div>
 
           <div>
@@ -43,81 +66,136 @@ export default function AGBPage() {
               § 3 Vertragsschluss
             </h2>
             <p>
-              Der Vertrag kommt durch Klick auf den Kaufen-Button und Abschluss des
-              Bezahlvorgangs über Stripe zustande. Du erhältst eine
-              Kaufbestätigungsmail mit dem Download-Link.
+              Die Darstellung der Produkte auf der Website stellt kein rechtlich
+              bindendes Angebot dar, sondern eine unverbindliche Aufforderung zur
+              Bestellung. Durch Klick auf den Kaufen-Button und Abschluss des
+              Bezahlvorgangs gibt der Kunde ein verbindliches Angebot zum Kauf ab.
+              Der Vertrag kommt mit Bestätigung des Zahlungseingangs durch den
+              Zahlungsdienstleister PayPal und der anschließenden Bereitstellung
+              des digitalen Produkts (Download-Link bzw. E-Mail) zustande.
             </p>
           </div>
 
           <div>
             <h2 className="text-white font-bold text-base uppercase tracking-widest mb-3">
-              § 4 Widerrufsrecht & Rückgabe
+              § 4 Widerrufsrecht &amp; Erlöschen
             </h2>
             <p>
-              Da es sich um ein digitales Produkt handelt, das sofort nach Kauf
-              bereitgestellt wird, erlischt das Widerrufsrecht gemäß § 356 Abs. 5 BGB
-              mit Beginn der Vertragserfüllung (d.h. mit Bereitstellung des
-              Download-Links), sofern du dem ausdrücklich zugestimmt hast.
+              Verbraucher haben grundsätzlich ein 14-tägiges Widerrufsrecht nach
+              § 355 BGB. Bei digitalen Inhalten, die nicht auf einem körperlichen
+              Datenträger geliefert werden, erlischt das Widerrufsrecht gemäß
+              § 356 Abs. 5 BGB, wenn der Kunde
             </p>
-            <p className="mt-2">
-              Bei technischen Problemen mit der Lieferung wende dich bitte an:{" "}
+            <ul className="mt-3 ml-6 list-disc flex flex-col gap-2">
+              <li>ausdrücklich zugestimmt hat, dass der Anbieter mit der Vertragsausführung vor Ablauf der Widerrufsfrist beginnt, und</li>
+              <li>seine Kenntnis davon bestätigt hat, dass durch seine Zustimmung mit Beginn der Vertragsausführung sein Widerrufsrecht erlischt.</li>
+            </ul>
+            <p className="mt-3">
+              Beide Bestätigungen werden beim Abschluss des Kaufvorgangs ausdrücklich
+              eingeholt. Bei technischen Problemen mit der Lieferung kontaktieren Sie
+              uns unter:{" "}
               <a
-                href="mailto:contact@powerbuilder.com"
+                href={`mailto:${contactEmail}`}
                 className="text-red-500 hover:text-red-400"
               >
-                contact@powerbuilder.com
+                {contactEmail}
               </a>
             </p>
           </div>
 
           <div>
             <h2 className="text-white font-bold text-base uppercase tracking-widest mb-3">
-              § 5 Preise & Zahlung
+              § 5 Preise &amp; Zahlung
             </h2>
             <p>
-              Alle Preise verstehen sich als Endpreise in Euro (€). Die Zahlung
-              erfolgt über Stripe (Kreditkarte, SEPA, etc.). Es fallen keine
-              zusätzlichen Versandkosten an — das Produkt ist digital.
+              Alle Preise verstehen sich als Endpreise in Euro (€) inklusive
+              gesetzlicher Umsatzsteuer, sofern anwendbar. Da es sich um ausschließlich
+              digital lieferbare Produkte handelt, fallen keine Versandkosten an. Die
+              Zahlung erfolgt über PayPal (PayPal-Konto, Kreditkarte als Gast-Zahlung,
+              SEPA-Lastschrift sowie weitere von PayPal angebotene Zahlungsmethoden).
             </p>
           </div>
 
           <div>
             <h2 className="text-white font-bold text-base uppercase tracking-widest mb-3">
-              § 6 Nutzungsrecht
+              § 6 Lieferung
             </h2>
             <p>
-              Nach dem Kauf erhältst du ein einfaches, nicht übertragbares Nutzungsrecht
-              für den persönlichen Gebrauch. Eine Weitergabe, Vervielfältigung oder
-              kommerzielle Nutzung des PDFs ist nicht gestattet.
+              Die Lieferung erfolgt ausschließlich digital. Vorgefertigte
+              Trainingsprogramme (PDFs) werden unmittelbar nach erfolgreicher Zahlung
+              per Download-Link bereitgestellt. Das personalisierte Trainings- &amp;
+              Ernährungssystem wird innerhalb von 48 Stunden nach Zahlungseingang
+              vom Trainer manuell erstellt und per E-Mail an die vom Kunden im
+              Fragebogen angegebene Adresse versendet.
             </p>
           </div>
 
           <div>
             <h2 className="text-white font-bold text-base uppercase tracking-widest mb-3">
-              § 7 Haftungsausschluss
+              § 7 Nutzungsrecht &amp; Urheberrecht
             </h2>
             <p>
-              Das Trainingsprogramm ersetzt keine medizinische Beratung. Konsultiere
-              vor Beginn eines neuen Trainingsprogramms einen Arzt, wenn du gesundheitliche
-              Einschränkungen hast. Für Verletzungen, die im Zusammenhang mit dem
-              Programm entstehen, wird keine Haftung übernommen.
+              Mit dem Kauf erhält der Kunde ein einfaches, nicht ausschließliches,
+              nicht übertragbares Nutzungsrecht am gekauften Produkt für den
+              persönlichen, nicht-kommerziellen Gebrauch. Die Vervielfältigung,
+              Weitergabe, öffentliche Zugänglichmachung oder kommerzielle Nutzung
+              der Inhalte (insbesondere PDFs, personalisierte Pläne, Texte, Bilder)
+              ist ohne ausdrückliche schriftliche Zustimmung des Anbieters nicht
+              gestattet. Alle Inhalte sind urheberrechtlich geschützt.
             </p>
           </div>
 
           <div>
             <h2 className="text-white font-bold text-base uppercase tracking-widest mb-3">
-              § 8 Anwendbares Recht
+              § 8 Haftungsausschluss &amp; Gesundheitshinweis
+            </h2>
+            <p>
+              Die angebotenen Trainings- und Ernährungsinhalte ersetzen keine
+              medizinische, physiotherapeutische oder ernährungsberatende Beratung.
+              Der Kunde verpflichtet sich, vor Beginn eines neuen Trainings- oder
+              Ernährungsprogramms einen Arzt zu konsultieren, insbesondere bei
+              Vorerkrankungen, Verletzungen, Schwangerschaft oder anderen
+              gesundheitlichen Einschränkungen. Die Ausführung der Übungen erfolgt
+              auf eigenes Risiko. Der Anbieter haftet nicht für Schäden, die aus
+              der Anwendung der Inhalte entstehen, soweit nicht eine Haftung nach
+              den gesetzlichen Vorschriften zwingend vorgeschrieben ist (insb.
+              Vorsatz, grobe Fahrlässigkeit, Verletzung von Leben, Körper und
+              Gesundheit).
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-white font-bold text-base uppercase tracking-widest mb-3">
+              § 9 Anwendbares Recht &amp; Gerichtsstand
             </h2>
             <p>
               Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des
-              UN-Kaufrechts.
+              UN-Kaufrechts. Gegenüber Verbrauchern gilt diese Rechtswahl nur insoweit,
+              als nicht der gewährte Schutz durch zwingende Bestimmungen des Rechts
+              des Staates, in dem der Verbraucher seinen gewöhnlichen Aufenthalt hat,
+              entzogen wird.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-white font-bold text-base uppercase tracking-widest mb-3">
+              § 10 Salvatorische Klausel
+            </h2>
+            <p>
+              Sollten einzelne Bestimmungen dieser AGB ganz oder teilweise unwirksam
+              sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen
+              unberührt.
             </p>
           </div>
 
           <div className="border-t border-brand-border pt-6">
             <p className="text-zinc-600 text-xs">
-              TODO: Diese AGB sind ein Platzhalter. Lass sie vor dem Launch von einem
-              Rechtsanwalt prüfen und an deine konkrete Situation anpassen.
+              Stand: {new Date().toLocaleDateString("de-DE", { month: "long", year: "numeric" })}.
+              TODO: Diese AGB sind ein Entwurf und müssen vor dem Launch von einem
+              Rechtsanwalt geprüft werden. Bitte beachten: § 4 setzt voraus, dass im
+              Checkout-Flow eine ausdrückliche Widerrufs-Verzichts-Bestätigung
+              eingeholt wird (z.&nbsp;B. per Checkbox) — diese muss noch implementiert
+              werden, bevor das Erlöschen des Widerrufsrechts rechtssicher greift.
             </p>
           </div>
         </div>

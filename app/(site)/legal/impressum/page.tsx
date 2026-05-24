@@ -4,6 +4,8 @@ export const metadata: Metadata = {
   title: "Impressum | PowerBuilder",
 };
 
+const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contact@powerbuilder.com";
+
 export default function ImpressumPage() {
   return (
     <div className="bg-brand-bg pt-16 min-h-screen">
@@ -35,10 +37,10 @@ export default function ImpressumPage() {
               <p>
                 E-Mail:{" "}
                 <a
-                  href="mailto:contact@powerbuilder.com"
+                  href={`mailto:${contactEmail}`}
                   className="text-red-500 hover:text-red-400"
                 >
-                  contact@powerbuilder.com
+                  {contactEmail}
                 </a>
               </p>
             </div>
@@ -59,6 +61,28 @@ export default function ImpressumPage() {
               </h2>
               <p>[Vorname Nachname]</p>
               <p>[Adresse wie oben]</p>
+            </div>
+
+            <div>
+              <h2 className="text-white font-bold text-base uppercase tracking-widest mb-3">
+                Streitschlichtung
+              </h2>
+              <p>
+                Die Europäische Kommission stellt eine Plattform zur
+                Online-Streitbeilegung (OS) bereit:{" "}
+                <a
+                  href="https://ec.europa.eu/consumers/odr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-red-500 hover:text-red-400"
+                >
+                  https://ec.europa.eu/consumers/odr
+                </a>
+              </p>
+              <p className="mt-2">
+                Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren
+                vor einer Verbraucherschlichtungsstelle teilzunehmen.
+              </p>
             </div>
 
             <div className="border-t border-brand-border pt-6">

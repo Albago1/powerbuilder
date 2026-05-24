@@ -1,3 +1,5 @@
+const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contact@powerbuilder.com";
+
 export default function ContactSection() {
   return (
     <section id="contact" className="bg-brand-bg py-24 md:py-32">
@@ -38,12 +40,11 @@ export default function ContactSection() {
               <p className="text-zinc-500 text-sm mb-3">
                 Best for questions about the program or your order.
               </p>
-              {/* TODO: Replace with your actual contact email */}
               <a
-                href="mailto:contact@powerbuilder.com"
+                href={`mailto:${contactEmail}`}
                 className="text-red-500 hover:text-red-400 text-sm font-medium transition-colors"
               >
-                contact@powerbuilder.com
+                {contactEmail}
               </a>
             </div>
           </div>
