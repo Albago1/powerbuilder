@@ -71,16 +71,6 @@ export default function AGBPage() {
                 — vorgefertigtes Trainingsprogramm im PDF-Format, sofortiger
                 Download nach erfolgreicher Zahlung.
               </li>
-              <li>
-                <strong className="text-zinc-300">6 Week Strict Curl Program (€39)</strong>{" "}
-                — vorgefertigtes Trainingsprogramm im PDF-Format, sofortiger
-                Download nach erfolgreicher Zahlung.
-              </li>
-              <li>
-                <strong className="text-zinc-300">6 Week Cheat Curl Program (€39)</strong>{" "}
-                — vorgefertigtes Trainingsprogramm im PDF-Format, sofortiger
-                Download nach erfolgreicher Zahlung.
-              </li>
             </ul>
           </div>
 

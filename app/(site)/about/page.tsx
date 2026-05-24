@@ -165,8 +165,6 @@ export default function AboutPage() {
             {[
               { title: "Personalized Training & Nutrition System", sub: "4 weeks · Custom · €99", href: "/personalized" },
               { title: "6 Week Bench Press Program", sub: "PDF · 4x/week · €49", href: "/programs/bench-press" },
-              { title: "6 Week Strict Curl Program", sub: "PDF · 3x/week · €39", href: "/programs/strict-curl" },
-              { title: "6 Week Cheat Curl Program", sub: "PDF · 3x/week · €39", href: "/programs/cheat-curl" },
             ].map((item, i) => (
               <Link
                 key={i}

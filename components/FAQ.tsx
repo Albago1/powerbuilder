@@ -14,34 +14,29 @@ const faqs = [
       "After payment and questionnaire submission, your personalized program is delivered within 48 hours. You'll receive it directly via email as a PDF document.",
   },
   {
-    question: "Are the static programs instant download?",
+    question: "Is the program an instant download?",
     answer:
-      "Yes. The 6-Week Bench Press, 6-Week Strict Curl, and 6-Week Cheat Curl programs are all instant digital downloads. After payment is confirmed, the PDF is delivered to your email immediately.",
+      "Yes. The 6-Week Bench Press program is an instant digital download. After payment is confirmed, the PDF is delivered to your email immediately.",
   },
   {
-    question: "Is nutrition included in the programs?",
+    question: "Is nutrition included?",
     answer:
-      "The personalized program includes a full custom nutrition plan with calorie targets, macros, and meal timing guidance. The static programs include a nutrition framework (protein targets, calorie ranges, timing principles) — not a custom meal plan, but all the key principles you need.",
+      "The personalized program includes a full custom nutrition plan with calorie targets, macros, and meal timing guidance. The Bench Press program includes a nutrition framework (protein targets, calorie ranges, timing principles) — not a custom meal plan, but all the key principles you need.",
   },
   {
     question: "Is this beginner friendly?",
     answer:
-      "The static programs are best suited for lifters with at least 6 months of consistent training experience who know the main compound lifts. Complete beginners should build a movement foundation first. The personalized program is adjusted to your exact experience level — including if you're earlier in your journey.",
+      "The Bench Press program is best suited for lifters with at least 6 months of consistent training experience who know the main compound lifts. Complete beginners should build a movement foundation first. The personalized program is adjusted to your exact experience level — including if you're earlier in your journey.",
   },
   {
     question: "What equipment do I need?",
     answer:
-      "The PowerBuilder and Bench Press programs require a full gym with barbells, squat rack, bench, and cables. The Curl programs can be run with barbells and dumbbells. The personalized program is designed around whatever equipment you have access to — you specify this in the questionnaire.",
+      "The Bench Press program requires a full gym with barbell, bench, and cables. The personalized program is designed around whatever equipment you have access to — you specify this in the questionnaire.",
   },
   {
-    question: "Can I run a static program more than once?",
+    question: "Can I run the program more than once?",
     answer:
-      "Yes. All static programs are yours permanently. You can run them multiple times, resetting at a slightly higher baseline each time. Progressive overload carries forward — you will keep improving.",
-  },
-  {
-    question: "What's the difference between the Strict Curl and Cheat Curl programs?",
-    answer:
-      "The Strict Curl program builds strength and peak through controlled, full-ROM curling with no body swing. The Cheat Curl program uses supramaximal loads and eccentric overload to add raw arm thickness — you use momentum to lift more than you could strictly, then control the descent. Both are effective, but they solve different problems.",
+      "Yes. The Bench Press program is yours permanently. You can run it multiple times, resetting at a slightly higher baseline each time. Progressive overload carries forward — you will keep improving.",
   },
 ];
 

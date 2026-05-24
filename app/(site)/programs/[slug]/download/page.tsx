@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: "Select your language and download your program PDF.",
 };
 
-const ALLOWED_SLUGS = ["bench-press", "strict-curl", "cheat-curl"];
+const ALLOWED_SLUGS = ["bench-press"];
 
 interface Props {
   params: Promise<{ slug: string }>;

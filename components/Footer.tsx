@@ -6,8 +6,6 @@ export default function Footer({ locale }: { locale: Locale }) {
 
   const programs = [
     { label: "6-Week Bench Press", href: "/programs/bench-press" },
-    { label: "6-Week Strict Curl", href: "/programs/strict-curl" },
-    { label: "6-Week Cheat Curl", href: "/programs/cheat-curl" },
   ];
 
   return (

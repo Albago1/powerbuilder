@@ -40,7 +40,7 @@ const en = {
     social: { instagram: "Instagram", tiktok: "TikTok", youtube: "YouTube", email: "Email" },
     hub: [
       { label: "Coaching", title: "Personalized Coaching", subtitle: "4-week training & nutrition system built for your goals.", cta: "Start Coaching" },
-      { label: "Programs", title: "Artur's Programs", subtitle: "Bench press, strict curl, cheat curl and strength systems.", cta: "View Programs" },
+      { label: "Programs", title: "Artur's Programs", subtitle: "Bench press and strength systems.", cta: "View Programs" },
       { label: "Content", title: "Transformation Content", subtitle: "Training clips, progress, discipline and education.", cta: "Watch Content" },
       { label: "YouTube", title: "YouTube", subtitle: "Long-form training breakdowns and lifting education.", cta: "Watch on YouTube" },
       { label: "Community", title: "Community", subtitle: "Join the PowerBuilder training community.", cta: "Coming Soon" },
@@ -228,48 +228,6 @@ const en = {
     ],
   },
 
-  // ── Strict Curl page ────────────────────────────────────────────────────────
-  strictCurl: {
-    structureTitle1: "3 Days.",
-    structureTitle2: "Maximum Curl Strength.",
-    builtFor: "Built for",
-    builtForAccent: "Arm Builders.",
-    ctaTitle1: "6 Weeks From Now,",
-    ctaTitle2: "Your Arms Are Different.",
-    ctaSubtitle: "One program. Six weeks. Serious arm strength.",
-    pillars: [
-      { title: "Strict Form", description: "Zero body swing, full range of motion. Every rep maximizes tension on the bicep without momentum stealing the work." },
-      { title: "Peak Contraction", description: "Supination and peak contraction cues built into every set. The difference between going through the motion and actually building the muscle." },
-      { title: "Progressive Overload", description: "Weekly load and volume targets keep the stimulus growing. You're not just doing curls — you're building a stronger bicep systematically." },
-    ],
-    faqs: [
-      { question: "What exactly is a strict curl?", answer: "A strict curl is a barbell or dumbbell curl performed with zero body swing. Your torso stays fixed, your elbows stay at your sides, and you control the weight through the full range of motion — from a full stretch at the bottom to a peak contraction at the top. No momentum, no hip drive. Maximum tension on the bicep throughout." },
-      { question: "Can I run this program alongside my regular training?", answer: "Yes. This is an arm specialization program with 3 sessions per week. You can keep your regular chest, back, and leg training on the other days. Just make sure you're not hitting heavy bicep work on your rest days from this program — recovery is where the growth happens." },
-      { question: "Do I need any special equipment?", answer: "A barbell, EZ bar, and a set of dumbbells cover everything in this program. Cables are useful for some accessory exercises but not essential. This program can be run in almost any gym." },
-      { question: "How much weight should I start with?", answer: "Start lighter than you think. Strict curls with no momentum feel significantly harder than cheat curls or casual dumbbell curls. Choose a weight you can lift for the prescribed reps with perfect form — no swing at all. You'll increase from there each week as the program builds." },
-      { question: "Is this program only for people competing in arm strength?", answer: "No. Most people who run this program are doing it for arm size and strength — not competition. The strict curl is simply one of the most effective tools for building peak bicep strength and size with proper form. Competitors use it, but so do anyone who wants genuinely strong and developed arms." },
-    ],
-    crossSellLink: "Want more arm mass? → Cheat Curl Program",
-  },
-
-  // ── Cheat Curl page ─────────────────────────────────────────────────────────
-  cheatCurl: {
-    structureTitle1: "3 Days.",
-    structureTitle2: "Maximum Overload.",
-    builtFor: "Built for",
-    builtForAccent: "Overload Seekers.",
-    ctaTitle1: "6 Weeks From Now,",
-    ctaTitle2: "Your Biceps Are Bigger.",
-    ctaSubtitle: "One program. Six weeks. Serious size.",
-    pillars: [
-      { title: "Controlled Cheat", description: "Minimal hip drive to move maximal weight — not sloppy reps. The cheat is a tool to overload the bicep, not to avoid working." },
-      { title: "Eccentric Focus", description: "The controlled lower on every rep is where most of the growth happens. Slow negatives under maximum load create serious hypertrophy stimulus." },
-      { title: "Overload Progression", description: "Each week adds load and volume. The program builds systematically toward weights you couldn't handle at the start — that's the point." },
-    ],
-    faqs: [] as { question: string; answer: string }[],
-    crossSellLink: "Want strict curl strength too? → Strict Curl Program",
-  },
-
   // ── Checkout (Widerruf waiver consent, required for § 4 AGB) ────────────────
   checkout: {
     widerrufConsent:
@@ -312,7 +270,7 @@ const de: typeof en = {
     social: { instagram: "Instagram", tiktok: "TikTok", youtube: "YouTube", email: "E-Mail" },
     hub: [
       { label: "Coaching", title: "Persönliches Coaching", subtitle: "4-Wochen Training & Ernährungssystem, das auf deine Ziele abgestimmt ist.", cta: "Coaching starten" },
-      { label: "Programme", title: "Arturs Programme", subtitle: "Bankdrücken, Strict Curl, Cheat Curl und Kraftsysteme.", cta: "Programme ansehen" },
+      { label: "Programme", title: "Arturs Programme", subtitle: "Bankdrücken und Kraftsysteme.", cta: "Programme ansehen" },
       { label: "Content", title: "Transformation Content", subtitle: "Trainingsclips, Fortschritte, Disziplin und Ausbildung.", cta: "Content ansehen" },
       { label: "YouTube", title: "YouTube", subtitle: "Ausführliche Trainingsanalysen und Kraft-Education.", cta: "Auf YouTube ansehen" },
       { label: "Community", title: "Community", subtitle: "Tritt der PowerBuilder Trainings-Community bei.", cta: "Demnächst" },
@@ -491,44 +449,6 @@ const de: typeof en = {
       { question: "Welche Fortschritte kann ich in 6 Wochen erwarten?", answer: "Die Ergebnisse hängen von deinem Ausgangspunkt, Konsistenz und Ernährung ab. Das Programm ist so strukturiert, dass es deine Grenze jede Woche pusht — was du herausbekommst, spiegelt wider, was du hineinsteckst." },
     ],
   },
-  strictCurl: {
-    structureTitle1: "3 Tage.",
-    structureTitle2: "Maximale Curl-Kraft.",
-    builtFor: "Gebaut für",
-    builtForAccent: "Arm-Aufbauer.",
-    ctaTitle1: "In 6 Wochen",
-    ctaTitle2: "sind deine Arme anders.",
-    ctaSubtitle: "Ein Programm. Sechs Wochen. Ernsthafte Arm-Kraft.",
-    pillars: [
-      { title: "Strikte Form", description: "Kein Körperschwung, voller Bewegungsbereich. Jede Wiederholung maximiert die Spannung auf den Bizeps ohne Schwung, der die Arbeit stiehlt." },
-      { title: "Peak-Kontraktion", description: "Supinations- und Peak-Kontraktions-Cues in jeden Satz eingebaut. Der Unterschied zwischen Bewegungen durch die Bewegung und tatsächlichem Muskelaufbau." },
-      { title: "Progressive Overload", description: "Wöchentliche Last- und Volumenziele halten den Reiz wachsend. Du machst nicht nur Curls — du baust systematisch einen stärkeren Bizeps auf." },
-    ],
-    faqs: [
-      { question: "Was genau ist ein Strict Curl?", answer: "Ein Strict Curl ist ein Langhantel- oder Kurzhantels-Curl, der mit null Körperschwung ausgeführt wird. Dein Oberkörper bleibt fixiert, deine Ellbogen bleiben an deiner Seite, und du kontrollierst das Gewicht durch den vollen Bewegungsbereich — von einer vollen Dehnung unten bis zu einer Peak-Kontraktion oben. Kein Schwung, kein Hüftantrieb. Maximale Spannung auf den Bizeps durchgehend." },
-      { question: "Kann ich es neben meinem regulären Training ausführen?", answer: "Ja. Dies ist ein Arm-Spezialisierungsprogramm mit 3 Einheiten pro Woche. Du kannst dein reguläres Brust-, Rücken- und Beintraining an den anderen Tagen beibehalten. Achte nur darauf, dass du keine schwere Bizepsarbeit an deinen Ruhetagen von diesem Programm machst — Regeneration ist dort, wo das Wachstum stattfindet." },
-      { question: "Benötige ich spezielle Ausrüstung?", answer: "Eine Langhantel, EZ-Bar und ein Satz Kurzhanteln decken alles in diesem Programm ab. Kabel sind für einige Zusatzübungen nützlich, aber nicht unbedingt erforderlich. Dieses Programm kann in fast jedem Fitnessstudio ausgeführt werden." },
-      { question: "Mit wie viel Gewicht soll ich anfangen?", answer: "Fange leichter an als du denkst. Strict Curls ohne Schwung fühlen sich deutlich schwerer an als Cheat Curls oder lässige Kurzhantel-Curls. Wähle ein Gewicht, das du für die vorgeschriebenen Wiederholungen mit perfekter Form heben kannst — kein Schwung überhaupt. Du wirst von dort aus jede Woche steigern, während das Programm aufbaut." },
-      { question: "Ist dieses Programm nur für Wettkämpfer?", answer: "Nein. Die meisten Menschen, die dieses Programm ausführen, tun es für Armgröße und -kraft — nicht für Wettkämpfe. Der Strict Curl ist einfach eines der effektivsten Werkzeuge zum Aufbau von Peak-Bizeps-Kraft und -Größe mit korrekter Form." },
-    ],
-    crossSellLink: "Mehr Armmasse gewünscht? → Cheat Curl Programm",
-  },
-  cheatCurl: {
-    structureTitle1: "3 Tage.",
-    structureTitle2: "Maximale Überbelastung.",
-    builtFor: "Gebaut für",
-    builtForAccent: "Überbelastungs-Sucher.",
-    ctaTitle1: "In 6 Wochen",
-    ctaTitle2: "sind deine Bizeps größer.",
-    ctaSubtitle: "Ein Programm. Sechs Wochen. Ernsthafte Größe.",
-    pillars: [
-      { title: "Kontrollierter Cheat", description: "Minimaler Hüftantrieb, um maximales Gewicht zu bewegen — keine schlampigen Wiederholungen. Der Cheat ist ein Werkzeug zur Überbelastung des Bizeps, nicht zur Vermeidung von Arbeit." },
-      { title: "Exzentrischer Fokus", description: "Das kontrollierte Absenken bei jeder Wiederholung ist der Ort, wo das meiste Wachstum stattfindet. Langsame Negative unter maximaler Last erzeugen einen ernsthaften Hypertrophiereiz." },
-      { title: "Überbelastungs-Progression", description: "Jede Woche fügt Last und Volumen hinzu. Das Programm baut systematisch auf Gewichte hin, die du zu Beginn nicht handhaben konntest — das ist der Punkt." },
-    ],
-    faqs: [],
-    crossSellLink: "Strict Curl Kraft auch? → Strict Curl Programm",
-  },
 
   // ── Checkout (Widerrufsverzicht, erforderlich für § 4 AGB) ──────────────────
   checkout: {
@@ -572,7 +492,7 @@ const sq: typeof en = {
     social: { instagram: "Instagram", tiktok: "TikTok", youtube: "YouTube", email: "Email" },
     hub: [
       { label: "Coaching", title: "Coaching Personal", subtitle: "Sistem stërvitjeje & ushqimi 4 javë i ndërtuar për qëllimet tuaja.", cta: "Fillo Coaching" },
-      { label: "Programet", title: "Programet e Arturit", subtitle: "Bench press, strict curl, cheat curl dhe sisteme force.", cta: "Shiko Programet" },
+      { label: "Programet", title: "Programet e Arturit", subtitle: "Bench press dhe sisteme force.", cta: "Shiko Programet" },
       { label: "Content", title: "Content Transformimi", subtitle: "Klipe stërvitjeje, progres, disiplinë dhe edukim.", cta: "Shiko Content" },
       { label: "YouTube", title: "YouTube", subtitle: "Analiza të gjata stërvitjeje dhe edukim ngritjeje.", cta: "Shiko në YouTube" },
       { label: "Komunitet", title: "Komunitet", subtitle: "Bashkohu me komunitetin e stërvitjes PowerBuilder.", cta: "Së shpejti" },
@@ -750,44 +670,6 @@ const sq: typeof en = {
       { question: "Çfarë pajisje më duhen?", answer: "Një shtangë e gjatë, stacion bench press dhe qasje në kabllo ose gjevrekë për punë ndihmëse. Një palestër komerciale e plotë është ideale." },
       { question: "Çfarë progresi mund të pres në 6 javë?", answer: "Rezultatet varen nga pika juaj fillestare, konsistenca dhe ushqyerja. Programi është i strukturuar të shtyjë tavanin tënd çdo javë — ajo që merr prej tij reflekton atë që fut në të." },
     ],
-  },
-  strictCurl: {
-    structureTitle1: "3 Ditë.",
-    structureTitle2: "Forcë Maksimale Curl.",
-    builtFor: "Ndërtuar për",
-    builtForAccent: "Ndërtuesit e Krahëve.",
-    ctaTitle1: "Pas 6 Javësh,",
-    ctaTitle2: "Krahët Tuaj Janë Ndryshe.",
-    ctaSubtitle: "Një program. Gjashtë javë. Forcë serioze krahësh.",
-    pillars: [
-      { title: "Formë Strikte", description: "Zero lëkundje trupi, gamë e plotë lëvizjeje. Çdo përsëritje maksimalizon tensionin në biceps pa vrull që vjedh punën." },
-      { title: "Kontraktim Maksimal", description: "Sugjerime supinacioni dhe kontraktimi maksimal të ndërtuar në çdo seri. Ndryshimi midis kalimit nëpër lëvizje dhe ndërtimit të vërtetë të muskujve." },
-      { title: "Mbingarkesë Progresive", description: "Objektivat javore të ngarkesës dhe vëllimit mbajnë stimulin në rritje. Nuk po bën thjesht curl — po ndërtoni sistematikisht biceps më të fortë." },
-    ],
-    faqs: [
-      { question: "Çfarë është saktësisht strict curl?", answer: "Strict curl është curl me shtangë të gjatë ose gjevrek i ekzekutuar me zero lëkundje trupi. Trupi juaj mbetet i fiksuar, bërrylat tuaj qëndrojnë pranë anëve, dhe ju kontrolloni peshën nëpër gamën e plotë të lëvizjes — nga tërhequje e plotë poshtë deri tek kontraktim maksimal lart. Asnjë vrull, asnjë nxitje ijesh. Tension maksimal në biceps gjatë gjithë kohës." },
-      { question: "A mund ta drejtoj krahas stërvitjes sime të rregullt?", answer: "Po. Ky është program specializimi krahësh me 3 seanca në javë. Mund të mbash stërvitjen tënde të rregullt të gjoksit, shpinës dhe këmbëve në ditët e tjera. Sigurohu vetëm që nuk po godisësh punë të rëndë biceps në ditët e pushimit nga ky program." },
-      { question: "A më duhen pajisje speciale?", answer: "Një shtangë e gjatë, EZ bar dhe set gjevrekësh mbulojnë gjithçka në këtë program. Kablot janë të dobishme për disa ushtrime ndihmëse por jo thelbësore. Ky program mund të drejtohet në pothuajse çdo palestër." },
-      { question: "Sa peshë duhet të filloj?", answer: "Fillo më lehtë nga sa mendon. Strict curls pa vrull ndihen dukshëm më të vështira se cheat curls ose curl casual gjevrekësh. Zgjidh një peshë që mund ta ngresh për pérsëritjet e përshkruara me formë perfekte — aspak lëkundje. Do të rritesh nga aty çdo javë ndërsa programi ndërtοhet." },
-      { question: "A është ky program vetëm për njerëzit që garojnë?", answer: "Jo. Shumica e njerëzve që drejtojnë këtë program e bëjnë për madhësi dhe forcë krahësh — jo garë. Strict curl është thjesht një nga mjetet më efektive për ndërtimin e forcës dhe madhësisë maksimale të biceps me formë korrekte." },
-    ],
-    crossSellLink: "Dëshiron më shumë masë krahësh? → Programi Cheat Curl",
-  },
-  cheatCurl: {
-    structureTitle1: "3 Ditë.",
-    structureTitle2: "Mbingarkesë Maksimale.",
-    builtFor: "Ndërtuar për",
-    builtForAccent: "Kërkuesit e Mbingarkesës.",
-    ctaTitle1: "Pas 6 Javësh,",
-    ctaTitle2: "Bicepset Tuaj Janë Më Të Mëdhenj.",
-    ctaSubtitle: "Një program. Gjashtë javë. Madhësi serioze.",
-    pillars: [
-      { title: "Cheat i Kontrolluar", description: "Nxitje minimale ijesh për të lëvizur peshën maksimale — jo pérsëritje të papastëra. Cheat-i është mjet për të mbingarkuar biceps, jo për të shmangur punën." },
-      { title: "Fokus Ekzentrik", description: "Ulja e kontrolluar në çdo pérsëritje është vendi ku ndodh shumica e rritjes. Negativet e ngadalta nën ngarkesë maksimale krijojnë stimul serioz hipertrofie." },
-      { title: "Progresion Mbingarkese", description: "Çdo javë shton ngarkesë dhe vëllim. Programi ndërtοhet sistematikisht drejt peshave që nuk mund t'i menaxhoje në fillim — kjo është pikësynimi." },
-    ],
-    faqs: [],
-    crossSellLink: "Dëshiron gjithashtu forcë strict curl? → Programi Strict Curl",
   },
 
   // ── Checkout (Heqja dorë nga tërheqja — kërkohet për § 4 AGB) ───────────────

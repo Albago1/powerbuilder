@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createOrder } from "@/lib/paypal";
 import { getProgramById } from "@/lib/programs";
 
-const ALLOWED_SLUGS = ["bench-press", "strict-curl", "cheat-curl"] as const;
+const ALLOWED_SLUGS = ["bench-press"] as const;
 
 export async function POST(req: NextRequest) {
   try {
