@@ -269,6 +269,14 @@ const en = {
     faqs: [] as { question: string; answer: string }[],
     crossSellLink: "Want strict curl strength too? → Strict Curl Program",
   },
+
+  // ── Checkout (Widerruf waiver consent, required for § 4 AGB) ────────────────
+  checkout: {
+    widerrufConsent:
+      "I expressly agree that delivery of the digital product begins immediately upon completion of payment, and I acknowledge that my 14-day right of withdrawal expires at the start of performance, in accordance with § 356 (5) BGB (German Civil Code).",
+    consentRequired: "Please confirm the withdrawal-waiver above to continue.",
+    consentAriaLabel: "Withdrawal-waiver consent",
+  },
 };
 
 // ─── German ────────────────────────────────────────────────────────────────────
@@ -521,6 +529,14 @@ const de: typeof en = {
     faqs: [],
     crossSellLink: "Strict Curl Kraft auch? → Strict Curl Programm",
   },
+
+  // ── Checkout (Widerrufsverzicht, erforderlich für § 4 AGB) ──────────────────
+  checkout: {
+    widerrufConsent:
+      "Ich stimme ausdrücklich zu, dass die Lieferung des digitalen Produkts unmittelbar nach Abschluss der Zahlung beginnt, und nehme zur Kenntnis, dass mein 14-tägiges Widerrufsrecht gemäß § 356 Abs. 5 BGB mit Beginn der Vertragsausführung erlischt.",
+    consentRequired: "Bitte bestätigen Sie den Widerrufsverzicht oben, um fortzufahren.",
+    consentAriaLabel: "Widerrufsverzicht-Einwilligung",
+  },
 };
 
 // ─── Albanian (Shqip) ──────────────────────────────────────────────────────────
@@ -772,6 +788,14 @@ const sq: typeof en = {
     ],
     faqs: [],
     crossSellLink: "Dëshiron gjithashtu forcë strict curl? → Programi Strict Curl",
+  },
+
+  // ── Checkout (Heqja dorë nga tërheqja — kërkohet për § 4 AGB) ───────────────
+  checkout: {
+    widerrufConsent:
+      "Pranoj shprehimisht që dorëzimi i produktit dixhital fillon menjëherë pas përfundimit të pagesës dhe njoftohem se e drejta ime 14-ditore për tërheqje skadon me fillimin e ekzekutimit, në përputhje me § 356 (5) BGB (Kodi Civil Gjerman).",
+    consentRequired: "Ju lutem konfirmoni heqjen dorë nga tërheqja më lart për të vazhduar.",
+    consentAriaLabel: "Pëlqimi për heqjen dorë nga tërheqja",
   },
 };
 

@@ -54,7 +54,14 @@ export default async function CheatCurlPage() {
                 <span className="text-white font-black text-6xl">€{program.price}</span>
                 <p className="text-zinc-600 text-sm mt-1">{pd.priceNote}</p>
               </div>
-              <StaticProgramBuyButton slug="cheat-curl" price={program.price} className="mb-4" />
+              <StaticProgramBuyButton
+                slug="cheat-curl"
+                price={program.price}
+                consentLabel={t.checkout.widerrufConsent}
+                consentRequiredMessage={t.checkout.consentRequired}
+                consentAriaLabel={t.checkout.consentAriaLabel}
+                className="mb-4"
+              />
               <div className="border-t border-brand-border pt-6 flex flex-col gap-3">
                 {program.features.map((f, i) => (
                   <div key={i} className="flex items-center gap-3">
@@ -160,7 +167,14 @@ export default async function CheatCurlPage() {
             <span className="text-red-600">{cc.ctaTitle2}</span>
           </h2>
           <p className="text-zinc-400 text-lg mb-10">{cc.ctaSubtitle}</p>
-          <StaticProgramBuyButton slug="cheat-curl" price={program.price} className="max-w-xs mx-auto" />
+          <StaticProgramBuyButton
+            slug="cheat-curl"
+            price={program.price}
+            consentLabel={t.checkout.widerrufConsent}
+            consentRequiredMessage={t.checkout.consentRequired}
+            consentAriaLabel={t.checkout.consentAriaLabel}
+            className="max-w-md mx-auto"
+          />
           <p className="text-zinc-700 text-xs mt-4">{pd.ctaNote(program.price)}</p>
           <div className="mt-6">
             <Link href="/programs/strict-curl" className="text-zinc-500 text-xs hover:text-zinc-300 transition-colors">

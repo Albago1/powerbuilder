@@ -6,11 +6,18 @@ const ALLOWED_SLUGS = ["bench-press", "strict-curl", "cheat-curl"] as const;
 
 export async function POST(req: NextRequest) {
   try {
-    const body = (await req.json()) as { slug?: string };
-    const { slug } = body;
+    const body = (await req.json()) as { slug?: string; consented?: boolean };
+    const { slug, consented } = body;
 
     if (!slug || !ALLOWED_SLUGS.includes(slug as (typeof ALLOWED_SLUGS)[number])) {
       return NextResponse.json({ error: "Invalid program slug" }, { status: 400 });
+    }
+
+    if (consented !== true) {
+      return NextResponse.json(
+        { error: "Withdrawal-waiver consent required" },
+        { status: 400 }
+      );
     }
 
     const program = getProgramById(slug);

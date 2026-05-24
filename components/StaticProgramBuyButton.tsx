@@ -1,20 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 
 type State = "idle" | "loading" | "error";
 
 interface Props {
   slug: string;
   price: number;
+  consentLabel: string;
+  consentRequiredMessage: string;
+  consentAriaLabel: string;
   className?: string;
 }
 
-export default function StaticProgramBuyButton({ slug, price, className }: Props) {
+export default function StaticProgramBuyButton({
+  slug,
+  price,
+  consentLabel,
+  consentRequiredMessage,
+  consentAriaLabel,
+  className,
+}: Props) {
   const [state, setState] = useState<State>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [consented, setConsented] = useState(false);
+  const checkboxId = useId();
 
   const handlePay = async () => {
+    if (!consented) {
+      setErrorMsg(consentRequiredMessage);
+      setState("error");
+      return;
+    }
     setState("loading");
     setErrorMsg("");
 
@@ -22,7 +39,7 @@ export default function StaticProgramBuyButton({ slug, price, className }: Props
       const res = await fetch("/api/paypal/create-static-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug }),
+        body: JSON.stringify({ slug, consented: true }),
       });
       const data = (await res.json()) as { approvalUrl?: string; error?: string };
 
@@ -39,12 +56,35 @@ export default function StaticProgramBuyButton({ slug, price, className }: Props
     }
   };
 
+  const disabled = state === "loading" || !consented;
+
   return (
-    <div className={`flex flex-col items-center gap-3 ${className ?? ""}`}>
+    <div className={`flex flex-col items-stretch gap-4 ${className ?? ""}`}>
+      <label
+        htmlFor={checkboxId}
+        className="flex items-start gap-3 cursor-pointer text-zinc-400 text-xs leading-relaxed select-none"
+      >
+        <input
+          id={checkboxId}
+          type="checkbox"
+          checked={consented}
+          onChange={(e) => {
+            setConsented(e.target.checked);
+            if (state === "error") {
+              setState("idle");
+              setErrorMsg("");
+            }
+          }}
+          aria-label={consentAriaLabel}
+          className="mt-0.5 w-4 h-4 accent-red-600 cursor-pointer flex-shrink-0"
+        />
+        <span>{consentLabel}</span>
+      </label>
+
       <button
         onClick={handlePay}
-        disabled={state === "loading"}
-        className="btn-primary px-10 py-4 text-base w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed"
+        disabled={disabled}
+        className="btn-primary px-10 py-4 text-base w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {state === "loading" ? (
           <span className="flex items-center gap-2 justify-center">
@@ -60,10 +100,10 @@ export default function StaticProgramBuyButton({ slug, price, className }: Props
       </button>
 
       {state === "error" && (
-        <p className="text-red-500 text-xs max-w-xs text-center leading-relaxed">{errorMsg}</p>
+        <p className="text-red-500 text-xs max-w-xs text-center leading-relaxed self-center">{errorMsg}</p>
       )}
 
-      <p className="text-zinc-600 text-xs">Secure checkout · Verified by PayPal</p>
+      <p className="text-zinc-600 text-xs text-center">Secure checkout · Verified by PayPal</p>
     </div>
   );
 }

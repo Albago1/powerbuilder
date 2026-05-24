@@ -11,27 +11,43 @@
 //
 // The success page then calls /api/paypal/capture-order to
 // verify the payment server-side before sending any email.
-//
-// REQUIRED ENV VARS:
-//   PAYPAL_CLIENT_ID     — from developer.paypal.com
-//   PAYPAL_CLIENT_SECRET — from developer.paypal.com
-//   PAYPAL_ENV           — "sandbox" or "production"
 // ============================================================
 
-import { useState } from "react";
+import { useId, useState } from "react";
 
 type State = "idle" | "loading" | "error";
 
-export default function PayPalConfirmButton() {
+interface Props {
+  consentLabel: string;
+  consentRequiredMessage: string;
+  consentAriaLabel: string;
+}
+
+export default function PayPalConfirmButton({
+  consentLabel,
+  consentRequiredMessage,
+  consentAriaLabel,
+}: Props) {
   const [state, setState] = useState<State>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [consented, setConsented] = useState(false);
+  const checkboxId = useId();
 
   const handlePay = async () => {
+    if (!consented) {
+      setErrorMsg(consentRequiredMessage);
+      setState("error");
+      return;
+    }
     setState("loading");
     setErrorMsg("");
 
     try {
-      const res = await fetch("/api/paypal/create-order", { method: "POST" });
+      const res = await fetch("/api/paypal/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ consented: true }),
+      });
       const data = (await res.json()) as { approvalUrl?: string; error?: string };
 
       if (!res.ok || !data.approvalUrl) {
@@ -47,29 +63,41 @@ export default function PayPalConfirmButton() {
     }
   };
 
+  const disabled = state === "loading" || !consented;
+
   return (
-    <div className="flex flex-col items-center gap-3">
+    <div className="flex flex-col items-stretch gap-4 max-w-md mx-auto">
+      <label
+        htmlFor={checkboxId}
+        className="flex items-start gap-3 cursor-pointer text-zinc-400 text-xs leading-relaxed text-left select-none"
+      >
+        <input
+          id={checkboxId}
+          type="checkbox"
+          checked={consented}
+          onChange={(e) => {
+            setConsented(e.target.checked);
+            if (state === "error") {
+              setState("idle");
+              setErrorMsg("");
+            }
+          }}
+          aria-label={consentAriaLabel}
+          className="mt-0.5 w-4 h-4 accent-red-600 cursor-pointer flex-shrink-0"
+        />
+        <span>{consentLabel}</span>
+      </label>
+
       <button
         onClick={handlePay}
-        disabled={state === "loading"}
-        className="btn-primary px-10 py-4 text-base disabled:opacity-60 disabled:cursor-not-allowed"
+        disabled={disabled}
+        className="btn-primary px-10 py-4 text-base justify-center disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {state === "loading" ? (
-          <span className="flex items-center gap-2">
+          <span className="flex items-center gap-2 justify-center">
             <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              />
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-              />
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
             </svg>
             Connecting to PayPal…
           </span>
@@ -79,10 +107,10 @@ export default function PayPalConfirmButton() {
       </button>
 
       {state === "error" && (
-        <p className="text-red-500 text-xs max-w-xs text-center leading-relaxed">{errorMsg}</p>
+        <p className="text-red-500 text-xs leading-relaxed text-center">{errorMsg}</p>
       )}
 
-      <p className="text-zinc-600 text-xs">
+      <p className="text-zinc-600 text-xs text-center">
         Secure checkout · Verified by PayPal
       </p>
     </div>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PayPalConfirmButton from "@/components/PayPalConfirmButton";
+import { getLocale } from "@/lib/locale";
+import { getT } from "@/lib/translations";
 
 export const metadata: Metadata = {
   title: "Complete Payment | PowerBuilder",
@@ -34,6 +36,8 @@ export default async function ConfirmationPage({
   searchParams: Promise<{ email?: string }>;
 }) {
   const { email } = await searchParams;
+  const locale = await getLocale();
+  const t = getT(locale);
 
   return (
     <div className="bg-brand-bg min-h-screen pt-16">
@@ -84,7 +88,11 @@ export default async function ConfirmationPage({
               {NEXT_PUBLIC_BASE_URL}/programs/success?product=personalized
               Configure this in your PayPal payment link settings.
           */}
-          <PayPalConfirmButton />
+          <PayPalConfirmButton
+            consentLabel={t.checkout.widerrufConsent}
+            consentRequiredMessage={t.checkout.consentRequired}
+            consentAriaLabel={t.checkout.consentAriaLabel}
+          />
         </div>
 
         {/* What happens next */}
