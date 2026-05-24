@@ -96,12 +96,9 @@ export const staticPrograms: StaticProgram[] = [
     focus: ["Bench Strength", "Chest Power", "Pressing Mechanics"],
     features: [
       "Full 6-week bench specialization plan",
-      "4 sessions per week",
-      "Strength range: 1–5 reps on main lifts",
-      "Hypertrophy range: 6–12 reps for accessories",
-      "Paused bench & touch-and-go variations",
+      "Strength + hypertrophy work combined",
       "Tricep & shoulder accessory work",
-      "Technique cues & setup guide",
+      "Progressive overload built in",
       "Instant PDF delivery",
     ],
     trainingDays: [
@@ -149,12 +146,9 @@ export const staticPrograms: StaticProgram[] = [
     focus: ["Strict Curl Strength", "Arm Specialization", "Controlled Power"],
     features: [
       "Full 6-week strict curl plan",
-      "3 dedicated arm sessions per week",
-      "Strength-focused progressive overload",
-      "Full ROM emphasis for maximum development",
+      "Strict-form arm specialization",
       "Bicep peak & thickness work",
-      "Forearm & grip accessory work",
-      "Superset protocols for time efficiency",
+      "Progressive overload built in",
       "Instant PDF delivery",
     ],
     trainingDays: [
@@ -197,12 +191,9 @@ export const staticPrograms: StaticProgram[] = [
     focus: ["Arm Mass", "Overload Techniques", "Biceps Thickness"],
     features: [
       "Full 6-week cheat curl specialization",
-      "3 arm-focused sessions per week",
-      "Supramaximal loading protocols",
-      "Eccentric overload emphasis",
-      "Partial rep techniques for peak contraction",
-      "Combined strict + cheat curl methods",
-      "Progressive overload built in weekly",
+      "Overload-focused arm programming",
+      "Bicep mass-building approach",
+      "Progressive overload built in",
       "Instant PDF delivery",
     ],
     trainingDays: [

@@ -83,37 +83,6 @@ export default async function BenchPressPage() {
         </div>
       </section>
 
-      {/* Training days */}
-      <section className="py-24 md:py-32 border-b border-brand-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="section-label mb-4">{pd.structureLabel}</p>
-            <h2 className="section-heading">
-              {bp.structureTitle1}<br />
-              <span className="text-red-600">{bp.structureTitle2}</span>
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {program.trainingDays.map((day, i) => (
-              <div key={i} className="bg-brand-card border-t-2 border-red-600 border border-brand-border p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-zinc-500 text-xs font-bold uppercase tracking-widest">{day.label}</span>
-                  <span className="text-white font-bold text-sm">{day.focus}</span>
-                </div>
-                <div className="flex flex-col gap-2">
-                  {day.exercises.map((ex, j) => (
-                    <div key={j} className="flex items-center gap-2 text-zinc-400 text-sm">
-                      <span className="w-1 h-1 rounded-full bg-zinc-600 shrink-0" />
-                      {ex}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Focus pillars */}
       <section className="bg-brand-surface border-b border-brand-border py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
