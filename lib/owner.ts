@@ -10,7 +10,7 @@ export const owner = {
   // contracts with customers, and receives payments. Cited in Impressum
   // (§ 5 DDG) and named as Anbieter throughout the AGB.
   name: "Enrik Gani",
-  addressStreet: "Grünhofer Weg [HAUSNUMMER]",
+  addressStreet: "Grünhofer Weg 27",
   addressCity: "13581 Berlin",
   addressCountry: "Deutschland",
   email: "enrikgani77@gmail.com",
