@@ -57,7 +57,16 @@ export default async function BenchPressPage() {
             <div className="bg-brand-card border border-brand-border p-8 md:p-10">
               <div className="h-1 -mt-8 -mx-8 md:-mt-10 md:-mx-10 mb-8 bg-red-600" />
               <div className="mb-6">
+                {program.originalPrice && (
+                  <div className="flex items-center gap-3 mb-1">
+                    <span className="text-zinc-600 text-xl line-through">€{program.originalPrice}</span>
+                    <span className="bg-red-600 text-white text-[10px] font-black px-2 py-0.5 uppercase tracking-wider">
+                      -30%
+                    </span>
+                  </div>
+                )}
                 <span className="text-white font-black text-6xl">€{program.price}</span>
+                <p className="text-red-500 text-xs font-bold uppercase tracking-widest mt-2">{t.pricing.launchBadge}</p>
                 <p className="text-zinc-600 text-sm mt-1">{pd.priceNote}</p>
               </div>
               <StaticProgramBuyButton

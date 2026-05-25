@@ -13,6 +13,7 @@ export interface StaticProgram {
   duration: string;
   sessionsPerWeek: string;
   price: number;
+  originalPrice?: number;
   // TODO: Replace "#paypal-todo" with your actual PayPal payment link per product.
   // Generate links at: https://www.paypal.com/buttons/smart
   paypalLink: string;
@@ -36,6 +37,7 @@ export const staticPrograms: StaticProgram[] = [
     duration: "6 Weeks",
     sessionsPerWeek: "4x / Week",
     price: 49,
+    originalPrice: 70,
     paypalLink: "#paypal-bench-TODO",
     href: "/programs/bench-press",
     badge: "BESTSELLER",

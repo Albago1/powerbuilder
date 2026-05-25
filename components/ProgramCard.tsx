@@ -7,6 +7,8 @@ interface ProgramCardProps {
   duration: string;
   sessionsPerWeek: string;
   price: number;
+  originalPrice?: number;
+  launchBadge?: string;
   features: string[];
   href: string;
   badge?: string;
@@ -21,6 +23,8 @@ export default function ProgramCard({
   duration,
   sessionsPerWeek,
   price,
+  originalPrice,
+  launchBadge,
   features,
   href,
   badge,
@@ -94,7 +98,22 @@ export default function ProgramCard({
 
         {/* Price + CTA */}
         <div className="border-t border-brand-border pt-5 mt-2 flex items-center justify-between gap-4">
-          <span className="text-white font-black text-3xl">€{price}</span>
+          <div className="flex flex-col">
+            {originalPrice && (
+              <div className="flex items-center gap-2 mb-0.5">
+                <span className="text-zinc-600 text-sm line-through">€{originalPrice}</span>
+                <span className="bg-red-600 text-white text-[9px] font-black px-1.5 py-0.5 uppercase tracking-wider">
+                  -30%
+                </span>
+              </div>
+            )}
+            <span className="text-white font-black text-3xl">€{price}</span>
+            {launchBadge && (
+              <span className="text-red-500 text-[10px] font-bold uppercase tracking-widest mt-1">
+                {launchBadge}
+              </span>
+            )}
+          </div>
           <Link
             href={href}
             className="btn-primary text-xs px-5 py-3"

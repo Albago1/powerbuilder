@@ -49,6 +49,7 @@ const en = {
     featuredTitle: "6 Week Bench Press Program",
     featuredSubtitle: "Built to increase pressing strength, power, and upper-body performance.",
     featuredPrice: "€49",
+    featuredOriginalPrice: "€70",
     featuredCta: "View Program →",
   },
 
@@ -64,6 +65,7 @@ const en = {
       title2: "Only You.",
       subtitle: "A complete training and nutrition system written from scratch by Artur — for your body, your goals, your schedule. No templates. No guesswork.",
       price: "€99",
+      originalPrice: "€141",
       priceNote: "one-time",
       cta: "Start Questionnaire →",
       trust: ["48h delivery", "PayPal secure checkout", "Personally written by Artur"],
@@ -290,6 +292,11 @@ const en = {
     },
   },
 
+  // ── Pricing (launch discount label, used on cards and hero price blocks) ────
+  pricing: {
+    launchBadge: "Launch Offer · -30%",
+  },
+
   // ── Checkout (Widerruf waiver consent, required for § 4 AGB) ────────────────
   checkout: {
     widerrufConsent:
@@ -341,6 +348,7 @@ const de: typeof en = {
     featuredTitle: "6-Wochen Bankdrück-Programm",
     featuredSubtitle: "Entwickelt zur Steigerung der Druckkraft, Power und Oberkörperleistung.",
     featuredPrice: "€49",
+    featuredOriginalPrice: "€70",
     featuredCta: "Programm ansehen →",
   },
   personalized: {
@@ -354,6 +362,7 @@ const de: typeof en = {
       title2: "Nur für dich.",
       subtitle: "Ein vollständiges Training- und Ernährungssystem, das von Artur von Grund auf neu geschrieben wurde — für deinen Körper, deine Ziele, deinen Zeitplan. Keine Templates. Kein Raten.",
       price: "€99",
+      originalPrice: "€141",
       priceNote: "einmalig",
       cta: "Fragebogen ausfüllen →",
       trust: ["48h Lieferung", "Sichere PayPal-Zahlung", "Persönlich von Artur geschrieben"],
@@ -573,6 +582,10 @@ const de: typeof en = {
     },
   },
 
+  pricing: {
+    launchBadge: "Startangebot · -30%",
+  },
+
   // ── Checkout (Widerrufsverzicht, erforderlich für § 4 AGB) ──────────────────
   checkout: {
     widerrufConsent:
@@ -624,6 +637,7 @@ const sq: typeof en = {
     featuredTitle: "Program Bench Press 6 Javë",
     featuredSubtitle: "Ndërtuar për të rritur forcën e shtytjes, fuqinë dhe performancën e trupit të sipërm.",
     featuredPrice: "€49",
+    featuredOriginalPrice: "€70",
     featuredCta: "Shiko Programin →",
   },
   personalized: {
@@ -637,6 +651,7 @@ const sq: typeof en = {
       title2: "Vetëm Ty.",
       subtitle: "Një sistem i plotë stërvitjeje dhe ushqimi i shkruar nga e para nga Arturi — për trupin tënd, qëllimet e tua, orarin tënd. Pa shabllone. Pa hamendje.",
       price: "€99",
+      originalPrice: "€141",
       priceNote: "njëherë",
       cta: "Fillo Pyetësorin →",
       trust: ["Dorëzim 48h", "Pagesë e sigurt PayPal", "Shkruar personalisht nga Arturi"],
@@ -854,6 +869,10 @@ const sq: typeof en = {
       heading: "Njoftim Affiliate",
       body: "Kjo faqe përmban lidhje affiliate sipas § 5a UWG (Ligji gjerman kundër konkurrencës së pandershme). Kur blen përmes lidhjes së mësipërme duke përdorur kodin BAUSTELLE, Arturi merr një komision — pa kosto shtesë për ty. Njëkohësisht zbërthen zbritjen maksimale të disponueshme.",
     },
+  },
+
+  pricing: {
+    launchBadge: "Ofertë Fillimi · -30%",
   },
 
   // ── Checkout (Heqja dorë nga tërheqja — kërkohet për § 4 AGB) ───────────────

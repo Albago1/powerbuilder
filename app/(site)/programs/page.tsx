@@ -12,7 +12,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function ProgramsPage() {
   const locale = await getLocale();
-  const { hero, personalizedCard: pc } = getT(locale).programs;
+  const t = getT(locale);
+  const { hero, personalizedCard: pc } = t.programs;
+  const launchBadge = t.pricing.launchBadge;
 
   return (
     <div className="bg-brand-bg pt-16">
@@ -44,6 +46,8 @@ export default async function ProgramsPage() {
               duration={pc.duration}
               sessionsPerWeek={pc.sessionsPerWeek}
               price={99}
+              originalPrice={141}
+              launchBadge={launchBadge}
               features={pc.features}
               href="/personalized"
               featured
@@ -59,6 +63,8 @@ export default async function ProgramsPage() {
                 duration={program.duration}
                 sessionsPerWeek={program.sessionsPerWeek}
                 price={program.price}
+                originalPrice={program.originalPrice}
+                launchBadge={program.originalPrice ? launchBadge : undefined}
                 features={program.features}
                 href={program.href}
                 badge={program.badge}

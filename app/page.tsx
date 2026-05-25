@@ -123,7 +123,8 @@ const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contact@powerbuil
 
 export default async function BrandHub() {
   const locale = await getLocale();
-  const t = getT(locale).brandHub;
+  const tt = getT(locale);
+  const t = tt.brandHub;
 
   const hubItems: HubCardProps[] = t.hub.map((item, i) => ({
     ...item,
@@ -247,9 +248,18 @@ export default async function BrandHub() {
           <h2 className="text-white font-black text-lg uppercase tracking-tight leading-tight mb-1">
             {t.featuredTitle}
           </h2>
-          <p className="text-zinc-400 text-sm mb-5">
-            {t.featuredSubtitle} —{" "}
-            <span className="text-white font-bold">{t.featuredPrice}</span>
+          <p className="text-zinc-400 text-sm mb-2">
+            {t.featuredSubtitle}
+          </p>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-zinc-600 text-sm line-through">{t.featuredOriginalPrice}</span>
+            <span className="text-white font-bold text-base">{t.featuredPrice}</span>
+            <span className="bg-red-600 text-white text-[9px] font-black px-1.5 py-0.5 uppercase tracking-wider">
+              -30%
+            </span>
+          </div>
+          <p className="text-red-500 text-[10px] font-bold uppercase tracking-widest mb-5">
+            {tt.pricing.launchBadge}
           </p>
           <Link href="/programs/bench-press" className="btn-primary w-full justify-center">
             {t.featuredCta}

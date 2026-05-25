@@ -34,7 +34,8 @@ const ICONS = [
 
 export default async function PersonalizedPage() {
   const locale = await getLocale();
-  const p = getT(locale).personalized;
+  const t = getT(locale);
+  const p = t.personalized;
 
   return (
     <div className="bg-brand-bg pt-16">
@@ -66,9 +67,20 @@ export default async function PersonalizedPage() {
               <Link href="/questionnaire" className="btn-primary text-sm px-10 py-4">
                 {p.hero.cta}
               </Link>
-              <div>
-                <span className="text-white font-black text-3xl">{p.hero.price}</span>
-                <span className="text-zinc-600 text-sm ml-2">{p.hero.priceNote}</span>
+              <div className="flex flex-col">
+                <div className="flex items-center gap-2 mb-0.5">
+                  <span className="text-zinc-600 text-base line-through">{p.hero.originalPrice}</span>
+                  <span className="bg-red-600 text-white text-[10px] font-black px-2 py-0.5 uppercase tracking-wider">
+                    -30%
+                  </span>
+                </div>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-white font-black text-3xl">{p.hero.price}</span>
+                  <span className="text-zinc-600 text-sm">{p.hero.priceNote}</span>
+                </div>
+                <span className="text-red-500 text-[10px] font-bold uppercase tracking-widest mt-1">
+                  {t.pricing.launchBadge}
+                </span>
               </div>
             </div>
 
