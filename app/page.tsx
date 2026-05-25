@@ -135,7 +135,7 @@ export default async function BrandHub() {
   }));
 
   return (
-    <div className="min-h-screen bg-brand-bg flex flex-col">
+    <div className={`min-h-screen bg-brand-bg flex flex-col ${launchActive ? "pt-10" : ""}`}>
 
       {/* ── Minimal top bar ────────────────────────────────────────── */}
       <header className="flex items-center justify-between px-4 py-3.5 border-b border-brand-border">
@@ -227,6 +227,33 @@ export default async function BrandHub() {
             </a>
           ))}
         </div>
+
+        {/* Grand Opening callout (inline, brand hub only) */}
+        {launchActive && (
+          <Link
+            href="/programs"
+            className="block relative overflow-hidden border-2 border-red-600 bg-gradient-to-r from-red-600/20 via-red-600/[0.08] to-red-600/20 px-5 py-4 mb-7 group hover:from-red-600/25 hover:to-red-600/25 transition-colors"
+          >
+            <div className="absolute top-0 right-0 bg-red-600 text-white text-[9px] font-black px-2 py-0.5 uppercase tracking-widest">
+              -30%
+            </div>
+            <div className="flex items-center gap-2 mb-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+              <span className="text-red-400 text-[10px] font-black uppercase tracking-[0.2em]">
+                {tt.pricing.launchBadge}
+              </span>
+            </div>
+            <p className="text-white font-black text-sm uppercase tracking-tight mb-2">
+              {tt.pricing.bannerDiscountLabel}
+            </p>
+            <LaunchCountdown
+              endsAt={LAUNCH_OFFER.endsAt}
+              labelPrefix={tt.pricing.countdownLabel}
+              endedLabel={tt.pricing.countdownEnded}
+              className="text-red-400 text-xs font-bold uppercase tracking-widest tabular-nums"
+            />
+          </Link>
+        )}
 
         {/* Divider */}
         <div className="flex items-center gap-3 mb-7">

@@ -297,6 +297,8 @@ const en = {
     launchBadge: "Grand Opening",
     countdownLabel: "Ends in",
     countdownEnded: "Offer ended",
+    bannerDiscountLabel: "30% off all programs",
+    bannerCta: "Shop now →",
   },
 
   // ── Checkout (Widerruf waiver consent, required for § 4 AGB) ────────────────
@@ -588,6 +590,8 @@ const de: typeof en = {
     launchBadge: "Eröffnungsangebot",
     countdownLabel: "Endet in",
     countdownEnded: "Angebot beendet",
+    bannerDiscountLabel: "30% Rabatt auf alle Programme",
+    bannerCta: "Jetzt sichern →",
   },
 
   // ── Checkout (Widerrufsverzicht, erforderlich für § 4 AGB) ──────────────────
@@ -879,6 +883,8 @@ const sq: typeof en = {
     launchBadge: "Hapja e Madhe",
     countdownLabel: "Përfundon në",
     countdownEnded: "Oferta përfundoi",
+    bannerDiscountLabel: "30% zbritje në të gjitha programet",
+    bannerCta: "Bli tani →",
   },
 
   // ── Checkout (Heqja dorë nga tërheqja — kërkohet për § 4 AGB) ───────────────

@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { owner } from "@/lib/owner";
+import LaunchBanner from "@/components/LaunchBanner";
+import { getLocale } from "@/lib/locale";
+import { getT } from "@/lib/translations";
+import { isLaunchOfferActive } from "@/lib/launchOffer";
 import "./globals.css";
 
 const inter = Inter({
@@ -31,14 +35,27 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const t = getT(locale).pricing;
+  const launchActive = isLaunchOfferActive();
+
   return (
     <html lang="de" className={inter.variable}>
       <body className="bg-brand-bg text-white antialiased">
+        {launchActive && (
+          <LaunchBanner
+            badge={t.launchBadge}
+            discountLabel={t.bannerDiscountLabel}
+            countdownLabel={t.countdownLabel}
+            countdownEnded={t.countdownEnded}
+            ctaText={t.bannerCta}
+          />
+        )}
         {children}
       </body>
     </html>

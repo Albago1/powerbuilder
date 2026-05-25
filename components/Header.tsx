@@ -5,7 +5,7 @@ import Link from "next/link";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { getT, type Locale } from "@/lib/translations";
 
-export default function Header({ locale }: { locale: Locale }) {
+export default function Header({ locale, topOffset = "top-0" }: { locale: Locale; topOffset?: string }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const t = getT(locale).nav;
 
@@ -18,7 +18,7 @@ export default function Header({ locale }: { locale: Locale }) {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-brand-bg/90 backdrop-blur-sm border-b border-brand-border">
+    <header className={`fixed ${topOffset} left-0 right-0 z-50 bg-brand-bg/90 backdrop-blur-sm border-b border-brand-border`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
