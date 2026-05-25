@@ -219,6 +219,17 @@ const en = {
       { title: "Chest Power", description: "Hypertrophy-focused accessory work that builds the chest thickness pressing strength needs." },
       { title: "Pressing Mechanics", description: "Technique cues and form work refine your bench under load — the fastest way to add sustainable weight." },
     ],
+    process: {
+      sectionLabel: "Process",
+      title1: "How It",
+      title2: "Works.",
+      steps: [
+        { num: "01", title: "Buy", description: "Click Buy and complete checkout via PayPal. Secure card or PayPal balance. Order confirms in seconds." },
+        { num: "02", title: "Instant Download", description: "Your 6-week PDF is delivered immediately. Available in English, German, and Albanian." },
+        { num: "03", title: "Train", description: "Follow the structured 6-week plan. Sessions, sets, reps, and accessories all laid out for you." },
+        { num: "04", title: "Progress", description: "Track gains across the 6 weeks. Re-run the program at a higher baseline anytime — it's yours for life." },
+      ],
+    },
     faqs: [
       { question: "Do I need a strong bench press to start this program?", answer: "No. You need a solid bench press technique and at least 6 months of consistent training experience. The starting weight doesn't matter — the program builds from wherever you are right now. What matters is that you can execute the movement safely under load." },
       { question: "Can I run this alongside my regular training?", answer: "This is a specialization program — it's designed to be your primary upper body focus for 6 weeks. You can add leg training on off days, but adding additional heavy pressing or chest work will interfere with recovery and reduce results. Follow the program as written." },
@@ -441,6 +452,17 @@ const de: typeof en = {
       { title: "Brust-Power", description: "Hypertrophie-fokussierte Zusatzarbeit baut die Brustdicke auf, die Drückkraft braucht." },
       { title: "Drück-Mechanik", description: "Technik-Cues und Formarbeit verfeinern dein Bankdrücken unter Last — der schnellste Weg, nachhaltiges Gewicht hinzuzufügen." },
     ],
+    process: {
+      sectionLabel: "Ablauf",
+      title1: "So",
+      title2: "funktioniert's.",
+      steps: [
+        { num: "01", title: "Kaufen", description: "Klick auf Kaufen und schließe den Bezahlvorgang via PayPal ab. Sicher per Karte oder PayPal-Guthaben. Bestätigung in Sekunden." },
+        { num: "02", title: "Sofort-Download", description: "Dein 6-Wochen-PDF wird sofort geliefert. Verfügbar in Englisch, Deutsch und Albanisch." },
+        { num: "03", title: "Trainieren", description: "Folge dem strukturierten 6-Wochen-Plan. Einheiten, Sätze, Wiederholungen und Zusatzübungen sind alle für dich ausgelegt." },
+        { num: "04", title: "Fortschritt", description: "Verfolge deine Fortschritte über 6 Wochen. Wiederhole das Programm jederzeit auf höherem Niveau — es gehört dir lebenslang." },
+      ],
+    },
     faqs: [
       { question: "Brauche ich einen starken Bankdruck, um mit diesem Programm zu beginnen?", answer: "Nein. Du brauchst eine solide Bankdrück-Technik und mindestens 6 Monate konsequentes Training. Das Ausgangsgewicht spielt keine Rolle — das Programm baut von dort auf, wo du gerade stehst. Was zählt, ist, dass du die Bewegung sicher unter Last ausführen kannst." },
       { question: "Kann ich es neben meinem regulären Training ausführen?", answer: "Dies ist ein Spezialisierungsprogramm — es ist als dein primärer Oberkörper-Fokus für 6 Wochen ausgelegt. Du kannst an freien Tagen Beintraining hinzufügen, aber zusätzliches schweres Drücken oder Brustarbeit beeinträchtigt die Regeneration und reduziert die Ergebnisse." },
@@ -663,6 +685,17 @@ const sq: typeof en = {
       { title: "Fuqi Gjoksi", description: "Punë ndihmëse e fokusuar në hipertrofi që ndërton trashësinë e gjoksit që forca shtytëse kërkon." },
       { title: "Mekanika e Shtytjes", description: "Sugjerime teknike dhe punë formash që rafinojnë bench press-in tënd nën ngarkesë — mënyra më e shpejtë për të shtuar peshë të qëndrueshme." },
     ],
+    process: {
+      sectionLabel: "Procesi",
+      title1: "Si",
+      title2: "Funksionon.",
+      steps: [
+        { num: "01", title: "Blej", description: "Kliko Blej dhe përfundo pagesën nëpërmjet PayPal. Kartë e sigurt ose llogari PayPal. Konfirmimi në sekonda." },
+        { num: "02", title: "Shkarkim i Menjëhershëm", description: "PDF-i yt 6-javësh dorëzohet menjëherë. I disponueshëm në anglisht, gjermanisht dhe shqip." },
+        { num: "03", title: "Stërvitu", description: "Ndiq planin e strukturuar 6-javësh. Seancat, setet, përsëritjet dhe ushtrimet ndihmëse janë të gjitha të planifikuara për ty." },
+        { num: "04", title: "Progres", description: "Ndiqi përparimet gjatë 6 javëve. Ripërsërit programin në një bazë më të lartë në çdo kohë — është i yti përgjithmonë." },
+      ],
+    },
     faqs: [
       { question: "A më duhet bench press i fortë për të filluar?", answer: "Jo. Të nevojitet teknikë solide bench press dhe të paktën 6 muaj stërvitje konsistente. Pesha fillestare nuk ka rëndësi — programi ndërtοhet nga aty ku je tani. Ajo që ka rëndësi është që mund ta ekzekutosh lëvizjen në mënyrë të sigurt nën ngarkesë." },
       { question: "A mund ta drejtoj krahas stërvitjes sime të rregullt?", answer: "Ky është program specializimi — është hartuar të jetë fokusi yt kryesor i trupit të sipërm për 6 javë. Mund të shtosh stërvitje këmbësh në ditët e lira, por shtimi i shtytjes shtesë të rëndë ose punës së gjoksit do të ndërhyjë me rikuperimin dhe do të reduktojë rezultatet." },

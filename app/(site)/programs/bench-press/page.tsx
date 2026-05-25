@@ -109,6 +109,34 @@ export default async function BenchPressPage() {
         </div>
       </section>
 
+      {/* How it works */}
+      <section className="py-24 md:py-32 border-b border-brand-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <p className="section-label mb-4">{bp.process.sectionLabel}</p>
+            <h2 className="section-heading">
+              {bp.process.title1}
+              <br />
+              <span className="text-red-600">{bp.process.title2}</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-px bg-brand-border">
+            {bp.process.steps.map((step, i) => (
+              <div key={i} className="bg-brand-bg p-8 flex flex-col hover:bg-brand-card transition-colors duration-200">
+                <span className="text-red-600 font-black text-6xl leading-none mb-5 opacity-30">
+                  {step.num}
+                </span>
+                <h3 className="text-white font-black text-base uppercase tracking-tight mb-3">
+                  {step.title}
+                </h3>
+                <p className="text-zinc-500 text-sm leading-relaxed">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Who it's for */}
       <section className="py-24 md:py-32 border-b border-brand-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
