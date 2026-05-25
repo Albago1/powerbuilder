@@ -1,4 +1,6 @@
 import Link from "next/link";
+import LaunchCountdown from "@/components/LaunchCountdown";
+import { LAUNCH_OFFER } from "@/lib/launchOffer";
 
 interface ProgramCardProps {
   title: string;
@@ -9,6 +11,8 @@ interface ProgramCardProps {
   price: number;
   originalPrice?: number;
   launchBadge?: string;
+  countdownLabel?: string;
+  countdownEnded?: string;
   features: string[];
   href: string;
   badge?: string;
@@ -25,6 +29,8 @@ export default function ProgramCard({
   price,
   originalPrice,
   launchBadge,
+  countdownLabel,
+  countdownEnded,
   features,
   href,
   badge,
@@ -112,6 +118,14 @@ export default function ProgramCard({
               <span className="text-red-500 text-[10px] font-bold uppercase tracking-widest mt-1">
                 {launchBadge}
               </span>
+            )}
+            {countdownLabel && countdownEnded && (
+              <LaunchCountdown
+                endsAt={LAUNCH_OFFER.endsAt}
+                labelPrefix={countdownLabel}
+                endedLabel={countdownEnded}
+                className="text-red-500 text-[10px] font-bold uppercase tracking-widest tabular-nums"
+              />
             )}
           </div>
           <Link

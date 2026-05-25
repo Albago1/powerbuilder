@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import ProgramFAQ from "@/components/ProgramFAQ";
+import LaunchCountdown from "@/components/LaunchCountdown";
 import { getLocale } from "@/lib/locale";
 import { getT } from "@/lib/translations";
+import { LAUNCH_OFFER, isLaunchOfferActive } from "@/lib/launchOffer";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
@@ -36,6 +38,7 @@ export default async function PersonalizedPage() {
   const locale = await getLocale();
   const t = getT(locale);
   const p = t.personalized;
+  const launchActive = isLaunchOfferActive();
 
   return (
     <div className="bg-brand-bg pt-16">
@@ -68,19 +71,31 @@ export default async function PersonalizedPage() {
                 {p.hero.cta}
               </Link>
               <div className="flex flex-col">
-                <div className="flex items-center gap-2 mb-0.5">
-                  <span className="text-zinc-600 text-base line-through">{p.hero.originalPrice}</span>
-                  <span className="bg-red-600 text-white text-[10px] font-black px-2 py-0.5 uppercase tracking-wider">
-                    -30%
-                  </span>
-                </div>
+                {launchActive && (
+                  <div className="flex items-center gap-2 mb-0.5">
+                    <span className="text-zinc-600 text-base line-through">{p.hero.originalPrice}</span>
+                    <span className="bg-red-600 text-white text-[10px] font-black px-2 py-0.5 uppercase tracking-wider">
+                      -30%
+                    </span>
+                  </div>
+                )}
                 <div className="flex items-baseline gap-2">
                   <span className="text-white font-black text-3xl">{p.hero.price}</span>
                   <span className="text-zinc-600 text-sm">{p.hero.priceNote}</span>
                 </div>
-                <span className="text-red-500 text-[10px] font-bold uppercase tracking-widest mt-1">
-                  {t.pricing.launchBadge}
-                </span>
+                {launchActive && (
+                  <div className="mt-1 flex flex-col gap-0.5">
+                    <span className="text-red-500 text-[10px] font-bold uppercase tracking-widest">
+                      {t.pricing.launchBadge}
+                    </span>
+                    <LaunchCountdown
+                      endsAt={LAUNCH_OFFER.endsAt}
+                      labelPrefix={t.pricing.countdownLabel}
+                      endedLabel={t.pricing.countdownEnded}
+                      className="text-red-500 text-[10px] font-bold uppercase tracking-widest tabular-nums"
+                    />
+                  </div>
+                )}
               </div>
             </div>
 

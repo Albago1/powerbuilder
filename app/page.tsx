@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import LaunchCountdown from "@/components/LaunchCountdown";
 import { getLocale } from "@/lib/locale";
 import { getT } from "@/lib/translations";
+import { LAUNCH_OFFER, isLaunchOfferActive } from "@/lib/launchOffer";
 
 export const metadata: Metadata = {
   title: "Artur | PowerBuilder",
@@ -125,6 +127,7 @@ export default async function BrandHub() {
   const locale = await getLocale();
   const tt = getT(locale);
   const t = tt.brandHub;
+  const launchActive = isLaunchOfferActive();
 
   const hubItems: HubCardProps[] = t.hub.map((item, i) => ({
     ...item,
@@ -252,15 +255,30 @@ export default async function BrandHub() {
             {t.featuredSubtitle}
           </p>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-zinc-600 text-sm line-through">{t.featuredOriginalPrice}</span>
+            {launchActive && (
+              <span className="text-zinc-600 text-sm line-through">{t.featuredOriginalPrice}</span>
+            )}
             <span className="text-white font-bold text-base">{t.featuredPrice}</span>
-            <span className="bg-red-600 text-white text-[9px] font-black px-1.5 py-0.5 uppercase tracking-wider">
-              -30%
-            </span>
+            {launchActive && (
+              <span className="bg-red-600 text-white text-[9px] font-black px-1.5 py-0.5 uppercase tracking-wider">
+                -30%
+              </span>
+            )}
           </div>
-          <p className="text-red-500 text-[10px] font-bold uppercase tracking-widest mb-5">
-            {tt.pricing.launchBadge}
-          </p>
+          {launchActive && (
+            <div className="flex flex-col gap-0.5 mb-5">
+              <span className="text-red-500 text-[10px] font-bold uppercase tracking-widest">
+                {tt.pricing.launchBadge}
+              </span>
+              <LaunchCountdown
+                endsAt={LAUNCH_OFFER.endsAt}
+                labelPrefix={tt.pricing.countdownLabel}
+                endedLabel={tt.pricing.countdownEnded}
+                className="text-red-500 text-[10px] font-bold uppercase tracking-widest tabular-nums"
+              />
+            </div>
+          )}
+          {!launchActive && <div className="mb-5" />}
           <Link href="/programs/bench-press" className="btn-primary w-full justify-center">
             {t.featuredCta}
           </Link>

@@ -292,9 +292,11 @@ const en = {
     },
   },
 
-  // ── Pricing (launch discount label, used on cards and hero price blocks) ────
+  // ── Pricing (grand-opening discount label, used on cards and hero price blocks) ─
   pricing: {
-    launchBadge: "Launch Offer · -30%",
+    launchBadge: "Grand Opening",
+    countdownLabel: "Ends in",
+    countdownEnded: "Offer ended",
   },
 
   // ── Checkout (Widerruf waiver consent, required for § 4 AGB) ────────────────
@@ -583,7 +585,9 @@ const de: typeof en = {
   },
 
   pricing: {
-    launchBadge: "Startangebot · -30%",
+    launchBadge: "Eröffnungsangebot",
+    countdownLabel: "Endet in",
+    countdownEnded: "Angebot beendet",
   },
 
   // ── Checkout (Widerrufsverzicht, erforderlich für § 4 AGB) ──────────────────
@@ -872,7 +876,9 @@ const sq: typeof en = {
   },
 
   pricing: {
-    launchBadge: "Ofertë Fillimi · -30%",
+    launchBadge: "Hapja e Madhe",
+    countdownLabel: "Përfundon në",
+    countdownEnded: "Oferta përfundoi",
   },
 
   // ── Checkout (Heqja dorë nga tërheqja — kërkohet për § 4 AGB) ───────────────

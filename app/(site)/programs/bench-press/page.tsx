@@ -3,8 +3,10 @@ import Link from "next/link";
 import { getProgramById } from "@/lib/programs";
 import StaticProgramBuyButton from "@/components/StaticProgramBuyButton";
 import ProgramFAQ from "@/components/ProgramFAQ";
+import LaunchCountdown from "@/components/LaunchCountdown";
 import { getLocale } from "@/lib/locale";
 import { getT } from "@/lib/translations";
+import { LAUNCH_OFFER, isLaunchOfferActive } from "@/lib/launchOffer";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -20,6 +22,7 @@ export default async function BenchPressPage() {
   const pd = t.programDetail;
   const bp = t.benchPress;
   const program = getProgramById("bench-press")!;
+  const launchActive = isLaunchOfferActive();
 
   return (
     <div className="bg-brand-bg pt-16">
@@ -57,7 +60,7 @@ export default async function BenchPressPage() {
             <div className="bg-brand-card border border-brand-border p-8 md:p-10">
               <div className="h-1 -mt-8 -mx-8 md:-mt-10 md:-mx-10 mb-8 bg-red-600" />
               <div className="mb-6">
-                {program.originalPrice && (
+                {launchActive && program.originalPrice && (
                   <div className="flex items-center gap-3 mb-1">
                     <span className="text-zinc-600 text-xl line-through">€{program.originalPrice}</span>
                     <span className="bg-red-600 text-white text-[10px] font-black px-2 py-0.5 uppercase tracking-wider">
@@ -66,7 +69,17 @@ export default async function BenchPressPage() {
                   </div>
                 )}
                 <span className="text-white font-black text-6xl">€{program.price}</span>
-                <p className="text-red-500 text-xs font-bold uppercase tracking-widest mt-2">{t.pricing.launchBadge}</p>
+                {launchActive && (
+                  <div className="mt-2 flex flex-col gap-0.5">
+                    <p className="text-red-500 text-xs font-bold uppercase tracking-widest">{t.pricing.launchBadge}</p>
+                    <LaunchCountdown
+                      endsAt={LAUNCH_OFFER.endsAt}
+                      labelPrefix={t.pricing.countdownLabel}
+                      endedLabel={t.pricing.countdownEnded}
+                      className="text-red-500 text-xs font-bold uppercase tracking-widest tabular-nums"
+                    />
+                  </div>
+                )}
                 <p className="text-zinc-600 text-sm mt-1">{pd.priceNote}</p>
               </div>
               <StaticProgramBuyButton

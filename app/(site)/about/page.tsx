@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { isLaunchOfferActive } from "@/lib/launchOffer";
 
 export const metadata: Metadata = {
   title: "About Artur | PowerBuilder",
@@ -42,6 +43,7 @@ const stats = [
 ];
 
 export default function AboutPage() {
+  const launchActive = isLaunchOfferActive();
   return (
     <div className="bg-brand-bg pt-16">
       {/* Hero */}
@@ -163,8 +165,8 @@ export default function AboutPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
             {[
-              { title: "Personalized Training & Nutrition System", sub: "4 weeks · Custom · €99 (was €141, Launch -30%)", href: "/personalized" },
-              { title: "6 Week Bench Press Program", sub: "PDF · 4x/week · €49 (was €70, Launch -30%)", href: "/programs/bench-press" },
+              { title: "Personalized Training & Nutrition System", sub: launchActive ? "4 weeks · Custom · €99 (was €141, Grand Opening -30%)" : "4 weeks · Custom · €99", href: "/personalized" },
+              { title: "6 Week Bench Press Program", sub: launchActive ? "PDF · 4x/week · €49 (was €70, Grand Opening -30%)" : "PDF · 4x/week · €49", href: "/programs/bench-press" },
             ].map((item, i) => (
               <Link
                 key={i}
@@ -195,7 +197,7 @@ export default function AboutPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/personalized" className="btn-primary">
-              Build My Program — €99 (Launch -30%)
+              {launchActive ? "Build My Program — €99 (Grand Opening -30%)" : "Build My Program — €99"}
             </Link>
             <Link href="/programs" className="btn-secondary">
               Browse Programs

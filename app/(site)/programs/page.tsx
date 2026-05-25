@@ -3,6 +3,7 @@ import { staticPrograms } from "@/lib/programs";
 import ProgramCard from "@/components/ProgramCard";
 import { getLocale } from "@/lib/locale";
 import { getT } from "@/lib/translations";
+import { isLaunchOfferActive } from "@/lib/launchOffer";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
@@ -14,7 +15,10 @@ export default async function ProgramsPage() {
   const locale = await getLocale();
   const t = getT(locale);
   const { hero, personalizedCard: pc } = t.programs;
-  const launchBadge = t.pricing.launchBadge;
+  const launchActive = isLaunchOfferActive();
+  const launchBadge = launchActive ? t.pricing.launchBadge : undefined;
+  const countdownLabel = launchActive ? t.pricing.countdownLabel : undefined;
+  const countdownEnded = launchActive ? t.pricing.countdownEnded : undefined;
 
   return (
     <div className="bg-brand-bg pt-16">
@@ -46,8 +50,10 @@ export default async function ProgramsPage() {
               duration={pc.duration}
               sessionsPerWeek={pc.sessionsPerWeek}
               price={99}
-              originalPrice={141}
+              originalPrice={launchActive ? 141 : undefined}
               launchBadge={launchBadge}
+              countdownLabel={countdownLabel}
+              countdownEnded={countdownEnded}
               features={pc.features}
               href="/personalized"
               featured
@@ -63,8 +69,10 @@ export default async function ProgramsPage() {
                 duration={program.duration}
                 sessionsPerWeek={program.sessionsPerWeek}
                 price={program.price}
-                originalPrice={program.originalPrice}
+                originalPrice={launchActive ? program.originalPrice : undefined}
                 launchBadge={program.originalPrice ? launchBadge : undefined}
+                countdownLabel={program.originalPrice ? countdownLabel : undefined}
+                countdownEnded={program.originalPrice ? countdownEnded : undefined}
                 features={program.features}
                 href={program.href}
                 badge={program.badge}
