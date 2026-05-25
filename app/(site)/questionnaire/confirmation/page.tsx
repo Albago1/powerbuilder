@@ -63,6 +63,11 @@ export default async function ConfirmationPage({
             consentLabel={t.checkout.widerrufConsent}
             consentRequiredMessage={t.checkout.consentRequired}
             consentAriaLabel={t.checkout.consentAriaLabel}
+            payPrefix={t.paypal.payPrefix}
+            paySuffix={t.paypal.paySuffix}
+            connectingLabel={t.paypal.connecting}
+            secureNote={t.paypal.secureNote}
+            errorFallback={t.paypal.errorFallback}
           />
         </div>
 

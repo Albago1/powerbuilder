@@ -57,6 +57,7 @@ export default async function ProgramsPage() {
               features={pc.features}
               href="/personalized"
               featured
+              ctaLabel={t.programCardCta}
             />
 
             {/* Specialist static programs */}
@@ -77,6 +78,7 @@ export default async function ProgramsPage() {
                 href={program.href}
                 badge={program.badge}
                 accentLabel={program.accentLabel}
+                ctaLabel={t.programCardCta}
               />
             ))}
           </div>

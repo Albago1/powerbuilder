@@ -21,12 +21,22 @@ interface Props {
   consentLabel: string;
   consentRequiredMessage: string;
   consentAriaLabel: string;
+  payPrefix: string;
+  paySuffix: string;
+  connectingLabel: string;
+  secureNote: string;
+  errorFallback: string;
 }
 
 export default function PayPalConfirmButton({
   consentLabel,
   consentRequiredMessage,
   consentAriaLabel,
+  payPrefix,
+  paySuffix,
+  connectingLabel,
+  secureNote,
+  errorFallback,
 }: Props) {
   const [state, setState] = useState<State>("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -56,9 +66,7 @@ export default function PayPalConfirmButton({
 
       window.location.href = data.approvalUrl;
     } catch (err) {
-      setErrorMsg(
-        err instanceof Error ? err.message : "Could not connect to PayPal — please try again"
-      );
+      setErrorMsg(err instanceof Error ? err.message : errorFallback);
       setState("error");
     }
   };
@@ -99,10 +107,10 @@ export default function PayPalConfirmButton({
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
             </svg>
-            Connecting to PayPal…
+            {connectingLabel}
           </span>
         ) : (
-          "Pay €99 via PayPal →"
+          `${payPrefix} €99 ${paySuffix}`
         )}
       </button>
 
@@ -110,9 +118,7 @@ export default function PayPalConfirmButton({
         <p className="text-red-500 text-xs leading-relaxed text-center">{errorMsg}</p>
       )}
 
-      <p className="text-zinc-600 text-xs text-center">
-        Secure checkout · Verified by PayPal
-      </p>
+      <p className="text-zinc-600 text-xs text-center">{secureNote}</p>
     </div>
   );
 }

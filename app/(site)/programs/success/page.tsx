@@ -1,19 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PersonalizedSuccess from "@/components/PersonalizedSuccess";
+import { getLocale } from "@/lib/locale";
+import { getT } from "@/lib/translations";
 
-export const metadata: Metadata = {
-  title: "Purchase Complete | PowerBuilder",
-  description: "Your purchase was successful. Your program will be delivered to your email shortly.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const m = getT(await getLocale()).programsSuccess.meta;
+  return { title: m.title, description: m.description };
+}
 
 export default async function ProgramSuccessPage({
   searchParams,
 }: {
   searchParams: Promise<{ product?: string; token?: string }>;
 }) {
-  // PayPal returns: ?token={orderID}&PayerID={payerID}
   const { product, token } = await searchParams;
+  const locale = await getLocale();
+  const t = getT(locale);
 
   return (
     <div className="bg-brand-bg min-h-screen pt-16">
@@ -21,14 +24,14 @@ export default async function ProgramSuccessPage({
         {product === "personalized" ? (
           <PersonalizedSuccess orderID={token} />
         ) : (
-          <StaticProgramSuccess />
+          <StaticProgramSuccess t={t.programsSuccess} />
         )}
       </div>
     </div>
   );
 }
 
-function StaticProgramSuccess() {
+function StaticProgramSuccess({ t }: { t: ReturnType<typeof getT>["programsSuccess"] }) {
   const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contact@powerbuilder.com";
 
   return (
@@ -41,15 +44,14 @@ function StaticProgramSuccess() {
           </svg>
         </div>
 
-        <p className="section-label mb-4">Purchase Confirmed</p>
+        <p className="section-label mb-4">{t.label}</p>
         <h1 className="section-heading mb-6">
-          Payment
+          {t.title1}
           <br />
-          <span className="text-red-600">Successful.</span>
+          <span className="text-red-600">{t.title2}</span>
         </h1>
         <p className="text-zinc-400 text-lg leading-relaxed">
-          Your purchase has been confirmed. Your program PDF will be delivered
-          to your PayPal email address within a few hours.
+          {t.body}
         </p>
       </div>
 
@@ -57,29 +59,10 @@ function StaticProgramSuccess() {
       <div className="bg-brand-card border border-brand-border p-8 mb-10">
         <div className="h-0.5 bg-red-600 -mt-8 -mx-8 mb-6" />
         <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-5">
-          What Happens Now
+          {t.whatNowLabel}
         </p>
         <div className="flex flex-col gap-5">
-          {[
-            {
-              num: "01",
-              title: "PayPal Receipt",
-              description:
-                "Check your email for a PayPal payment confirmation. This is your purchase receipt.",
-            },
-            {
-              num: "02",
-              title: "PDF Delivery",
-              description:
-                "Your program PDF will be sent to your PayPal email address within a few hours.",
-            },
-            {
-              num: "03",
-              title: "Start Training",
-              description:
-                "Open your PDF, read the introduction, and start on Day 1. The progressive overload is built in — just follow the plan.",
-            },
-          ].map((step, i) => (
+          {t.steps.map((step, i) => (
             <div key={i} className="flex gap-4">
               <span className="text-red-600 font-black text-2xl leading-none shrink-0 opacity-50 mt-0.5">
                 {step.num}
@@ -97,21 +80,19 @@ function StaticProgramSuccess() {
 
       {/* Support */}
       <div className="text-center border-t border-brand-border pt-10">
-        <p className="text-zinc-500 text-sm mb-2">
-          Haven&apos;t received your PDF within 24 hours?
-        </p>
+        <p className="text-zinc-500 text-sm mb-2">{t.supportText}</p>
         <a
-          href={`mailto:${contactEmail}?subject=${encodeURIComponent("PDF Not Received")}`}
+          href={`mailto:${contactEmail}?subject=${encodeURIComponent(t.supportSubject)}`}
           className="text-red-500 hover:text-red-400 text-sm font-medium transition-colors"
         >
           {contactEmail}
         </a>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
           <Link href="/programs" className="btn-secondary text-xs">
-            Browse More Programs
+            {t.browseMore}
           </Link>
           <Link href="/" className="text-zinc-600 text-sm hover:text-zinc-400 transition-colors">
-            Back to Home
+            {t.backHome}
           </Link>
         </div>
       </div>

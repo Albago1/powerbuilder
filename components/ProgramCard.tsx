@@ -18,6 +18,7 @@ interface ProgramCardProps {
   badge?: string;
   accentLabel: string;
   featured?: boolean;
+  ctaLabel: string;
 }
 
 export default function ProgramCard({
@@ -36,6 +37,7 @@ export default function ProgramCard({
   badge,
   accentLabel,
   featured,
+  ctaLabel,
 }: ProgramCardProps) {
   return (
     <div
@@ -132,7 +134,7 @@ export default function ProgramCard({
             href={href}
             className="btn-primary text-xs px-5 py-3"
           >
-            View Program
+            {ctaLabel}
           </Link>
         </div>
       </div>

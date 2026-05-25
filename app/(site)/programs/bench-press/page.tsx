@@ -88,6 +88,11 @@ export default async function BenchPressPage() {
                 consentLabel={t.checkout.widerrufConsent}
                 consentRequiredMessage={t.checkout.consentRequired}
                 consentAriaLabel={t.checkout.consentAriaLabel}
+                payPrefix={t.paypal.payPrefix}
+                paySuffix={t.paypal.paySuffix}
+                connectingLabel={t.paypal.connecting}
+                secureNote={t.paypal.secureNote}
+                errorFallback={t.paypal.errorFallback}
                 className="mb-4"
               />
               <div className="border-t border-brand-border pt-6 flex flex-col gap-3">
@@ -198,6 +203,11 @@ export default async function BenchPressPage() {
             consentLabel={t.checkout.widerrufConsent}
             consentRequiredMessage={t.checkout.consentRequired}
             consentAriaLabel={t.checkout.consentAriaLabel}
+            payPrefix={t.paypal.payPrefix}
+            paySuffix={t.paypal.paySuffix}
+            connectingLabel={t.paypal.connecting}
+            secureNote={t.paypal.secureNote}
+            errorFallback={t.paypal.errorFallback}
             className="max-w-md mx-auto"
           />
           <p className="text-zinc-700 text-xs mt-4">{pd.ctaNote(program.price)}</p>
