@@ -44,7 +44,6 @@ export const staticPrograms: StaticProgram[] = [
     features: [
       "Full 6-week bench specialization plan",
       "Strength + hypertrophy work combined",
-      "Tricep & shoulder accessory work",
       "Progressive overload built in",
       "Instant PDF delivery",
     ],
