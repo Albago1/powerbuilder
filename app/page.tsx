@@ -112,9 +112,9 @@ function HubCard({ label, title, subtitle, cta, href, comingSoon, featured }: Hu
 const HUB_HREFS = [
   { href: "/personalized", featured: true },
   { href: "/programs" },
+  { href: "/supplements" },
   { href: "https://www.tiktok.com/@artur.contentalb?is_from_webapp=1&sender_device=pc" },
   { href: "https://youtube.com/@artur.mehmetii?si=ILYBKWUIkXGrS9Nu" },
-  { href: "/supplements" },
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────

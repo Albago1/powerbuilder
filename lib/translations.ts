@@ -41,9 +41,9 @@ const en = {
     hub: [
       { label: "Coaching", title: "Personalized Coaching", subtitle: "4-week training & nutrition system built for your goals.", cta: "Start Coaching" },
       { label: "Programs", title: "Artur's Programs", subtitle: "Bench press and strength systems.", cta: "View Programs" },
+      { label: "Supplements", title: "Supplements", subtitle: "Maximum discount with code BAUSTELLE.", cta: "Browse" },
       { label: "Content", title: "Transformation Content", subtitle: "Training clips, progress, discipline and education.", cta: "Watch Content" },
       { label: "YouTube", title: "YouTube", subtitle: "Long-form training breakdowns and lifting education.", cta: "Watch on YouTube" },
-      { label: "Supplements", title: "Supplements", subtitle: "Maximum discount with code BAUSTELLE.", cta: "Browse" },
     ],
     featuredBadge: "Featured Program",
     featuredTitle: "6 Week Bench Press Program",
@@ -333,9 +333,9 @@ const de: typeof en = {
     hub: [
       { label: "Coaching", title: "Persönliches Coaching", subtitle: "4-Wochen Training & Ernährungssystem, das auf deine Ziele abgestimmt ist.", cta: "Coaching starten" },
       { label: "Programme", title: "Arturs Programme", subtitle: "Bankdrücken und Kraftsysteme.", cta: "Programme ansehen" },
+      { label: "Supplemente", title: "Supplemente", subtitle: "Maximaler Rabatt mit Code BAUSTELLE.", cta: "Ansehen" },
       { label: "Content", title: "Transformation Content", subtitle: "Trainingsclips, Fortschritte, Disziplin und Ausbildung.", cta: "Content ansehen" },
       { label: "YouTube", title: "YouTube", subtitle: "Ausführliche Trainingsanalysen und Kraft-Education.", cta: "Auf YouTube ansehen" },
-      { label: "Supplemente", title: "Supplemente", subtitle: "Maximaler Rabatt mit Code BAUSTELLE.", cta: "Ansehen" },
     ],
     featuredBadge: "Hauptprogramm",
     featuredTitle: "6-Wochen Bankdrück-Programm",
@@ -616,9 +616,9 @@ const sq: typeof en = {
     hub: [
       { label: "Coaching", title: "Coaching Personal", subtitle: "Sistem stërvitjeje & ushqimi 4 javë i ndërtuar për qëllimet tuaja.", cta: "Fillo Coaching" },
       { label: "Programet", title: "Programet e Arturit", subtitle: "Bench press dhe sisteme force.", cta: "Shiko Programet" },
+      { label: "Suplementa", title: "Suplementa", subtitle: "Zbritja maksimale me kodin BAUSTELLE.", cta: "Shiko" },
       { label: "Content", title: "Content Transformimi", subtitle: "Klipe stërvitjeje, progres, disiplinë dhe edukim.", cta: "Shiko Content" },
       { label: "YouTube", title: "YouTube", subtitle: "Analiza të gjata stërvitjeje dhe edukim ngritjeje.", cta: "Shiko në YouTube" },
-      { label: "Suplementa", title: "Suplementa", subtitle: "Zbritja maksimale me kodin BAUSTELLE.", cta: "Shiko" },
     ],
     featuredBadge: "Programi i Veçantë",
     featuredTitle: "Program Bench Press 6 Javë",
