@@ -46,6 +46,7 @@ export default async function ProgramsPage() {
               price={99}
               features={pc.features}
               href="/personalized"
+              featured
             />
 
             {/* Specialist static programs */}

@@ -11,6 +11,7 @@ interface ProgramCardProps {
   href: string;
   badge?: string;
   accentLabel: string;
+  featured?: boolean;
 }
 
 export default function ProgramCard({
@@ -24,11 +25,18 @@ export default function ProgramCard({
   href,
   badge,
   accentLabel,
+  featured,
 }: ProgramCardProps) {
   return (
-    <div className="relative bg-brand-card border border-brand-border flex flex-col group hover:border-zinc-600 transition-colors duration-200">
+    <div
+      className={`relative flex flex-col group transition-colors duration-200 ${
+        featured
+          ? "bg-red-600/[0.04] border border-red-600/40 hover:border-red-600/70 hover:bg-red-600/[0.06]"
+          : "bg-brand-card border border-brand-border hover:border-zinc-600"
+      }`}
+    >
       {/* Top accent bar */}
-      <div className="h-0.5 bg-red-600" />
+      <div className={featured ? "h-1 bg-red-600" : "h-0.5 bg-red-600"} />
 
       <div className="p-6 md:p-8 flex flex-col flex-1 gap-5">
         {/* Labels row */}
@@ -36,9 +44,9 @@ export default function ProgramCard({
           <span className="text-red-600 text-xs font-bold uppercase tracking-widest">
             {accentLabel}
           </span>
-          {badge && (
+          {(badge || featured) && (
             <span className="bg-red-600 text-white text-[10px] font-black px-2 py-0.5 uppercase tracking-wider">
-              {badge}
+              {badge ?? "Featured"}
             </span>
           )}
         </div>
