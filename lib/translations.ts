@@ -44,7 +44,7 @@ const en = {
       { label: "Content", title: "Transformation Content", subtitle: "Training clips, progress, discipline and education.", cta: "Watch Content" },
       { label: "YouTube", title: "YouTube", subtitle: "Long-form training breakdowns and lifting education.", cta: "Watch on YouTube" },
       { label: "Community", title: "Community", subtitle: "Join the PowerBuilder training community.", cta: "Coming Soon" },
-      { label: "Supplements", title: "Supplements", subtitle: "Recommended products and future affiliate picks.", cta: "Coming Soon" },
+      { label: "Supplements", title: "Supplements", subtitle: "Maximum discount with code BAUSTELLE.", cta: "Browse" },
       { label: "Apparel", title: "Apparel", subtitle: "PowerBuilder clothing and lifting gear.", cta: "Coming Soon" },
     ],
     featuredBadge: "Featured Program",
@@ -239,6 +239,59 @@ const en = {
     ],
   },
 
+  // ── Supplements affiliate page ──────────────────────────────────────────────
+  supplements: {
+    meta: {
+      title: "Supplements | PowerBuilder",
+      description: "Get the maximum discount on premium supplements with code BAUSTELLE — Artur's recommended supplement partner.",
+    },
+    hero: {
+      badge: "Advertising · Affiliate",
+      label: "Supplements",
+      title1: "Real Power.",
+      title2: "Real Supplements.",
+      subtitle: "Artur's recommended supplement partner. Use the code below to unlock the maximum discount available.",
+    },
+    code: {
+      label: "Your Code",
+      discountNote: "Maximum discount at checkout",
+      copy: "Copy",
+      copied: "Copied!",
+      cta: "Shop Now →",
+      note: "Apply the code at checkout — discount varies based on cart contents and active promotions.",
+    },
+    why: {
+      sectionLabel: "Why this partner",
+      title1: "Trusted.",
+      title2: "Recommended.",
+      cards: [
+        { title: "Artur's Pick", description: "Personally selected by Artur for the PowerBuilder community. No compromises on quality." },
+        { title: "Maximum Discount", description: "The BAUSTELLE code unlocks the highest available discount on every order." },
+        { title: "Fast Checkout", description: "Direct link to the shop, code applies in seconds. No accounts, no tracking — just savings." },
+      ],
+    },
+    how: {
+      sectionLabel: "How to redeem",
+      title1: "Three Steps.",
+      title2: "One Code.",
+      steps: [
+        { num: "01", title: "Visit the Shop", description: "Click the button below to head straight to Artur's recommended supplement partner." },
+        { num: "02", title: "Pick Your Products", description: "Add the supplements you need to your cart. Stack up — the discount applies to the whole order." },
+        { num: "03", title: "Apply Code BAUSTELLE", description: "Enter the code at checkout to unlock the maximum discount automatically." },
+      ],
+    },
+    cta: {
+      title1: "Ready to",
+      title2: "Power Up?",
+      subtitle: "Use code BAUSTELLE at checkout. The discount drops the moment you apply it.",
+      button: "Shop With BAUSTELLE →",
+    },
+    disclosure: {
+      heading: "Affiliate Notice",
+      body: "This page contains affiliate links pursuant to § 5a UWG (German Act Against Unfair Competition). When you purchase through the link above using the code BAUSTELLE, Artur receives a commission — at no additional cost to you. You simultaneously unlock the maximum available discount.",
+    },
+  },
+
   // ── Checkout (Widerruf waiver consent, required for § 4 AGB) ────────────────
   checkout: {
     widerrufConsent:
@@ -285,7 +338,7 @@ const de: typeof en = {
       { label: "Content", title: "Transformation Content", subtitle: "Trainingsclips, Fortschritte, Disziplin und Ausbildung.", cta: "Content ansehen" },
       { label: "YouTube", title: "YouTube", subtitle: "Ausführliche Trainingsanalysen und Kraft-Education.", cta: "Auf YouTube ansehen" },
       { label: "Community", title: "Community", subtitle: "Tritt der PowerBuilder Trainings-Community bei.", cta: "Demnächst" },
-      { label: "Supplemente", title: "Supplemente", subtitle: "Empfohlene Produkte und zukünftige Affiliate-Picks.", cta: "Demnächst" },
+      { label: "Supplemente", title: "Supplemente", subtitle: "Maximaler Rabatt mit Code BAUSTELLE.", cta: "Ansehen" },
       { label: "Kleidung", title: "Kleidung", subtitle: "PowerBuilder Kleidung und Hebeausrüstung.", cta: "Demnächst" },
     ],
     featuredBadge: "Hauptprogramm",
@@ -472,6 +525,58 @@ const de: typeof en = {
     ],
   },
 
+  supplements: {
+    meta: {
+      title: "Supplemente | PowerBuilder",
+      description: "Erhalte maximalen Rabatt auf Premium-Supplemente mit Code BAUSTELLE — Arturs empfohlener Supplement-Partner.",
+    },
+    hero: {
+      badge: "Werbung · Affiliate",
+      label: "Supplemente",
+      title1: "Echte Power.",
+      title2: "Echte Supplemente.",
+      subtitle: "Arturs empfohlener Supplement-Partner. Nutze den Code unten, um den maximal verfügbaren Rabatt freizuschalten.",
+    },
+    code: {
+      label: "Dein Code",
+      discountNote: "Maximaler Rabatt beim Checkout",
+      copy: "Kopieren",
+      copied: "Kopiert!",
+      cta: "Jetzt einkaufen →",
+      note: "Code beim Checkout eingeben — Rabatthöhe variiert je nach Warenkorb und aktuellen Aktionen.",
+    },
+    why: {
+      sectionLabel: "Warum dieser Partner",
+      title1: "Geprüft.",
+      title2: "Empfohlen.",
+      cards: [
+        { title: "Arturs Wahl", description: "Persönlich von Artur für die PowerBuilder-Community ausgewählt. Keine Kompromisse bei der Qualität." },
+        { title: "Maximaler Rabatt", description: "Der Code BAUSTELLE schaltet den höchsten verfügbaren Rabatt auf jede Bestellung frei." },
+        { title: "Schneller Checkout", description: "Direkter Link zum Shop, Code wird in Sekunden angewendet. Keine Konten, kein Tracking — nur Ersparnis." },
+      ],
+    },
+    how: {
+      sectionLabel: "So einlösen",
+      title1: "Drei Schritte.",
+      title2: "Ein Code.",
+      steps: [
+        { num: "01", title: "Shop besuchen", description: "Klicke unten auf den Button, um direkt zu Arturs empfohlenem Supplement-Partner zu gelangen." },
+        { num: "02", title: "Produkte wählen", description: "Lege die Supplemente, die du brauchst, in deinen Warenkorb. Stapel ruhig — der Rabatt gilt für die gesamte Bestellung." },
+        { num: "03", title: "Code BAUSTELLE eingeben", description: "Gib den Code beim Checkout ein, um den maximalen Rabatt automatisch freizuschalten." },
+      ],
+    },
+    cta: {
+      title1: "Bereit für",
+      title2: "Power Up?",
+      subtitle: "Nutze Code BAUSTELLE beim Checkout. Der Rabatt greift sofort beim Anwenden.",
+      button: "Mit BAUSTELLE einkaufen →",
+    },
+    disclosure: {
+      heading: "Affiliate-Hinweis",
+      body: "Diese Seite enthält Affiliate-Links gemäß § 5a UWG (Gesetz gegen den unlauteren Wettbewerb). Wenn du über den obigen Link mit dem Code BAUSTELLE einkaufst, erhält Artur eine Provision — für dich entstehen keine zusätzlichen Kosten. Gleichzeitig schaltest du den maximal verfügbaren Rabatt frei.",
+    },
+  },
+
   // ── Checkout (Widerrufsverzicht, erforderlich für § 4 AGB) ──────────────────
   checkout: {
     widerrufConsent:
@@ -518,7 +623,7 @@ const sq: typeof en = {
       { label: "Content", title: "Content Transformimi", subtitle: "Klipe stërvitjeje, progres, disiplinë dhe edukim.", cta: "Shiko Content" },
       { label: "YouTube", title: "YouTube", subtitle: "Analiza të gjata stërvitjeje dhe edukim ngritjeje.", cta: "Shiko në YouTube" },
       { label: "Komunitet", title: "Komunitet", subtitle: "Bashkohu me komunitetin e stërvitjes PowerBuilder.", cta: "Së shpejti" },
-      { label: "Suplementa", title: "Suplementa", subtitle: "Produkte të rekomanduara dhe zgjedhje affiliate të ardhshme.", cta: "Së shpejti" },
+      { label: "Suplementa", title: "Suplementa", subtitle: "Zbritja maksimale me kodin BAUSTELLE.", cta: "Shiko" },
       { label: "Veshje", title: "Veshje", subtitle: "Veshje PowerBuilder dhe pajisje ngritjeje.", cta: "Së shpejti" },
     ],
     featuredBadge: "Programi i Veçantë",
@@ -703,6 +808,58 @@ const sq: typeof en = {
       { question: "Çfarë pajisje më duhen?", answer: "Një shtangë e gjatë, stacion bench press dhe qasje në kabllo ose gjevrekë për punë ndihmëse. Një palestër komerciale e plotë është ideale." },
       { question: "Çfarë progresi mund të pres në 6 javë?", answer: "Rezultatet varen nga pika juaj fillestare, konsistenca dhe ushqyerja. Programi është i strukturuar të shtyjë tavanin tënd çdo javë — ajo që merr prej tij reflekton atë që fut në të." },
     ],
+  },
+
+  supplements: {
+    meta: {
+      title: "Suplemente | PowerBuilder",
+      description: "Merr zbritjen maksimale në suplemente premium me kodin BAUSTELLE — partneri i rekomanduar i suplementeve nga Arturi.",
+    },
+    hero: {
+      badge: "Reklamë · Affiliate",
+      label: "Suplemente",
+      title1: "Fuqi e Vërtetë.",
+      title2: "Suplemente të Vërteta.",
+      subtitle: "Partneri i suplementeve i rekomanduar nga Arturi. Përdor kodin më poshtë për të zbërthyer zbritjen maksimale të disponueshme.",
+    },
+    code: {
+      label: "Kodi yt",
+      discountNote: "Zbritja maksimale në checkout",
+      copy: "Kopjo",
+      copied: "U kopjua!",
+      cta: "Bli tani →",
+      note: "Apliko kodin në checkout — zbritja ndryshon sipas përmbajtjes së shportës dhe ofertave aktive.",
+    },
+    why: {
+      sectionLabel: "Pse ky partner",
+      title1: "I Besueshëm.",
+      title2: "I Rekomanduar.",
+      cards: [
+        { title: "Zgjedhja e Arturit", description: "I përzgjedhur personalisht nga Arturi për komunitetin PowerBuilder. Pa kompromise në cilësi." },
+        { title: "Zbritja Maksimale", description: "Kodi BAUSTELLE hap zbritjen më të lartë të disponueshme në çdo porosi." },
+        { title: "Checkout i Shpejtë", description: "Lidhje direkte për në dyqan, kodi aplikohet brenda sekondave. Pa llogari, pa ndjekje — vetëm kursime." },
+      ],
+    },
+    how: {
+      sectionLabel: "Si të aplikosh",
+      title1: "Tri Hapa.",
+      title2: "Një Kod.",
+      steps: [
+        { num: "01", title: "Vizito Dyqanin", description: "Kliko butonin më poshtë për të shkuar drejt te partneri i suplementeve i rekomanduar nga Arturi." },
+        { num: "02", title: "Zgjidh Produktet", description: "Shto suplementet që të nevojiten në shportë. Mblidhi pa frikë — zbritja vlen për të gjithë porosinë." },
+        { num: "03", title: "Apliko Kodin BAUSTELLE", description: "Vendos kodin në checkout për të zbërthyer automatikisht zbritjen maksimale." },
+      ],
+    },
+    cta: {
+      title1: "Gati për",
+      title2: "Power Up?",
+      subtitle: "Përdor kodin BAUSTELLE në checkout. Zbritja zbatohet menjëherë sapo ta aplikosh.",
+      button: "Bli me BAUSTELLE →",
+    },
+    disclosure: {
+      heading: "Njoftim Affiliate",
+      body: "Kjo faqe përmban lidhje affiliate sipas § 5a UWG (Ligji gjerman kundër konkurrencës së pandershme). Kur blen përmes lidhjes së mësipërme duke përdorur kodin BAUSTELLE, Arturi merr një komision — pa kosto shtesë për ty. Njëkohësisht zbërthen zbritjen maksimale të disponueshme.",
+    },
   },
 
   // ── Checkout (Heqja dorë nga tërheqja — kërkohet për § 4 AGB) ───────────────
