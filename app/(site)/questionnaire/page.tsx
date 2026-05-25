@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import QuestionnaireFlow from "@/components/questionnaire/QuestionnaireFlow";
+import { getLocale } from "@/lib/locale";
+import { getT } from "@/lib/translations";
 
-export const metadata: Metadata = {
-  title: "Questionnaire | PowerBuilder Personalized Program",
-  description:
-    "Fill out your training profile. Artur will use your answers to build a custom training and nutrition system.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const m = getT(await getLocale()).questionnaire.meta;
+  return { title: m.title, description: m.description };
+}
 
-export default function QuestionnairePage() {
-  return <QuestionnaireFlow />;
+export default async function QuestionnairePage() {
+  const locale = await getLocale();
+  return <QuestionnaireFlow locale={locale} />;
 }

@@ -4,31 +4,10 @@ import PayPalConfirmButton from "@/components/PayPalConfirmButton";
 import { getLocale } from "@/lib/locale";
 import { getT } from "@/lib/translations";
 
-export const metadata: Metadata = {
-  title: "Complete Payment | PowerBuilder",
-  description: "Your questionnaire is saved. Complete your payment to activate your personalized program.",
-};
-
-const nextSteps = [
-  {
-    number: "01",
-    title: "Complete Payment",
-    description:
-      "Click the PayPal button below to complete your €99 payment securely.",
-  },
-  {
-    number: "02",
-    title: "Submit Your Profile",
-    description:
-      "After payment you will be prompted to submit your questionnaire to Artur with one click.",
-  },
-  {
-    number: "03",
-    title: "Program Delivered",
-    description:
-      "Artur personally builds your custom training and nutrition system and delivers the PDF within 48 hours.",
-  },
-];
+export async function generateMetadata(): Promise<Metadata> {
+  const m = getT(await getLocale()).questionnaire.confirmation.meta;
+  return { title: m.title, description: m.description };
+}
 
 export default async function ConfirmationPage({
   searchParams,
@@ -38,6 +17,7 @@ export default async function ConfirmationPage({
   const { email } = await searchParams;
   const locale = await getLocale();
   const t = getT(locale);
+  const c = t.questionnaire.confirmation;
 
   return (
     <div className="bg-brand-bg min-h-screen pt-16">
@@ -50,21 +30,18 @@ export default async function ConfirmationPage({
             </svg>
           </div>
 
-          <p className="section-label mb-4">Questionnaire Saved</p>
+          <p className="section-label mb-4">{c.statusLabel}</p>
           <h1 className="section-heading mb-6">
-            One Step Left.
+            {c.title1}
             <br />
-            <span className="text-red-600">Complete Payment.</span>
+            <span className="text-red-600">{c.title2}</span>
           </h1>
           <p className="text-zinc-400 text-lg leading-relaxed max-w-xl mx-auto">
-            Your questionnaire is saved securely in your browser. Complete the
-            €99 payment below to activate your order — Artur will receive your
-            full profile and begin building your program after payment is
-            confirmed.
+            {c.body}
           </p>
           {email && (
             <p className="text-zinc-500 text-sm mt-3">
-              Program will be delivered to{" "}
+              {c.deliveryNotePrefix}{" "}
               <span className="text-white font-medium">{email}</span>
             </p>
           )}
@@ -74,20 +51,14 @@ export default async function ConfirmationPage({
         <div className="bg-brand-card border border-red-600/20 p-8 mb-12 text-center">
           <div className="h-0.5 bg-red-600 -mt-8 -mx-8 mb-6" />
           <p className="text-red-600 text-xs font-bold uppercase tracking-widest mb-3">
-            Action Required
+            {c.cardLabel}
           </p>
           <h2 className="text-white font-black text-2xl uppercase tracking-tight mb-4">
-            Complete Your Payment
+            {c.cardTitle}
           </h2>
           <p className="text-zinc-400 text-sm leading-relaxed mb-6">
-            After payment PayPal will return you to a confirmation page where
-            you can submit your questionnaire to Artur with a single click.
+            {c.cardBody}
           </p>
-          {/* ===== PAYPAL INTEGRATION =====
-              PayPal return URL must be set to:
-              {NEXT_PUBLIC_BASE_URL}/programs/success?product=personalized
-              Configure this in your PayPal payment link settings.
-          */}
           <PayPalConfirmButton
             consentLabel={t.checkout.widerrufConsent}
             consentRequiredMessage={t.checkout.consentRequired}
@@ -97,12 +68,12 @@ export default async function ConfirmationPage({
 
         {/* What happens next */}
         <div className="mb-12">
-          <p className="section-label mb-8 text-center">What Happens Next</p>
+          <p className="section-label mb-8 text-center">{c.whatHappensNext}</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {nextSteps.map((step, i) => (
+            {c.nextSteps.map((step, i) => (
               <div key={i} className="bg-brand-card border border-brand-border p-6">
                 <span className="text-red-600 font-black text-3xl leading-none block mb-3 opacity-50">
-                  {step.number}
+                  {step.num}
                 </span>
                 <h3 className="text-white font-bold text-base uppercase tracking-tight mb-2">
                   {step.title}
@@ -115,7 +86,7 @@ export default async function ConfirmationPage({
 
         {/* Contact note */}
         <div className="text-center border-t border-brand-border pt-10">
-          <p className="text-zinc-500 text-sm mb-2">Questions about your order?</p>
+          <p className="text-zinc-500 text-sm mb-2">{c.questionsLabel}</p>
           <a
             href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contact@powerbuilder.com"}`}
             className="text-red-500 hover:text-red-400 text-sm font-medium transition-colors"
@@ -124,7 +95,7 @@ export default async function ConfirmationPage({
           </a>
           <div className="mt-8">
             <Link href="/" className="btn-secondary text-xs">
-              Back to Home
+              {c.backHome}
             </Link>
           </div>
         </div>

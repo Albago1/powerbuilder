@@ -55,15 +55,4 @@ export interface QuestionnaireData {
   phone: string;
 }
 
-export const STEP_TITLES: Record<number, string> = {
-  1: "Your Profile",
-  2: "Your Training",
-  3: "Your Goal",
-  4: "Your Body",
-  5: "Your Lifestyle",
-  6: "Review",
-  7: "Program Language",
-  8: "Contact & Delivery",
-};
-
 export const TOTAL_STEPS = 8;

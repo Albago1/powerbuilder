@@ -4,13 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { QuestionnaireData } from "@/types/questionnaire";
-import { TOTAL_STEPS, STEP_TITLES } from "@/types/questionnaire";
-
-const BODY_PARTS = [
-  "Chest", "Upper Back", "Lower Back", "Shoulders",
-  "Biceps", "Triceps", "Forearms", "Core / Abs",
-  "Quads", "Hamstrings", "Glutes", "Calves",
-];
+import { TOTAL_STEPS } from "@/types/questionnaire";
+import { getT, type Locale } from "@/lib/translations";
 
 const initial: QuestionnaireData = {
   age: "", heightCm: "", weightKg: "", gender: "",
@@ -33,7 +28,7 @@ function Label({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Error({ msg }: { msg?: string }) {
+function ErrorMsg({ msg }: { msg?: string }) {
   if (!msg) return null;
   return <p className="text-red-500 text-xs mt-1">{msg}</p>;
 }
@@ -118,182 +113,142 @@ function ProgressBar({ step }: { step: number }) {
 
 // ─── Step components ───────────────────────────────────────────────────────
 
+type Q = ReturnType<typeof getT>["questionnaire"];
+
 type StepProps = {
   data: QuestionnaireData;
   errors: Record<string, string>;
   update: (f: keyof QuestionnaireData, v: string) => void;
   toggle?: (f: "weakBodyParts" | "strongBodyParts", v: string) => void;
+  q: Q;
 };
 
-function Step1({ data, errors, update }: StepProps) {
+function StepHeading({ lead, accent, subtitle }: { lead: string; accent: string; subtitle: string }) {
+  return (
+    <div>
+      <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight mb-1">
+        {lead} <span className="text-red-600">{accent}</span>
+      </h2>
+      <p className="text-zinc-500 text-sm">{subtitle}</p>
+    </div>
+  );
+}
+
+function Step1({ data, errors, update, q }: StepProps) {
+  const o = q.options.gender;
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight mb-1">
-          Your <span className="text-red-600">Profile</span>
-        </h2>
-        <p className="text-zinc-500 text-sm">Basic information to personalize your program.</p>
-      </div>
-
+      <StepHeading {...q.steps[1]} />
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <Label>Age</Label>
-          <TextInput type="number" value={data.age} onChange={(v) => update("age", v)} placeholder="25" unit="yrs" />
-          <Error msg={errors.age} />
+          <Label>{q.fields.age}</Label>
+          <TextInput type="number" value={data.age} onChange={(v) => update("age", v)} placeholder={q.placeholders.age} unit={q.units.yrs} />
+          <ErrorMsg msg={errors.age} />
         </div>
         <div>
-          <Label>Height</Label>
-          <TextInput type="number" value={data.heightCm} onChange={(v) => update("heightCm", v)} placeholder="178" unit="cm" />
-          <Error msg={errors.heightCm} />
+          <Label>{q.fields.height}</Label>
+          <TextInput type="number" value={data.heightCm} onChange={(v) => update("heightCm", v)} placeholder={q.placeholders.height} unit={q.units.cm} />
+          <ErrorMsg msg={errors.heightCm} />
         </div>
         <div className="col-span-2 sm:col-span-1">
-          <Label>Weight</Label>
-          <TextInput type="number" value={data.weightKg} onChange={(v) => update("weightKg", v)} placeholder="80" unit="kg" />
-          <Error msg={errors.weightKg} />
+          <Label>{q.fields.weight}</Label>
+          <TextInput type="number" value={data.weightKg} onChange={(v) => update("weightKg", v)} placeholder={q.placeholders.weight} unit={q.units.kg} />
+          <ErrorMsg msg={errors.weightKg} />
         </div>
       </div>
-
       <div>
-        <Label>Gender</Label>
+        <Label>{q.fields.gender}</Label>
         <div className="grid grid-cols-2 gap-3">
-          {[
-            { label: "Male", value: "male" },
-            { label: "Female", value: "female" },
-            { label: "Other", value: "other" },
-            { label: "Prefer not to say", value: "prefer_not" },
-          ].map((o) => (
-            <OptionCard key={o.value} label={o.label} selected={data.gender === o.value} onClick={() => update("gender", o.value)} />
+          {(["male", "female", "other", "prefer_not"] as const).map((v) => (
+            <OptionCard key={v} label={o[v]} selected={data.gender === v} onClick={() => update("gender", v)} />
           ))}
         </div>
-        <Error msg={errors.gender} />
+        <ErrorMsg msg={errors.gender} />
       </div>
     </div>
   );
 }
 
-function Step2({ data, errors, update }: StepProps) {
+function Step2({ data, errors, update, q }: StepProps) {
   return (
     <div className="flex flex-col gap-6">
+      <StepHeading {...q.steps[2]} />
       <div>
-        <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight mb-1">
-          Your <span className="text-red-600">Training</span>
-        </h2>
-        <p className="text-zinc-500 text-sm">Your current training background and setup.</p>
-      </div>
-
-      <div>
-        <Label>Training Experience</Label>
+        <Label>{q.fields.trainingExperience}</Label>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {[
-            { label: "Beginner", sub: "< 1 year consistent", value: "beginner" },
-            { label: "Intermediate", sub: "1–3 years", value: "intermediate" },
-            { label: "Advanced", sub: "3+ years", value: "advanced" },
-          ].map((o) => (
-            <OptionCard key={o.value} label={o.label} sub={o.sub} selected={data.experience === o.value} onClick={() => update("experience", o.value)} />
+          {(["beginner", "intermediate", "advanced"] as const).map((v) => (
+            <OptionCard key={v} label={q.options.experience[v].label} sub={q.options.experience[v].sub} selected={data.experience === v} onClick={() => update("experience", v)} />
           ))}
         </div>
-        <Error msg={errors.experience} />
+        <ErrorMsg msg={errors.experience} />
       </div>
-
       <div>
-        <Label>Training Days Per Week</Label>
+        <Label>{q.fields.trainingDaysPerWeek}</Label>
         <div className="grid grid-cols-4 gap-3">
           {["3", "4", "5", "6"].map((d) => (
             <OptionCard key={d} label={`${d}x`} selected={data.trainingDaysPerWeek === d} onClick={() => update("trainingDaysPerWeek", d)} />
           ))}
         </div>
-        <Error msg={errors.trainingDaysPerWeek} />
+        <ErrorMsg msg={errors.trainingDaysPerWeek} />
       </div>
-
       <div>
-        <Label>Gym Access</Label>
+        <Label>{q.fields.gymAccess}</Label>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {[
-            { label: "Full Gym", sub: "Barbell, rack, cables", value: "full_gym" },
-            { label: "Home Gym", sub: "Barbell or dumbbells", value: "home_gym" },
-            { label: "Limited", sub: "Dumbbells / machines only", value: "limited" },
-          ].map((o) => (
-            <OptionCard key={o.value} label={o.label} sub={o.sub} selected={data.gymAccess === o.value} onClick={() => update("gymAccess", o.value)} />
+          {(["full_gym", "home_gym", "limited"] as const).map((v) => (
+            <OptionCard key={v} label={q.options.gymAccess[v].label} sub={q.options.gymAccess[v].sub} selected={data.gymAccess === v} onClick={() => update("gymAccess", v)} />
           ))}
         </div>
-        <Error msg={errors.gymAccess} />
+        <ErrorMsg msg={errors.gymAccess} />
       </div>
-
       <div>
-        <Label>Bench Press Experience</Label>
+        <Label>{q.fields.benchExperience}</Label>
         <div className="grid grid-cols-2 gap-3">
-          {[
-            { label: "Never benched", value: "never" },
-            { label: "Beginner", sub: "< 1 plate / side", value: "beginner" },
-            { label: "Intermediate", sub: "1–2 plates / side", value: "intermediate" },
-            { label: "Experienced", sub: "2+ plates / side", value: "experienced" },
-          ].map((o) => (
-            <OptionCard key={o.value} label={o.label} sub={o.sub} selected={data.benchExperience === o.value} onClick={() => update("benchExperience", o.value)} />
-          ))}
+          {(["never", "beginner", "intermediate", "experienced"] as const).map((v) => {
+            const opt = q.options.benchExperience[v];
+            return <OptionCard key={v} label={opt.label} sub={opt.sub || undefined} selected={data.benchExperience === v} onClick={() => update("benchExperience", v)} />;
+          })}
         </div>
-        <Error msg={errors.benchExperience} />
+        <ErrorMsg msg={errors.benchExperience} />
       </div>
     </div>
   );
 }
 
-function Step3({ data, errors, update }: StepProps) {
+function Step3({ data, errors, update, q }: StepProps) {
   return (
     <div className="flex flex-col gap-6">
+      <StepHeading {...q.steps[3]} />
       <div>
-        <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight mb-1">
-          Your <span className="text-red-600">Goal</span>
-        </h2>
-        <p className="text-zinc-500 text-sm">What you want to achieve over the next 4 weeks.</p>
-      </div>
-
-      <div>
-        <Label>Primary Goal</Label>
+        <Label>{q.fields.primaryGoal}</Label>
         <div className="grid grid-cols-2 gap-3">
-          {[
-            { label: "Muscle Gain", sub: "More size, more mass", value: "muscle_gain" },
-            { label: "Fat Loss", sub: "Leaner, more defined", value: "fat_loss" },
-            { label: "Strength", sub: "Bigger numbers on the bar", value: "strength" },
-            { label: "Recomposition", sub: "Build muscle, lose fat", value: "recomposition" },
-          ].map((o) => (
-            <OptionCard key={o.value} label={o.label} sub={o.sub} selected={data.mainGoal === o.value} onClick={() => update("mainGoal", o.value)} />
+          {(["muscle_gain", "fat_loss", "strength", "recomposition"] as const).map((v) => (
+            <OptionCard key={v} label={q.options.mainGoal[v].label} sub={q.options.mainGoal[v].sub} selected={data.mainGoal === v} onClick={() => update("mainGoal", v)} />
           ))}
         </div>
-        <Error msg={errors.mainGoal} />
+        <ErrorMsg msg={errors.mainGoal} />
       </div>
-
       <div>
-        <Label>Body Composition Phase</Label>
+        <Label>{q.fields.bodyCompositionPhase}</Label>
         <div className="grid grid-cols-3 gap-3">
-          {[
-            { label: "Bulk", sub: "Gain mass + some fat", value: "bulk" },
-            { label: "Cut", sub: "Lose fat, keep muscle", value: "cut" },
-            { label: "Maintain", sub: "Same weight, optimize", value: "maintain" },
-          ].map((o) => (
-            <OptionCard key={o.value} label={o.label} sub={o.sub} selected={data.bodyCompositionGoal === o.value} onClick={() => update("bodyCompositionGoal", o.value)} />
+          {(["bulk", "cut", "maintain"] as const).map((v) => (
+            <OptionCard key={v} label={q.options.bodyCompositionGoal[v].label} sub={q.options.bodyCompositionGoal[v].sub} selected={data.bodyCompositionGoal === v} onClick={() => update("bodyCompositionGoal", v)} />
           ))}
         </div>
-        <Error msg={errors.bodyCompositionGoal} />
+        <ErrorMsg msg={errors.bodyCompositionGoal} />
       </div>
     </div>
   );
 }
 
-function Step4({ data, errors, update, toggle }: StepProps) {
+function Step4({ data, errors, update, toggle, q }: StepProps) {
   return (
     <div className="flex flex-col gap-6">
+      <StepHeading {...q.steps[4]} />
       <div>
-        <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight mb-1">
-          Your <span className="text-red-600">Body</span>
-        </h2>
-        <p className="text-zinc-500 text-sm">Body assessment to target the right areas.</p>
-      </div>
-
-      <div>
-        <Label>Weak Body Parts</Label>
-        <p className="text-zinc-600 text-xs mb-3">Select all that apply. These get prioritized.</p>
+        <Label>{q.fields.weakBodyParts}</Label>
+        <p className="text-zinc-600 text-xs mb-3">{q.fields.weakHint}</p>
         <div className="flex flex-wrap gap-2">
-          {BODY_PARTS.map((part) => (
+          {q.bodyParts.map((part) => (
             <MultiChip
               key={part}
               label={part}
@@ -303,12 +258,11 @@ function Step4({ data, errors, update, toggle }: StepProps) {
           ))}
         </div>
       </div>
-
       <div>
-        <Label>Strong Body Parts</Label>
-        <p className="text-zinc-600 text-xs mb-3">What&apos;s already well-developed.</p>
+        <Label>{q.fields.strongBodyParts}</Label>
+        <p className="text-zinc-600 text-xs mb-3">{q.fields.strongHint}</p>
         <div className="flex flex-wrap gap-2">
-          {BODY_PARTS.map((part) => (
+          {q.bodyParts.map((part) => (
             <MultiChip
               key={part}
               label={part}
@@ -318,215 +272,164 @@ function Step4({ data, errors, update, toggle }: StepProps) {
           ))}
         </div>
       </div>
-
       <div>
-        <Label>Injuries or Limitations</Label>
-        <p className="text-zinc-600 text-xs mb-3">Enter &quot;None&quot; if you have no injuries.</p>
+        <Label>{q.fields.injuries}</Label>
+        <p className="text-zinc-600 text-xs mb-3">{q.fields.injuriesHint}</p>
         <textarea
           value={data.injuries}
           onChange={(e) => update("injuries", e.target.value)}
-          placeholder='e.g., "Left shoulder impingement" or "None"'
+          placeholder={q.fields.injuriesPlaceholder}
           rows={3}
           className="w-full bg-brand-bg border border-brand-border text-white placeholder-zinc-600 px-4 py-3 text-sm focus:outline-none focus:border-red-600 transition-colors resize-none"
         />
-        <Error msg={errors.injuries} />
+        <ErrorMsg msg={errors.injuries} />
       </div>
     </div>
   );
 }
 
-function Step5({ data, errors, update }: StepProps) {
+function Step5({ data, errors, update, q }: StepProps) {
   return (
     <div className="flex flex-col gap-6">
+      <StepHeading {...q.steps[5]} />
       <div>
-        <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight mb-1">
-          Your <span className="text-red-600">Lifestyle</span>
-        </h2>
-        <p className="text-zinc-500 text-sm">Nutrition and recovery context for your program.</p>
-      </div>
-
-      <div>
-        <Label>Nutrition Preference</Label>
+        <Label>{q.fields.nutritionPreference}</Label>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {[
-            { label: "Flexible", sub: "No dietary restrictions", value: "flexible" },
-            { label: "Strict Tracking", sub: "Track every macro", value: "strict" },
-            { label: "Vegetarian", sub: "No meat", value: "vegetarian" },
-            { label: "Vegan", sub: "No animal products", value: "vegan" },
-            { label: "No Preference", sub: "Adapt to what works", value: "no_preference" },
-          ].map((o) => (
-            <OptionCard key={o.value} label={o.label} sub={o.sub} selected={data.nutritionPreference === o.value} onClick={() => update("nutritionPreference", o.value)} />
+          {(["flexible", "strict", "vegetarian", "vegan", "no_preference"] as const).map((v) => (
+            <OptionCard key={v} label={q.options.nutritionPreference[v].label} sub={q.options.nutritionPreference[v].sub} selected={data.nutritionPreference === v} onClick={() => update("nutritionPreference", v)} />
           ))}
         </div>
-        <Error msg={errors.nutritionPreference} />
+        <ErrorMsg msg={errors.nutritionPreference} />
       </div>
-
       <div>
-        <Label>Average Sleep Quality</Label>
+        <Label>{q.fields.sleepQuality}</Label>
         <div className="grid grid-cols-2 gap-3">
-          {[
-            { label: "Poor", sub: "Under 6 hours / restless", value: "poor" },
-            { label: "Average", sub: "6–7 hours", value: "average" },
-            { label: "Good", sub: "7–8 hours", value: "good" },
-            { label: "Excellent", sub: "8+ hours, solid recovery", value: "excellent" },
-          ].map((o) => (
-            <OptionCard key={o.value} label={o.label} sub={o.sub} selected={data.sleepQuality === o.value} onClick={() => update("sleepQuality", o.value)} />
+          {(["poor", "average", "good", "excellent"] as const).map((v) => (
+            <OptionCard key={v} label={q.options.sleepQuality[v].label} sub={q.options.sleepQuality[v].sub} selected={data.sleepQuality === v} onClick={() => update("sleepQuality", v)} />
           ))}
         </div>
-        <Error msg={errors.sleepQuality} />
+        <ErrorMsg msg={errors.sleepQuality} />
       </div>
     </div>
   );
 }
 
-function Step6({ data, update }: StepProps) {
+function Step6({ data, update, q }: StepProps) {
   const summaryRows = [
-    { label: "Age / Height / Weight", value: `${data.age} yrs, ${data.heightCm} cm, ${data.weightKg} kg` },
-    { label: "Gender", value: data.gender },
-    { label: "Experience", value: data.experience },
-    { label: "Training days", value: `${data.trainingDaysPerWeek}x per week` },
-    { label: "Gym", value: data.gymAccess.replace("_", " ") },
-    { label: "Main goal", value: data.mainGoal.replace("_", " ") },
-    { label: "Phase", value: data.bodyCompositionGoal },
-    { label: "Nutrition", value: data.nutritionPreference.replace("_", " ") },
-    { label: "Sleep", value: data.sleepQuality },
+    { label: q.summary.ageHeightWeight, value: `${data.age} ${q.units.yrs}, ${data.heightCm} ${q.units.cm}, ${data.weightKg} ${q.units.kg}` },
+    { label: q.summary.gender, value: data.gender ? q.options.gender[data.gender] : "" },
+    { label: q.summary.experience, value: data.experience ? q.options.experience[data.experience].label : "" },
+    { label: q.summary.trainingDays, value: data.trainingDaysPerWeek ? `${data.trainingDaysPerWeek}${q.summary.daysPerWeek}` : "" },
+    { label: q.summary.gym, value: data.gymAccess ? q.options.gymAccess[data.gymAccess].label : "" },
+    { label: q.summary.mainGoal, value: data.mainGoal ? q.options.mainGoal[data.mainGoal].label : "" },
+    { label: q.summary.phase, value: data.bodyCompositionGoal ? q.options.bodyCompositionGoal[data.bodyCompositionGoal].label : "" },
+    { label: q.summary.nutrition, value: data.nutritionPreference ? q.options.nutritionPreference[data.nutritionPreference].label : "" },
+    { label: q.summary.sleep, value: data.sleepQuality ? q.options.sleepQuality[data.sleepQuality].label : "" },
   ];
 
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight mb-1">
-          Review &amp; <span className="text-red-600">Notes</span>
-        </h2>
-        <p className="text-zinc-500 text-sm">Check your answers and add any final notes for Artur.</p>
-      </div>
-
-      {/* Summary */}
+      <StepHeading {...q.steps[6]} />
       <div className="bg-brand-card border border-brand-border p-5">
-        <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-4">Your Answers</p>
+        <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-4">{q.fields.yourAnswers}</p>
         <div className="flex flex-col divide-y divide-brand-border">
           {summaryRows.map((row, i) => (
             <div key={i} className="flex justify-between items-center py-2.5 gap-4">
               <span className="text-zinc-500 text-xs">{row.label}</span>
-              <span className="text-zinc-300 text-xs font-medium capitalize">{row.value || "—"}</span>
+              <span className="text-zinc-300 text-xs font-medium">{row.value || "—"}</span>
             </div>
           ))}
         </div>
       </div>
-
-      {/* Additional notes */}
       <div>
-        <Label>Additional Notes for Artur</Label>
-        <p className="text-zinc-600 text-xs mb-2">Anything else you want Artur to know? (Optional)</p>
+        <Label>{q.fields.additionalNotes}</Label>
+        <p className="text-zinc-600 text-xs mb-2">{q.fields.additionalNotesHint}</p>
         <textarea
           value={data.additionalNotes}
           onChange={(e) => update("additionalNotes", e.target.value)}
-          placeholder="Any context, specific requests, or goals you haven't mentioned..."
+          placeholder={q.fields.additionalNotesPlaceholder}
           rows={4}
           className="w-full bg-brand-bg border border-brand-border text-white placeholder-zinc-600 px-4 py-3 text-sm focus:outline-none focus:border-red-600 transition-colors resize-none"
         />
       </div>
-
-      {/* Step note */}
       <div className="bg-brand-surface border border-brand-border p-5">
         <p className="text-zinc-400 text-sm leading-relaxed">
-          <span className="text-white font-bold">Almost there:</span> Review your answers above, then select your program language and provide your contact details before payment.
+          <span className="text-white font-bold">{q.notes.almostThereLead}</span> {q.notes.almostThereBody}
         </p>
       </div>
     </div>
   );
 }
 
-function Step7({ data, errors, update }: StepProps) {
+function Step7({ data, errors, update, q }: StepProps) {
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight mb-1">
-          Program <span className="text-red-600">Language</span>
-        </h2>
-        <p className="text-zinc-500 text-sm">What language should your program be written in?</p>
-      </div>
-
+      <StepHeading {...q.steps[7]} />
       <div>
         <div className="grid grid-cols-1 gap-3">
-          {[
-            { label: "English", sub: "Program delivered in English", value: "english" },
-            { label: "German", sub: "Programm auf Deutsch", value: "german" },
-            { label: "Albanian", sub: "Programi në Shqip", value: "albanian" },
-          ].map((o) => (
+          {(["english", "german", "albanian"] as const).map((v) => (
             <OptionCard
-              key={o.value}
-              label={o.label}
-              sub={o.sub}
-              selected={data.programLanguage === o.value}
-              onClick={() => update("programLanguage", o.value)}
+              key={v}
+              label={q.options.programLanguage[v].label}
+              sub={q.options.programLanguage[v].sub}
+              selected={data.programLanguage === v}
+              onClick={() => update("programLanguage", v)}
             />
           ))}
         </div>
-        <Error msg={errors.programLanguage} />
+        <ErrorMsg msg={errors.programLanguage} />
       </div>
-
       <div className="bg-brand-surface border border-brand-border p-5">
         <p className="text-zinc-400 text-sm leading-relaxed">
-          <span className="text-white font-bold">Note:</span> Artur will write your full training and nutrition system in the language you select above.
+          <span className="text-white font-bold">{q.notes.languageLead}</span> {q.notes.languageBody}
         </p>
       </div>
     </div>
   );
 }
 
-function Step8({ data, errors, update }: StepProps) {
+function Step8({ data, errors, update, q }: StepProps) {
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight mb-1">
-          Contact &amp; <span className="text-red-600">Delivery</span>
-        </h2>
-        <p className="text-zinc-500 text-sm">Where your personalized program will be sent.</p>
-      </div>
-
+      <StepHeading {...q.steps[8]} />
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <Label>First Name</Label>
-          <TextInput value={data.firstName} onChange={(v) => update("firstName", v)} placeholder="John" />
-          <Error msg={errors.firstName} />
+          <Label>{q.fields.firstName}</Label>
+          <TextInput value={data.firstName} onChange={(v) => update("firstName", v)} placeholder={q.placeholders.firstName} />
+          <ErrorMsg msg={errors.firstName} />
         </div>
         <div>
-          <Label>Last Name</Label>
-          <TextInput value={data.lastName} onChange={(v) => update("lastName", v)} placeholder="Smith" />
-          <Error msg={errors.lastName} />
+          <Label>{q.fields.lastName}</Label>
+          <TextInput value={data.lastName} onChange={(v) => update("lastName", v)} placeholder={q.placeholders.lastName} />
+          <ErrorMsg msg={errors.lastName} />
         </div>
       </div>
-
       <div>
-        <Label>Email Address</Label>
-        <TextInput type="email" value={data.email} onChange={(v) => update("email", v)} placeholder="john@example.com" />
-        <Error msg={errors.email} />
+        <Label>{q.fields.email}</Label>
+        <TextInput type="email" value={data.email} onChange={(v) => update("email", v)} placeholder={q.placeholders.email} />
+        <ErrorMsg msg={errors.email} />
       </div>
-
       <div>
-        <Label>Confirm Email Address</Label>
-        <TextInput type="email" value={data.confirmEmail} onChange={(v) => update("confirmEmail", v)} placeholder="john@example.com" />
-        <Error msg={errors.confirmEmail} />
+        <Label>{q.fields.confirmEmail}</Label>
+        <TextInput type="email" value={data.confirmEmail} onChange={(v) => update("confirmEmail", v)} placeholder={q.placeholders.email} />
+        <ErrorMsg msg={errors.confirmEmail} />
       </div>
-
       <div className="border-t border-brand-border pt-4">
-        <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-4">Optional</p>
+        <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-4">{q.fields.optional}</p>
         <div className="flex flex-col gap-4">
           <div>
-            <Label>Instagram Username</Label>
-            <TextInput value={data.instagram} onChange={(v) => update("instagram", v)} placeholder="@username" />
+            <Label>{q.fields.instagram}</Label>
+            <TextInput value={data.instagram} onChange={(v) => update("instagram", v)} placeholder={q.placeholders.instagram} />
           </div>
           <div>
-            <Label>Phone / WhatsApp</Label>
-            <TextInput type="tel" value={data.phone} onChange={(v) => update("phone", v)} placeholder="+49 123 456 789" />
+            <Label>{q.fields.phone}</Label>
+            <TextInput type="tel" value={data.phone} onChange={(v) => update("phone", v)} placeholder={q.placeholders.phone} />
           </div>
         </div>
       </div>
-
       <div className="bg-brand-surface border border-brand-border p-5">
         <p className="text-zinc-400 text-sm leading-relaxed">
-          <span className="text-white font-bold">Final step:</span> After payment, your personalized program will be delivered to your email within 48 hours.
+          <span className="text-white font-bold">{q.notes.finalLead}</span> {q.notes.finalBody}
         </p>
       </div>
     </div>
@@ -535,7 +438,8 @@ function Step8({ data, errors, update }: StepProps) {
 
 // ─── Main component ─────────────────────────────────────────────────────────
 
-export default function QuestionnaireFlow() {
+export default function QuestionnaireFlow({ locale }: { locale: Locale }) {
+  const q = getT(locale).questionnaire;
   const [step, setStep] = useState(1);
   const [data, setData] = useState<QuestionnaireData>(initial);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -559,39 +463,39 @@ export default function QuestionnaireFlow() {
   const validate = (): boolean => {
     const e: Record<string, string> = {};
     if (step === 1) {
-      if (!data.age || Number(data.age) < 13 || Number(data.age) > 80) e.age = "Enter a valid age (13–80)";
-      if (!data.heightCm) e.heightCm = "Required";
-      if (!data.weightKg) e.weightKg = "Required";
-      if (!data.gender) e.gender = "Please select an option";
+      if (!data.age || Number(data.age) < 13 || Number(data.age) > 80) e.age = q.errors.age;
+      if (!data.heightCm) e.heightCm = q.errors.required;
+      if (!data.weightKg) e.weightKg = q.errors.required;
+      if (!data.gender) e.gender = q.errors.selectOption;
     }
     if (step === 2) {
-      if (!data.experience) e.experience = "Please select your experience level";
-      if (!data.trainingDaysPerWeek) e.trainingDaysPerWeek = "Please select training days";
-      if (!data.gymAccess) e.gymAccess = "Please select gym access type";
-      if (!data.benchExperience) e.benchExperience = "Please select your bench experience";
+      if (!data.experience) e.experience = q.errors.selectExperience;
+      if (!data.trainingDaysPerWeek) e.trainingDaysPerWeek = q.errors.selectDays;
+      if (!data.gymAccess) e.gymAccess = q.errors.selectGym;
+      if (!data.benchExperience) e.benchExperience = q.errors.selectBench;
     }
     if (step === 3) {
-      if (!data.mainGoal) e.mainGoal = "Please select your main goal";
-      if (!data.bodyCompositionGoal) e.bodyCompositionGoal = "Please select a phase";
+      if (!data.mainGoal) e.mainGoal = q.errors.selectGoal;
+      if (!data.bodyCompositionGoal) e.bodyCompositionGoal = q.errors.selectPhase;
     }
     if (step === 4) {
-      if (!data.injuries.trim()) e.injuries = "Required — enter 'None' if no injuries";
+      if (!data.injuries.trim()) e.injuries = q.errors.injuriesRequired;
     }
     if (step === 5) {
-      if (!data.nutritionPreference) e.nutritionPreference = "Please select an option";
-      if (!data.sleepQuality) e.sleepQuality = "Please select an option";
+      if (!data.nutritionPreference) e.nutritionPreference = q.errors.selectOption;
+      if (!data.sleepQuality) e.sleepQuality = q.errors.selectOption;
     }
     if (step === 7) {
-      if (!data.programLanguage) e.programLanguage = "Please select a language for your program";
+      if (!data.programLanguage) e.programLanguage = q.errors.selectLanguage;
     }
     if (step === 8) {
-      if (!data.firstName.trim()) e.firstName = "First name is required";
-      if (!data.lastName.trim()) e.lastName = "Last name is required";
+      if (!data.firstName.trim()) e.firstName = q.errors.firstNameRequired;
+      if (!data.lastName.trim()) e.lastName = q.errors.lastNameRequired;
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!data.email.trim()) e.email = "Email address is required";
-      else if (!emailRegex.test(data.email.trim())) e.email = "Enter a valid email address";
-      if (!data.confirmEmail.trim()) e.confirmEmail = "Please confirm your email";
-      else if (data.email.trim() !== data.confirmEmail.trim()) e.confirmEmail = "Email addresses do not match";
+      if (!data.email.trim()) e.email = q.errors.emailRequired;
+      else if (!emailRegex.test(data.email.trim())) e.email = q.errors.emailInvalid;
+      if (!data.confirmEmail.trim()) e.confirmEmail = q.errors.confirmEmailRequired;
+      else if (data.email.trim() !== data.confirmEmail.trim()) e.confirmEmail = q.errors.emailMismatch;
     }
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -613,16 +517,15 @@ export default function QuestionnaireFlow() {
     if (!validate()) return;
     setSubmitting(true);
     try {
-      // Save to localStorage — email is sent AFTER payment on the success page
       localStorage.setItem("pb_questionnaire_pending", JSON.stringify(data));
       router.push(`/questionnaire/confirmation?email=${encodeURIComponent(data.email)}`);
     } catch {
       setSubmitting(false);
-      alert("Could not save your questionnaire. Please check your browser settings and try again.");
+      alert(q.errors.submitFailed);
     }
   };
 
-  const stepProps: StepProps = { data, errors, update, toggle };
+  const stepProps: StepProps = { data, errors, update, toggle, q };
 
   return (
     <div className="min-h-screen bg-brand-bg">
@@ -631,10 +534,10 @@ export default function QuestionnaireFlow() {
         <ProgressBar step={step} />
         <div className="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between">
           <span className="text-zinc-600 text-xs">
-            Step {step} of {TOTAL_STEPS}
+            {q.progress.stepLabel} {step} {q.progress.of} {TOTAL_STEPS}
           </span>
           <span className="text-zinc-400 text-xs font-bold uppercase tracking-widest">
-            {STEP_TITLES[step]}
+            {q.stepTitles[step as 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8]}
           </span>
         </div>
       </div>
@@ -656,17 +559,17 @@ export default function QuestionnaireFlow() {
         <div className="flex items-center justify-between mt-10 pt-8 border-t border-brand-border">
           {step > 1 ? (
             <button onClick={back} className="btn-secondary text-xs px-6 py-3">
-              Back
+              {q.nav.back}
             </button>
           ) : (
             <Link href="/personalized" className="text-zinc-600 text-sm hover:text-zinc-400 transition-colors">
-              ← Cancel
+              {q.nav.cancel}
             </Link>
           )}
 
           {step < TOTAL_STEPS ? (
             <button onClick={next} className="btn-primary text-xs px-8 py-3">
-              Continue
+              {q.nav.continue}
             </button>
           ) : (
             <button
@@ -680,10 +583,10 @@ export default function QuestionnaireFlow() {
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                   </svg>
-                  Submitting...
+                  {q.nav.submitting}
                 </span>
               ) : (
-                "Proceed to Payment →"
+                q.nav.submit
               )}
             </button>
           )}
