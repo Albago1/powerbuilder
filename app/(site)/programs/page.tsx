@@ -10,10 +10,6 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: m.title, description: m.description };
 }
 
-const specialistPrograms = staticPrograms.filter(
-  (p) => p.id !== "8-week-powerbuilder"
-);
-
 export default async function ProgramsPage() {
   const locale = await getLocale();
   const { hero, personalizedCard: pc } = getT(locale).programs;
@@ -53,7 +49,7 @@ export default async function ProgramsPage() {
             />
 
             {/* Specialist static programs */}
-            {specialistPrograms.map((program) => (
+            {staticPrograms.map((program) => (
               <ProgramCard
                 key={program.id}
                 title={program.title}

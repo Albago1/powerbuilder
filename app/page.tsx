@@ -143,12 +143,6 @@ export default async function BrandHub() {
         </div>
         <div className="flex items-center gap-2.5">
           <LanguageSwitcher locale={locale} />
-          <Link
-            href="/home"
-            className="text-zinc-600 hover:text-zinc-300 text-[10px] font-bold uppercase tracking-widest transition-colors"
-          >
-            Site →
-          </Link>
         </div>
       </header>
 

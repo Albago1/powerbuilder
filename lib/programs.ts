@@ -27,59 +27,6 @@ export interface StaticProgram {
 
 export const staticPrograms: StaticProgram[] = [
   {
-    id: "8-week-powerbuilder",
-    title: "8 Week PowerBuilder Program",
-    shortTitle: "PowerBuilder",
-    tagline: "Strength & Muscle System",
-    description:
-      "The complete foundation program for serious strength and muscle building. Progressive overload built in, nutrition framework included.",
-    duration: "8 Weeks",
-    sessionsPerWeek: "4x / Week",
-    price: 39,
-    paypalLink: "#paypal-8week-TODO",
-    href: "/program",
-    accentLabel: "FOUNDATION",
-    focus: ["Progressive Overload", "Upper/Lower Split", "Hypertrophy"],
-    features: [
-      "Full 8-week periodized plan",
-      "4 training days per week",
-      "Strength & hypertrophy split",
-      "Progressive overload built in",
-      "Nutrition framework & protein targets",
-      "Exercise substitution guide",
-      "Warm-up protocols",
-      "Instant PDF delivery",
-    ],
-    trainingDays: [
-      {
-        label: "Day A",
-        focus: "Upper — Strength",
-        exercises: ["Bench Press", "Weighted Pull-Ups", "Overhead Press", "Barbell Row"],
-      },
-      {
-        label: "Day B",
-        focus: "Lower — Strength",
-        exercises: ["Squat", "Romanian Deadlift", "Leg Press", "Leg Curl"],
-      },
-      {
-        label: "Day C",
-        focus: "Upper — Hypertrophy",
-        exercises: ["Incline Press", "Cable Row", "Lateral Raises", "Face Pulls"],
-      },
-      {
-        label: "Day D",
-        focus: "Lower — Hypertrophy",
-        exercises: ["Deadlift", "Hack Squat", "Walking Lunges", "Leg Extension"],
-      },
-    ],
-    whoIsItFor: [
-      "Lifters with 6+ months of training experience",
-      "Athletes wanting a structured strength & size system",
-      "Those ready to train 4 days per week consistently",
-      "Anyone plateaued and needing a proven program",
-    ],
-  },
-  {
     id: "bench-press",
     title: "6 Week Bench Press Program",
     shortTitle: "Bench Specialist",
