@@ -56,7 +56,7 @@ const ACTIVITY_MULTIPLIER: Record<ActivityKey, number> = {
 };
 
 const GOAL_DELTA: Record<GoalKey, number> = {
-  cut: -0.2,
+  cut: -0.12,
   maintain: 0,
   bulk: 0.1,
 };

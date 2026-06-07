@@ -76,7 +76,7 @@ const en = {
     goal: {
       label: "Goal",
       options: [
-        { key: "cut", label: "Cut −20%" },
+        { key: "cut", label: "Cut −12%" },
         { key: "maintain", label: "Maintain" },
         { key: "bulk", label: "Bulk +10%" },
       ],
@@ -850,7 +850,7 @@ const de: typeof en = {
     goal: {
       label: "Ziel",
       options: [
-        { key: "cut", label: "Definition −20%" },
+        { key: "cut", label: "Definition −12%" },
         { key: "maintain", label: "Halten" },
         { key: "bulk", label: "Aufbau +10%" },
       ],
@@ -1611,7 +1611,7 @@ const sq: typeof en = {
     goal: {
       label: "Qëllimi",
       options: [
-        { key: "cut", label: "Definicion −20%" },
+        { key: "cut", label: "Definicion −12%" },
         { key: "maintain", label: "Mbajtje" },
         { key: "bulk", label: "Rritje +10%" },
       ],
