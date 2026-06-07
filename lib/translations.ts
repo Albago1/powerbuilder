@@ -99,21 +99,22 @@ const en = {
     },
     footnote:
       "Protein set at 2 g per kg of bodyweight (strength-training standard). Fat at 25% of calories. Carbs fill the remainder. Use this as a starting point and adjust after 2–4 weeks based on real-world progress.",
-    upsellTitle:
-      "Want this calculated for your body, your goals, and your training — with a complete program?",
-    upsellCta: "Get Personalized Coaching",
-    upsellPopup: {
-      badge: "Final Step",
-      title: "Now get the plan.",
+    nextStep: {
+      label: "Next Step",
+      headlines: {
+        cut: "A cut is the worst goal to wing.",
+        maintain: "Maintaining is harder than people think.",
+        bulk: "Most bulks fail without structure.",
+      },
       subtitle:
-        "You have your numbers. Get a complete 4-week training & nutrition system built around them — written personally by Artur.",
-      bullet1: "Custom plan built around your calories, macros, and training days",
-      bullet2: "Delivered as a clean PDF within 48 hours",
-      bullet3: "Written by Artur personally — not AI, not a template",
+        "Get a complete 4-week training & nutrition system built around your exact numbers — written by Artur, personally. PDF delivered within 48 hours.",
+      primaryCta: "Get Personalized Coaching — €99 →",
+      secondaryCta: "or get the Bench Press Program — €49 →",
+    },
+    stickyBar: {
+      text: "Personalized Plan",
       price: "€99",
-      priceNote: "one-time",
-      cta: "Get Personalized Coaching →",
-      dismiss: "No thanks, I'll figure it out",
+      cta: "Build →",
       closeAria: "Close",
     },
   },
@@ -893,21 +894,22 @@ const de: typeof en = {
     },
     footnote:
       "Eiweiß auf 2 g pro kg Körpergewicht (Standard für Krafttraining). Fett auf 25% der Kalorien. Kohlenhydrate decken den Rest. Nutze dies als Startpunkt und passe nach 2–4 Wochen anhand realer Fortschritte an.",
-    upsellTitle:
-      "Möchtest du das exakt für deinen Körper, deine Ziele und dein Training berechnet — mit komplettem Programm?",
-    upsellCta: "Persönliches Coaching holen",
-    upsellPopup: {
-      badge: "Letzter Schritt",
-      title: "Jetzt hol dir den Plan.",
+    nextStep: {
+      label: "Nächster Schritt",
+      headlines: {
+        cut: "Ein Cut ist das schwierigste Ziel zum Improvisieren.",
+        maintain: "Halten ist schwieriger als die meisten denken.",
+        bulk: "Die meisten Bulks scheitern ohne Struktur.",
+      },
       subtitle:
-        "Du hast deine Zahlen. Hol dir ein komplettes 4-Wochen Training- & Ernährungssystem, das genau darauf aufbaut — persönlich von Artur erstellt.",
-      bullet1: "Individueller Plan für deine Kalorien, Makros und Trainingstage",
-      bullet2: "Als sauberes PDF innerhalb von 48 Stunden geliefert",
-      bullet3: "Persönlich von Artur geschrieben — keine KI, kein Template",
+        "Hol dir ein komplettes 4-Wochen Training- & Ernährungssystem, das genau auf deine Zahlen ausgerichtet ist — persönlich von Artur erstellt. PDF innerhalb von 48 Stunden.",
+      primaryCta: "Persönliches Coaching holen — €99 →",
+      secondaryCta: "oder das Bankdrück-Programm holen — €49 →",
+    },
+    stickyBar: {
+      text: "Persönlicher Plan",
       price: "€99",
-      priceNote: "einmalig",
-      cta: "Personalisiertes Coaching holen →",
-      dismiss: "Nein danke, ich mach das selbst",
+      cta: "Holen →",
       closeAria: "Schließen",
     },
   },
@@ -1674,21 +1676,22 @@ const sq: typeof en = {
     },
     footnote:
       "Proteina caktohet në 2 g për kg peshë trupore (standardi për stërvitje me peshë). Yndyra në 25% të kalorive. Karbohidratet plotësojnë pjesën tjetër. Përdore si pikënisje dhe rregullo pas 2–4 javësh bazuar në përparimin real.",
-    upsellTitle:
-      "Dëshiron ta llogarisim këtë për trupin tënd, qëllimet dhe stërvitjen — me një program të plotë?",
-    upsellCta: "Merr Coaching të Personalizuar",
-    upsellPopup: {
-      badge: "Hapi i Fundit",
-      title: "Tani merr planin.",
+    nextStep: {
+      label: "Hapi Tjetër",
+      headlines: {
+        cut: "Definicioni është qëllimi më i vështirë për ta improvizuar.",
+        maintain: "Mbajtja është më e vështirë seç duket.",
+        bulk: "Shumica e bulkimeve dështojnë pa strukturë.",
+      },
       subtitle:
-        "I ke numrat e tu. Merr një sistem të plotë stërvitjeje & ushqimi 4 javë i ndërtuar rreth tyre — i shkruar personalisht nga Arturi.",
-      bullet1: "Plan i personalizuar për kaloritë, makrot dhe ditët e stërvitjes",
-      bullet2: "Dorëzohet si PDF i pastër brenda 48 orësh",
-      bullet3: "Shkruar personalisht nga Arturi — jo AI, jo template",
+        "Merr një sistem të plotë stërvitjeje & ushqimi 4 javësh i ndërtuar mbi numrat e tu të saktë — i shkruar personalisht nga Arturi. PDF brenda 48 orësh.",
+      primaryCta: "Merr Coaching të Personalizuar — €99 →",
+      secondaryCta: "ose merr Programin Bench Press — €49 →",
+    },
+    stickyBar: {
+      text: "Plan Personal",
       price: "€99",
-      priceNote: "një herë",
-      cta: "Merr Coaching të Personalizuar →",
-      dismiss: "Jo faleminderit, do ta gjej vetë",
+      cta: "Merre →",
       closeAria: "Mbyll",
     },
   },

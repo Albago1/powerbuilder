@@ -39,8 +39,13 @@ export interface CalorieCalculatorTranslations {
     gramsUnit: string;
   };
   footnote: string;
-  upsellTitle: string;
-  upsellCta: string;
+  nextStep: {
+    label: string;
+    headlines: { cut: string; maintain: string; bulk: string };
+    subtitle: string;
+    primaryCta: string;
+    secondaryCta: string;
+  };
 }
 
 interface Props {
@@ -313,24 +318,37 @@ export default function CalorieCalculator({ t }: Props) {
               </p>
             </div>
           </div>
+
+          {/* Goal-aware next step */}
+          <div className="mt-5 pt-5 border-t border-brand-border">
+            <p className="text-red-500 text-[10px] font-black uppercase tracking-[0.2em] mb-2">
+              {t.nextStep.label}
+            </p>
+            <h3 className="text-white font-black text-base uppercase tracking-tight leading-tight mb-2">
+              {t.nextStep.headlines[goal]}
+            </h3>
+            <p className="text-zinc-400 text-xs leading-relaxed mb-4">
+              {t.nextStep.subtitle}
+            </p>
+            <Link
+              href="/personalized"
+              className="btn-primary w-full justify-center mb-3 text-xs px-6 py-3"
+            >
+              {t.nextStep.primaryCta}
+            </Link>
+            <Link
+              href="/programs/bench-press"
+              className="block text-center text-zinc-500 hover:text-zinc-300 text-[11px] font-medium transition-colors"
+            >
+              {t.nextStep.secondaryCta}
+            </Link>
+          </div>
         </div>
       )}
 
       <p className="text-zinc-600 text-[10px] leading-relaxed mt-4">
         {t.footnote}
       </p>
-
-      <Link
-        href="/personalized"
-        className="block mt-4 pt-4 border-t border-brand-border text-center group"
-      >
-        <p className="text-zinc-400 text-xs leading-relaxed mb-1.5">
-          {t.upsellTitle}
-        </p>
-        <span className="text-red-500 group-hover:text-red-400 text-xs font-black uppercase tracking-widest transition-colors">
-          {t.upsellCta} →
-        </span>
-      </Link>
     </div>
   );
 }

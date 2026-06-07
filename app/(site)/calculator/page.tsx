@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import CalculatorUpsellPopup from "@/components/CalculatorUpsellPopup";
+import CalculatorStickyCTA from "@/components/CalculatorStickyCTA";
 import CalorieCalculator from "@/components/CalorieCalculator";
 import { getLocale } from "@/lib/locale";
 import { getT } from "@/lib/translations";
@@ -15,10 +15,10 @@ export default async function CalculatorPage() {
 
   return (
     <div className="bg-brand-bg min-h-screen pt-16">
-      <div className="max-w-md mx-auto px-4 py-16 md:py-24">
+      <div className="max-w-md mx-auto px-4 py-16 md:py-24 md:pb-24 pb-32">
         <CalorieCalculator t={t} />
       </div>
-      <CalculatorUpsellPopup t={t.upsellPopup} />
+      <CalculatorStickyCTA t={t.stickyBar} />
     </div>
   );
 }
