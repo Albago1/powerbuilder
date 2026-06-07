@@ -53,6 +53,51 @@ const en = {
     featuredCta: "View Program →",
   },
 
+  // ── Calorie Calculator (brand hub section) ──────────────────────────────────
+  calorieCalculator: {
+    label: "Free Tool",
+    title: "Calorie Calculator",
+    subtitle:
+      "Get your daily calorie and macro targets. Built on the Mifflin-St Jeor formula — the standard used by registered dietitians.",
+    sex: { label: "Sex", male: "Male", female: "Female" },
+    age: { label: "Age" },
+    weight: { label: "Weight" },
+    height: { label: "Height" },
+    activity: {
+      label: "Activity Level",
+      options: [
+        { key: "sedentary", label: "Sedentary", hint: "Desk job, no exercise" },
+        { key: "light", label: "Light", hint: "1–3 days / week" },
+        { key: "moderate", label: "Moderate", hint: "3–5 days / week" },
+        { key: "active", label: "Active", hint: "6–7 days / week" },
+        { key: "very_active", label: "Very Active", hint: "2× day or physical job" },
+      ],
+    },
+    goal: {
+      label: "Goal",
+      options: [
+        { key: "cut", label: "Cut −20%" },
+        { key: "maintain", label: "Maintain" },
+        { key: "bulk", label: "Bulk +10%" },
+      ],
+    },
+    results: {
+      targetLabel: "Your Daily Target",
+      kcalUnit: "kcal",
+      bmrLabel: "BMR · At Rest",
+      tdeeLabel: "Maintenance",
+      proteinLabel: "Protein",
+      carbsLabel: "Carbs",
+      fatLabel: "Fat",
+      gramsUnit: "g",
+    },
+    footnote:
+      "Protein set at 2 g per kg of bodyweight (strength-training standard). Fat at 25% of calories. Carbs fill the remainder. Use this as a starting point and adjust after 2–4 weeks based on real-world progress.",
+    upsellTitle:
+      "Want this calculated for your body, your goals, and your training — with a complete program?",
+    upsellCta: "Get Personalized Coaching",
+  },
+
   // ── Personalized page ───────────────────────────────────────────────────────
   personalized: {
     meta: {
@@ -783,6 +828,49 @@ const de: typeof en = {
     featuredOriginalPrice: "€70",
     featuredCta: "Programm ansehen →",
   },
+  calorieCalculator: {
+    label: "Kostenloses Tool",
+    title: "Kalorienrechner",
+    subtitle:
+      "Berechne dein tägliches Kalorien- und Makronährstoffziel. Basierend auf der Mifflin-St-Jeor-Formel — dem Standard staatlich geprüfter Ernährungsberater.",
+    sex: { label: "Geschlecht", male: "Männlich", female: "Weiblich" },
+    age: { label: "Alter" },
+    weight: { label: "Gewicht" },
+    height: { label: "Größe" },
+    activity: {
+      label: "Aktivitätslevel",
+      options: [
+        { key: "sedentary", label: "Sitzend", hint: "Bürojob, kein Sport" },
+        { key: "light", label: "Leicht", hint: "1–3 Tage / Woche" },
+        { key: "moderate", label: "Mäßig", hint: "3–5 Tage / Woche" },
+        { key: "active", label: "Aktiv", hint: "6–7 Tage / Woche" },
+        { key: "very_active", label: "Sehr aktiv", hint: "2× täglich oder körperlich" },
+      ],
+    },
+    goal: {
+      label: "Ziel",
+      options: [
+        { key: "cut", label: "Definition −20%" },
+        { key: "maintain", label: "Halten" },
+        { key: "bulk", label: "Aufbau +10%" },
+      ],
+    },
+    results: {
+      targetLabel: "Dein Tagesziel",
+      kcalUnit: "kcal",
+      bmrLabel: "Grundumsatz",
+      tdeeLabel: "Gesamtumsatz",
+      proteinLabel: "Eiweiß",
+      carbsLabel: "Kohlenhydrate",
+      fatLabel: "Fett",
+      gramsUnit: "g",
+    },
+    footnote:
+      "Eiweiß auf 2 g pro kg Körpergewicht (Standard für Krafttraining). Fett auf 25% der Kalorien. Kohlenhydrate decken den Rest. Nutze dies als Startpunkt und passe nach 2–4 Wochen anhand realer Fortschritte an.",
+    upsellTitle:
+      "Möchtest du das exakt für deinen Körper, deine Ziele und dein Training berechnet — mit komplettem Programm?",
+    upsellCta: "Persönliches Coaching holen",
+  },
   personalized: {
     meta: {
       title: "Personalisiertes Training & Ernährungssystem | PowerBuilder",
@@ -1500,6 +1588,49 @@ const sq: typeof en = {
     featuredPrice: "€49",
     featuredOriginalPrice: "€70",
     featuredCta: "Shiko Programin →",
+  },
+  calorieCalculator: {
+    label: "Mjet Falas",
+    title: "Llogaritësi i Kalorive",
+    subtitle:
+      "Përfito caqet ditore të kalorive dhe makronutrientëve. Bazuar në formulën Mifflin-St Jeor — standardi i përdorur nga nutricionistët profesionistë.",
+    sex: { label: "Gjinia", male: "Mashkull", female: "Femër" },
+    age: { label: "Mosha" },
+    weight: { label: "Pesha" },
+    height: { label: "Gjatësia" },
+    activity: {
+      label: "Niveli i Aktivitetit",
+      options: [
+        { key: "sedentary", label: "Pa aktivitet", hint: "Zyrë, pa sport" },
+        { key: "light", label: "I lehtë", hint: "1–3 ditë / javë" },
+        { key: "moderate", label: "Mesatar", hint: "3–5 ditë / javë" },
+        { key: "active", label: "Aktiv", hint: "6–7 ditë / javë" },
+        { key: "very_active", label: "Shumë aktiv", hint: "2× në ditë ose punë fizike" },
+      ],
+    },
+    goal: {
+      label: "Qëllimi",
+      options: [
+        { key: "cut", label: "Definicion −20%" },
+        { key: "maintain", label: "Mbajtje" },
+        { key: "bulk", label: "Rritje +10%" },
+      ],
+    },
+    results: {
+      targetLabel: "Caku Ditor",
+      kcalUnit: "kcal",
+      bmrLabel: "BMR · në Pushim",
+      tdeeLabel: "Mirëmbajtja",
+      proteinLabel: "Proteinë",
+      carbsLabel: "Karbohidrate",
+      fatLabel: "Yndyrë",
+      gramsUnit: "g",
+    },
+    footnote:
+      "Proteina caktohet në 2 g për kg peshë trupore (standardi për stërvitje me peshë). Yndyra në 25% të kalorive. Karbohidratet plotësojnë pjesën tjetër. Përdore si pikënisje dhe rregullo pas 2–4 javësh bazuar në përparimin real.",
+    upsellTitle:
+      "Dëshiron ta llogarisim këtë për trupin tënd, qëllimet dhe stërvitjen — me një program të plotë?",
+    upsellCta: "Merr Coaching të Personalizuar",
   },
   personalized: {
     meta: {
