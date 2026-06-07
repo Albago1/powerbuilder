@@ -270,15 +270,6 @@ export default async function BrandHub() {
           ))}
         </div>
 
-        {/* Free tool divider */}
-        <div className="flex items-center gap-3 mb-5">
-          <div className="flex-1 h-px bg-brand-border" />
-          <span className="text-zinc-700 text-[9px] uppercase tracking-widest font-bold">
-            {tt.calorieCalculator.label}
-          </span>
-          <div className="flex-1 h-px bg-brand-border" />
-        </div>
-
         {/* Calorie calculator */}
         <div className="mb-9">
           <CalorieCalculator t={tt.calorieCalculator} />

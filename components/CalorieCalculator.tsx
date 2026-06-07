@@ -243,9 +243,8 @@ export default function CalorieCalculator({ t }: Props) {
 
       {/* Results */}
       {result && (
-        <div className="border border-red-600/30 bg-red-600/5 p-5 mt-5">
-          <div className="h-0.5 bg-red-600 -mt-5 -mx-5 mb-4" />
-          <p className="text-red-500 text-[10px] font-bold uppercase tracking-[0.2em] mb-1">
+        <div className="mt-5 pt-5 border-t border-brand-border">
+          <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-widest mb-1">
             {t.results.targetLabel}
           </p>
           <p className="text-white font-black text-3xl tracking-tight tabular-nums">
@@ -296,7 +295,7 @@ export default function CalorieCalculator({ t }: Props) {
           </div>
 
           {/* BMR / TDEE */}
-          <div className="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-red-600/20">
+          <div className="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-brand-border">
             <div>
               <p className="text-zinc-500 text-[9px] font-bold uppercase tracking-widest mb-0.5">
                 {t.results.bmrLabel}
