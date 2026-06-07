@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import CalorieCalculator from "@/components/CalorieCalculator";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import LaunchCountdown from "@/components/LaunchCountdown";
 import { getLocale } from "@/lib/locale";
@@ -116,6 +115,7 @@ const HUB_HREFS = [
   { href: "/personalized", featured: true },
   { href: "/programs" },
   { href: "/supplements" },
+  { href: "/calculator" },
   { href: "https://www.tiktok.com/@artur.contentalb?is_from_webapp=1&sender_device=pc" },
   { href: "https://youtube.com/@artur.mehmetii?si=ILYBKWUIkXGrS9Nu" },
 ];
@@ -268,11 +268,6 @@ export default async function BrandHub() {
           {hubItems.map((item) => (
             <HubCard key={item.href} {...item} />
           ))}
-        </div>
-
-        {/* Calorie calculator */}
-        <div className="mb-9">
-          <CalorieCalculator t={tt.calorieCalculator} />
         </div>
 
         {/* Featured offer */}

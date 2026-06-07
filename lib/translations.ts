@@ -42,6 +42,7 @@ const en = {
       { label: "Coaching", title: "Personalized Coaching", subtitle: "4-week training & nutrition system built for your goals.", cta: "Start Coaching" },
       { label: "Programs", title: "Artur's Programs", subtitle: "Bench press and strength systems.", cta: "View Programs" },
       { label: "Supplements", title: "Supplements", subtitle: "Maximum discount with code BAUSTELLE.", cta: "Browse" },
+      { label: "Free Tool", title: "Calorie Calculator", subtitle: "Get your daily kcal and macro targets in seconds.", cta: "Open Calculator" },
       { label: "Content", title: "Transformation Content", subtitle: "Training clips, progress, discipline and education.", cta: "Watch Content" },
       { label: "YouTube", title: "YouTube", subtitle: "Long-form training breakdowns and lifting education.", cta: "Watch on YouTube" },
     ],
@@ -53,8 +54,13 @@ const en = {
     featuredCta: "View Program →",
   },
 
-  // ── Calorie Calculator (brand hub section) ──────────────────────────────────
+  // ── Calorie Calculator ──────────────────────────────────────────────────────
   calorieCalculator: {
+    meta: {
+      title: "Calorie Calculator | PowerBuilder",
+      description:
+        "Free calorie and macronutrient calculator built on the Mifflin-St Jeor formula. Get your daily kcal and macro targets in seconds.",
+    },
     label: "Free Tool",
     title: "Calorie Calculator",
     subtitle:
@@ -818,6 +824,7 @@ const de: typeof en = {
       { label: "Coaching", title: "Persönliches Coaching", subtitle: "4-Wochen Training & Ernährungssystem, das auf deine Ziele abgestimmt ist.", cta: "Coaching starten" },
       { label: "Programme", title: "Arturs Programme", subtitle: "Bankdrücken und Kraftsysteme.", cta: "Programme ansehen" },
       { label: "Supplemente", title: "Supplemente", subtitle: "Maximaler Rabatt mit Code BAUSTELLE.", cta: "Ansehen" },
+      { label: "Kostenloses Tool", title: "Kalorienrechner", subtitle: "Berechne deine täglichen kcal- und Makroziele in Sekunden.", cta: "Rechner öffnen" },
       { label: "Content", title: "Transformation Content", subtitle: "Trainingsclips, Fortschritte, Disziplin und Ausbildung.", cta: "Content ansehen" },
       { label: "YouTube", title: "YouTube", subtitle: "Ausführliche Trainingsanalysen und Kraft-Education.", cta: "Auf YouTube ansehen" },
     ],
@@ -829,6 +836,11 @@ const de: typeof en = {
     featuredCta: "Programm ansehen →",
   },
   calorieCalculator: {
+    meta: {
+      title: "Kalorienrechner | PowerBuilder",
+      description:
+        "Kostenloser Kalorien- und Makronährstoffrechner basierend auf der Mifflin-St-Jeor-Formel. Berechne deine täglichen kcal- und Makroziele in Sekunden.",
+    },
     label: "Kostenloses Tool",
     title: "Kalorienrechner",
     subtitle:
@@ -1579,6 +1591,7 @@ const sq: typeof en = {
       { label: "Coaching", title: "Coaching Personal", subtitle: "Sistem stërvitjeje & ushqimi 4 javë i ndërtuar për qëllimet tuaja.", cta: "Fillo Coaching" },
       { label: "Programet", title: "Programet e Arturit", subtitle: "Bench press dhe sisteme force.", cta: "Shiko Programet" },
       { label: "Suplementa", title: "Suplementa", subtitle: "Zbritja maksimale me kodin BAUSTELLE.", cta: "Shiko" },
+      { label: "Mjet Falas", title: "Llogaritësi i Kalorive", subtitle: "Përfito caqet ditore të kalorive dhe makronutrientëve për disa sekonda.", cta: "Hap Llogaritësin" },
       { label: "Content", title: "Content Transformimi", subtitle: "Klipe stërvitjeje, progres, disiplinë dhe edukim.", cta: "Shiko Content" },
       { label: "YouTube", title: "YouTube", subtitle: "Analiza të gjata stërvitjeje dhe edukim ngritjeje.", cta: "Shiko në YouTube" },
     ],
@@ -1590,6 +1603,11 @@ const sq: typeof en = {
     featuredCta: "Shiko Programin →",
   },
   calorieCalculator: {
+    meta: {
+      title: "Llogaritësi i Kalorive | PowerBuilder",
+      description:
+        "Llogaritës falas i kalorive dhe makronutrientëve i bazuar në formulën Mifflin-St Jeor. Përfito caqet ditore për disa sekonda.",
+    },
     label: "Mjet Falas",
     title: "Llogaritësi i Kalorive",
     subtitle:
