@@ -3,7 +3,7 @@
 // isLaunchOfferActive() returns false and every discount surface
 // (strikethrough, -30% chip, badge, countdown) auto-hides on next render.
 export const LAUNCH_OFFER = {
-  endsAt: "2026-06-14T20:00:00.000Z",
+  endsAt: "2026-06-10T20:00:00.000Z",
 } as const;
 
 export function isLaunchOfferActive(now: Date = new Date()): boolean {
