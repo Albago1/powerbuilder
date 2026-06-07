@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { owner } from "@/lib/owner";
 import LaunchBanner from "@/components/LaunchBanner";
 import { getLocale } from "@/lib/locale";
@@ -57,6 +58,7 @@ export default async function RootLayout({
           />
         )}
         {children}
+        <Analytics />
       </body>
     </html>
   );
