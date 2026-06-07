@@ -102,6 +102,20 @@ const en = {
     upsellTitle:
       "Want this calculated for your body, your goals, and your training — with a complete program?",
     upsellCta: "Get Personalized Coaching",
+    upsellPopup: {
+      badge: "Final Step",
+      title: "Now get the plan.",
+      subtitle:
+        "You have your numbers. Get a complete 4-week training & nutrition system built around them — written personally by Artur.",
+      bullet1: "Custom plan built around your calories, macros, and training days",
+      bullet2: "Delivered as a clean PDF within 48 hours",
+      bullet3: "Written by Artur personally — not AI, not a template",
+      price: "€99",
+      priceNote: "one-time",
+      cta: "Get Personalized Coaching →",
+      dismiss: "No thanks, I'll figure it out",
+      closeAria: "Close",
+    },
   },
 
   // ── Personalized page ───────────────────────────────────────────────────────
@@ -882,6 +896,20 @@ const de: typeof en = {
     upsellTitle:
       "Möchtest du das exakt für deinen Körper, deine Ziele und dein Training berechnet — mit komplettem Programm?",
     upsellCta: "Persönliches Coaching holen",
+    upsellPopup: {
+      badge: "Letzter Schritt",
+      title: "Jetzt hol dir den Plan.",
+      subtitle:
+        "Du hast deine Zahlen. Hol dir ein komplettes 4-Wochen Training- & Ernährungssystem, das genau darauf aufbaut — persönlich von Artur erstellt.",
+      bullet1: "Individueller Plan für deine Kalorien, Makros und Trainingstage",
+      bullet2: "Als sauberes PDF innerhalb von 48 Stunden geliefert",
+      bullet3: "Persönlich von Artur geschrieben — keine KI, kein Template",
+      price: "€99",
+      priceNote: "einmalig",
+      cta: "Personalisiertes Coaching holen →",
+      dismiss: "Nein danke, ich mach das selbst",
+      closeAria: "Schließen",
+    },
   },
   personalized: {
     meta: {
@@ -1649,6 +1677,20 @@ const sq: typeof en = {
     upsellTitle:
       "Dëshiron ta llogarisim këtë për trupin tënd, qëllimet dhe stërvitjen — me një program të plotë?",
     upsellCta: "Merr Coaching të Personalizuar",
+    upsellPopup: {
+      badge: "Hapi i Fundit",
+      title: "Tani merr planin.",
+      subtitle:
+        "I ke numrat e tu. Merr një sistem të plotë stërvitjeje & ushqimi 4 javë i ndërtuar rreth tyre — i shkruar personalisht nga Arturi.",
+      bullet1: "Plan i personalizuar për kaloritë, makrot dhe ditët e stërvitjes",
+      bullet2: "Dorëzohet si PDF i pastër brenda 48 orësh",
+      bullet3: "Shkruar personalisht nga Arturi — jo AI, jo template",
+      price: "€99",
+      priceNote: "një herë",
+      cta: "Merr Coaching të Personalizuar →",
+      dismiss: "Jo faleminderit, do ta gjej vetë",
+      closeAria: "Mbyll",
+    },
   },
   personalized: {
     meta: {
