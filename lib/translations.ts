@@ -559,7 +559,7 @@ const en = {
 
   // ── Pricing (grand-opening discount label, used on cards and hero price blocks) ─
   pricing: {
-    launchBadge: "Grand Opening",
+    launchBadge: "Limited Offer",
     countdownLabel: "Ends in",
     countdownEnded: "Offer ended",
     bannerDiscountLabel: "30% off all programs",
@@ -617,15 +617,15 @@ const en = {
       title1: "What Artur",
       title2: "Builds.",
       items: [
-        { title: "Personalized Training & Nutrition System", subBase: "4 weeks · Custom · €99", subDiscount: "4 weeks · Custom · €99 (was €141, Grand Opening -30%)", href: "/personalized" },
-        { title: "6 Week Bench Press Program", subBase: "PDF · 4x/week · €49", subDiscount: "PDF · 4x/week · €49 (was €70, Grand Opening -30%)", href: "/programs/bench-press" },
+        { title: "Personalized Training & Nutrition System", subBase: "4 weeks · Custom · €99", subDiscount: "4 weeks · Custom · €99 (was €141, Limited Offer -30%)", href: "/personalized" },
+        { title: "6 Week Bench Press Program", subBase: "PDF · 4x/week · €49", subDiscount: "PDF · 4x/week · €49 (was €70, Limited Offer -30%)", href: "/programs/bench-press" },
       ],
     },
     cta: {
       title: "Ready to Work?",
       subtitle: "Get a program. Follow it exactly. See what structured work does.",
       primaryBase: "Build My Program — €99",
-      primaryDiscount: "Build My Program — €99 (Grand Opening -30%)",
+      primaryDiscount: "Build My Program — €99 (Limited Offer -30%)",
       secondary: "Browse Programs",
     },
   },
@@ -1343,7 +1343,7 @@ const de: typeof en = {
   },
 
   pricing: {
-    launchBadge: "Eröffnungsangebot",
+    launchBadge: "Aktion",
     countdownLabel: "Endet in",
     countdownEnded: "Angebot beendet",
     bannerDiscountLabel: "30% Rabatt auf alle Programme",
@@ -1400,15 +1400,15 @@ const de: typeof en = {
       title1: "Was Artur",
       title2: "baut.",
       items: [
-        { title: "Individuelles Training- & Ernährungssystem", subBase: "4 Wochen · Individuell · €99", subDiscount: "4 Wochen · Individuell · €99 (war €141, Eröffnungsangebot -30%)", href: "/personalized" },
-        { title: "6-Wochen Bankdrück-Programm", subBase: "PDF · 4x/Woche · €49", subDiscount: "PDF · 4x/Woche · €49 (war €70, Eröffnungsangebot -30%)", href: "/programs/bench-press" },
+        { title: "Individuelles Training- & Ernährungssystem", subBase: "4 Wochen · Individuell · €99", subDiscount: "4 Wochen · Individuell · €99 (war €141, Aktion -30%)", href: "/personalized" },
+        { title: "6-Wochen Bankdrück-Programm", subBase: "PDF · 4x/Woche · €49", subDiscount: "PDF · 4x/Woche · €49 (war €70, Aktion -30%)", href: "/programs/bench-press" },
       ],
     },
     cta: {
       title: "Bereit zur Arbeit?",
       subtitle: "Hol dir ein Programm. Folge ihm genau. Sieh, was strukturierte Arbeit bewirkt.",
       primaryBase: "Mein Programm bauen — €99",
-      primaryDiscount: "Mein Programm bauen — €99 (Eröffnungsangebot -30%)",
+      primaryDiscount: "Mein Programm bauen — €99 (Aktion -30%)",
       secondary: "Programme durchsuchen",
     },
   },
@@ -2125,7 +2125,7 @@ const sq: typeof en = {
   },
 
   pricing: {
-    launchBadge: "Hapja e Madhe",
+    launchBadge: "Ofertë e Kufizuar",
     countdownLabel: "Përfundon në",
     countdownEnded: "Oferta përfundoi",
     bannerDiscountLabel: "30% zbritje në të gjitha programet",
@@ -2182,15 +2182,15 @@ const sq: typeof en = {
       title1: "Çfarë ndërton",
       title2: "Arturi.",
       items: [
-        { title: "Sistemi Personal i Stërvitjes & Ushqimit", subBase: "4 javë · Personal · €99", subDiscount: "4 javë · Personal · €99 (ishte €141, Hapja e Madhe -30%)", href: "/personalized" },
-        { title: "Program Bench Press 6 Javë", subBase: "PDF · 4x/javë · €49", subDiscount: "PDF · 4x/javë · €49 (ishte €70, Hapja e Madhe -30%)", href: "/programs/bench-press" },
+        { title: "Sistemi Personal i Stërvitjes & Ushqimit", subBase: "4 javë · Personal · €99", subDiscount: "4 javë · Personal · €99 (ishte €141, Ofertë e Kufizuar -30%)", href: "/personalized" },
+        { title: "Program Bench Press 6 Javë", subBase: "PDF · 4x/javë · €49", subDiscount: "PDF · 4x/javë · €49 (ishte €70, Ofertë e Kufizuar -30%)", href: "/programs/bench-press" },
       ],
     },
     cta: {
       title: "Gati për punë?",
       subtitle: "Merr një program. Ndiqe pikërisht. Shih çfarë bën puna e strukturuar.",
       primaryBase: "Ndërto Programin Tim — €99",
-      primaryDiscount: "Ndërto Programin Tim — €99 (Hapja e Madhe -30%)",
+      primaryDiscount: "Ndërto Programin Tim — €99 (Ofertë e Kufizuar -30%)",
       secondary: "Shfleto Programet",
     },
   },

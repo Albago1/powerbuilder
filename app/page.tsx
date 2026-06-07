@@ -229,7 +229,7 @@ export default async function BrandHub() {
           ))}
         </div>
 
-        {/* Grand Opening callout (inline, brand hub only) */}
+        {/* Limited Offer callout (inline, brand hub only) */}
         {launchActive && (
           <Link
             href="/programs"
