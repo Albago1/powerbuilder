@@ -30,8 +30,7 @@ export async function POST(req: NextRequest) {
 
     const apiKey = process.env.RESEND_API_KEY;
     const trainerEmail = process.env.TRAINER_EMAIL;
-    // TEMP DEBUG: hardcoded to bypass possibly-wrong RESEND_FROM_EMAIL env var
-    const fromEmail = "onboarding@resend.dev";
+    const fromEmail = process.env.RESEND_FROM_EMAIL ?? "onboarding@resend.dev";
 
     if (apiKey && trainerEmail) {
       const { Resend } = await import("resend");
@@ -57,17 +56,8 @@ export async function POST(req: NextRequest) {
 
       if (error) {
         console.error("Resend error:", error);
-        // TEMP DEBUG: expose the real Resend error + env hints
         return NextResponse.json(
-          {
-            error: "Could not deliver your application. Please try again or email us directly.",
-            _debug: {
-              resendError: error,
-              fromUsed: fromEmail,
-              toUsed: trainerEmail,
-              apiKeyPrefix: apiKey?.slice(0, 8) ?? null,
-            },
-          },
+          { error: "Could not deliver your application. Please try again or email us directly." },
           { status: 502 }
         );
       }
