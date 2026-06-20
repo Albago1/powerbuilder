@@ -57,8 +57,17 @@ export async function POST(req: NextRequest) {
 
       if (error) {
         console.error("Resend error:", error);
+        // TEMP DEBUG: expose the real Resend error + env hints
         return NextResponse.json(
-          { error: "Could not deliver your application. Please try again or email us directly." },
+          {
+            error: "Could not deliver your application. Please try again or email us directly.",
+            _debug: {
+              resendError: error,
+              fromUsed: fromEmail,
+              toUsed: trainerEmail,
+              apiKeyPrefix: apiKey?.slice(0, 8) ?? null,
+            },
+          },
           { status: 502 }
         );
       }
