@@ -30,7 +30,8 @@ export async function POST(req: NextRequest) {
 
     const apiKey = process.env.RESEND_API_KEY;
     const trainerEmail = process.env.TRAINER_EMAIL;
-    const fromEmail = process.env.RESEND_FROM_EMAIL ?? "noreply@powerbuilder.com";
+    // TEMP DEBUG: hardcoded to bypass possibly-wrong RESEND_FROM_EMAIL env var
+    const fromEmail = "onboarding@resend.dev";
 
     if (apiKey && trainerEmail) {
       const { Resend } = await import("resend");
