@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { owner, ownerFullAddress } from "@/lib/owner";
+import { owner } from "@/lib/owner";
 
 export const metadata: Metadata = {
   title: `AGB | ${owner.brandName}`,
@@ -23,8 +23,9 @@ export default function AGBPage() {
             </h2>
             <p>
               Diese Allgemeinen Geschäftsbedingungen (nachfolgend „AGB&ldquo;)
-              gelten für alle Verträge über den Kauf digitaler Produkte, die
-              über die Website {owner.brandName} (powerbuilder.vercel.app)
+              gelten für alle Verträge über die Erstellung und Lieferung
+              individueller bzw. vorgefertigter Trainings- und Ernährungsprogramme,
+              die über die Website {owner.brandName} (powerbuilder.vercel.app)
               zwischen dem nachfolgend genannten Anbieter und dem Kunden
               abgeschlossen werden.
             </p>
@@ -32,8 +33,6 @@ export default function AGBPage() {
               <strong className="text-zinc-300">Anbieter und Vertragspartner:</strong>
               <br />
               {owner.name}
-              <br />
-              {ownerFullAddress}
               <br />
               E-Mail:{" "}
               <a
@@ -43,33 +42,25 @@ export default function AGBPage() {
                 {owner.email}
               </a>
             </p>
-            <p className="mt-3">
-              Der Kaufvertrag kommt ausschließlich zwischen dem Kunden und{" "}
-              {owner.name} zustande. Die auf der Website angebotenen
-              Trainingsprogramme wurden vom Fitnessexperten{" "}
-              {owner.talentName} konzipiert. {owner.talentName} ist nicht
-              Vertragspartner und übernimmt keine vertraglichen Pflichten
-              gegenüber dem Kunden.
-            </p>
           </div>
 
           <div>
             <h2 className="text-white font-bold text-base uppercase tracking-widest mb-3">
               § 2 Vertragsgegenstand
             </h2>
-            <p>Gegenstand des Vertrages ist der Kauf eines der folgenden digitalen Produkte:</p>
+            <p>Gegenstand des Vertrages ist die Erstellung und Lieferung eines der folgenden Trainingsprodukte:</p>
             <ul className="mt-3 ml-6 list-disc flex flex-col gap-2">
               <li>
-                <strong className="text-zinc-300">Personalized Training &amp; Nutrition System (€99)</strong>{" "}
+                <strong className="text-zinc-300">Personalized Training &amp; Nutrition System</strong>{" "}
                 — individuelles, auf den Fragebogen des Kunden zugeschnittenes
-                Trainings- und Ernährungsprogramm, das nach Zahlungseingang
-                innerhalb von 48 Stunden erstellt und an die vom Kunden
-                angegebene E-Mail-Adresse übermittelt wird.
+                Trainings- und Ernährungsprogramm, das nach Bestellung und
+                Zahlungsabwicklung an die vom Kunden angegebene E-Mail-Adresse
+                übermittelt wird.
               </li>
               <li>
-                <strong className="text-zinc-300">6 Week Bench Press Program (€49)</strong>{" "}
-                — vorgefertigtes Trainingsprogramm im PDF-Format, sofortiger
-                Download nach erfolgreicher Zahlung.
+                <strong className="text-zinc-300">6 Week Bench Press Program</strong>{" "}
+                — vorgefertigtes Trainingsprogramm im PDF-Format, Lieferung per
+                E-Mail nach Bestellung und Zahlungsabwicklung.
               </li>
             </ul>
           </div>
@@ -79,14 +70,13 @@ export default function AGBPage() {
               § 3 Vertragsschluss
             </h2>
             <p>
-              Die Darstellung der Produkte auf der Website stellt kein
-              rechtlich bindendes Angebot dar, sondern eine unverbindliche
-              Aufforderung zur Bestellung. Durch Klick auf den Kaufen-Button
-              und Abschluss des Bezahlvorgangs gibt der Kunde ein verbindliches
-              Angebot zum Kauf gegenüber {owner.name} ab. Der Vertrag kommt mit
-              Bestätigung des Zahlungseingangs durch den Zahlungsdienstleister
-              PayPal und anschließender Bereitstellung des digitalen Produkts
-              (Download-Link bzw. E-Mail) zustande.
+              Die Darstellung der Produkte auf der Website stellt kein rechtlich
+              bindendes Angebot dar, sondern eine unverbindliche Aufforderung zur
+              Bestellung. Der Kunde übermittelt sein Bestellinteresse über das
+              Anfrageformular (Fragebogen) auf der Website. Der Vertrag kommt
+              zustande, sobald {owner.name} die Anfrage bestätigt und die
+              individuell vereinbarte Zahlung eingegangen ist. Die Zahlung wird
+              außerhalb der Website (z.&nbsp;B. per Überweisung) abgewickelt.
             </p>
           </div>
 
@@ -105,9 +95,8 @@ export default function AGBPage() {
               <li>seine Kenntnis davon bestätigt hat, dass durch seine Zustimmung mit Beginn der Vertragsausführung sein Widerrufsrecht erlischt.</li>
             </ul>
             <p className="mt-3">
-              Beide Bestätigungen werden beim Abschluss des Kaufvorgangs
-              ausdrücklich per Checkbox eingeholt. Bei technischen Problemen
-              mit der Lieferung wenden Sie sich an:{" "}
+              Diese Zustimmung wird vor Beginn der Programmerstellung
+              eingeholt. Bei Fragen zur Lieferung wenden Sie sich an:{" "}
               <a
                 href={`mailto:${owner.email}`}
                 className="text-red-500 hover:text-red-400"
@@ -126,10 +115,9 @@ export default function AGBPage() {
               UStG (Kleinunternehmerregelung) wird keine Umsatzsteuer berechnet
               und in den Preisen nicht ausgewiesen. Da es sich um ausschließlich
               digital lieferbare Produkte handelt, fallen keine Versandkosten
-              an. Die Zahlung erfolgt über PayPal (PayPal-Konto, Kreditkarte als
-              Gast-Zahlung, SEPA-Lastschrift sowie weitere von PayPal angebotene
-              Zahlungsmethoden). Empfänger der Zahlung ist ausschließlich{" "}
-              {owner.name}.
+              an. Die Zahlung erfolgt nach Anfrage individuell außerhalb der
+              Website (z.&nbsp;B. per Banküberweisung). Empfänger der Zahlung
+              ist ausschließlich {owner.name}.
             </p>
           </div>
 
@@ -138,12 +126,12 @@ export default function AGBPage() {
               § 6 Lieferung
             </h2>
             <p>
-              Die Lieferung erfolgt ausschließlich digital. Vorgefertigte
-              Trainingsprogramme (PDFs) werden unmittelbar nach erfolgreicher
-              Zahlung per Download-Link bereitgestellt. Das personalisierte
-              Trainings- &amp; Ernährungssystem wird innerhalb von 48 Stunden
-              nach Zahlungseingang erstellt und per E-Mail an die vom Kunden im
-              Fragebogen angegebene Adresse versendet.
+              Die Lieferung erfolgt ausschließlich digital per E-Mail.
+              Vorgefertigte Trainingsprogramme (PDFs) werden nach
+              Zahlungseingang an die vom Kunden angegebene E-Mail-Adresse
+              versendet. Das personalisierte Trainings- &amp; Ernährungssystem
+              wird innerhalb von 48 Stunden nach Zahlungseingang erstellt und
+              per E-Mail zugestellt.
             </p>
           </div>
 
@@ -174,12 +162,11 @@ export default function AGBPage() {
               Trainings- oder Ernährungsprogramms einen Arzt zu konsultieren,
               insbesondere bei Vorerkrankungen, Verletzungen, Schwangerschaft
               oder anderen gesundheitlichen Einschränkungen. Die Ausführung
-              der Übungen erfolgt auf eigenes Risiko. Weder {owner.name} noch{" "}
-              {owner.talentName} haften für Schäden, die aus der Anwendung der
-              Inhalte entstehen, soweit nicht eine Haftung nach den
-              gesetzlichen Vorschriften zwingend vorgeschrieben ist (insb.
-              Vorsatz, grobe Fahrlässigkeit, Verletzung von Leben, Körper und
-              Gesundheit).
+              der Übungen erfolgt auf eigenes Risiko. {owner.name} haftet
+              nicht für Schäden, die aus der Anwendung der Inhalte entstehen,
+              soweit nicht eine Haftung nach den gesetzlichen Vorschriften
+              zwingend vorgeschrieben ist (insb. Vorsatz, grobe Fahrlässigkeit,
+              Verletzung von Leben, Körper und Gesundheit).
             </p>
           </div>
 

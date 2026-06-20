@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import PayPalConfirmButton from "@/components/PayPalConfirmButton";
 import { getLocale } from "@/lib/locale";
 import { getT } from "@/lib/translations";
 
@@ -12,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function ConfirmationPage({
   searchParams,
 }: {
-  searchParams: Promise<{ email?: string }>;
+  searchParams: Promise<{ email?: string; program?: string }>;
 }) {
   const { email } = await searchParams;
   const locale = await getLocale();
@@ -45,30 +44,6 @@ export default async function ConfirmationPage({
               <span className="text-white font-medium">{email}</span>
             </p>
           )}
-        </div>
-
-        {/* Payment card */}
-        <div className="bg-brand-card border border-red-600/20 p-8 mb-12 text-center">
-          <div className="h-0.5 bg-red-600 -mt-8 -mx-8 mb-6" />
-          <p className="text-red-600 text-xs font-bold uppercase tracking-widest mb-3">
-            {c.cardLabel}
-          </p>
-          <h2 className="text-white font-black text-2xl uppercase tracking-tight mb-4">
-            {c.cardTitle}
-          </h2>
-          <p className="text-zinc-400 text-sm leading-relaxed mb-6">
-            {c.cardBody}
-          </p>
-          <PayPalConfirmButton
-            consentLabel={t.checkout.widerrufConsent}
-            consentRequiredMessage={t.checkout.consentRequired}
-            consentAriaLabel={t.checkout.consentAriaLabel}
-            payPrefix={t.paypal.payPrefix}
-            paySuffix={t.paypal.paySuffix}
-            connectingLabel={t.paypal.connecting}
-            secureNote={t.paypal.secureNote}
-            errorFallback={t.paypal.errorFallback}
-          />
         </div>
 
         {/* What happens next */}

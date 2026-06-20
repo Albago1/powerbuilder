@@ -13,8 +13,12 @@ export type NutritionPreference =
   | "";
 export type SleepQuality = "poor" | "average" | "good" | "excellent" | "";
 export type ProgramLanguage = "english" | "german" | "albanian" | "";
+export type ProgramTarget = "personalized" | "bench-press";
 
 export interface QuestionnaireData {
+  // Which program the user is applying for
+  program: ProgramTarget;
+
   // Step 1: Profile
   age: string;
   heightCm: string;

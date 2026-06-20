@@ -1,5 +1,10 @@
 import type { QuestionnaireData } from "@/types/questionnaire";
 
+const programLabels: Record<QuestionnaireData["program"], string> = {
+  personalized: "Personalized Training & Nutrition System",
+  "bench-press": "6 Week Bench Press Program",
+};
+
 const labelMap: Record<string, string> = {
   male: "Male", female: "Female", other: "Other", prefer_not: "Prefer not to say",
   beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced",
@@ -21,11 +26,13 @@ export function formatSubmissionEmail(data: QuestionnaireData): string {
     timeStyle: "short",
   });
 
+  const productLine = programLabels[data.program] ?? data.program;
+
   return `
 NEW POWERBUILDER QUESTIONNAIRE SUBMISSION
 ==========================================
 Submitted:  ${timestamp}
-Product:    Personalized Training & Nutrition System — €99
+Product:    ${productLine}
 ==========================================
 
 CUSTOMER DETAILS
@@ -67,9 +74,9 @@ ${data.additionalNotes || "None"}
 
 ==========================================
 NEXT STEPS
-  1. Confirm payment received in PayPal
-  2. Build personalized training + nutrition program IN ${label(data.programLanguage).toUpperCase()}
-  3. Deliver PDF to client within 48 hours
+  1. Reach out to the client to confirm and arrange payment
+  2. Build the ${productLine} IN ${label(data.programLanguage).toUpperCase()}
+  3. Deliver PDF to client by email
 ==========================================
 Source: powerbuilder.com/questionnaire
   `.trim();

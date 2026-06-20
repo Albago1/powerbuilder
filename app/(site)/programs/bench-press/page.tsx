@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getProgramById } from "@/lib/programs";
-import StaticProgramBuyButton from "@/components/StaticProgramBuyButton";
 import ProgramFAQ from "@/components/ProgramFAQ";
 import LaunchCountdown from "@/components/LaunchCountdown";
 import { getLocale } from "@/lib/locale";
@@ -12,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "6 Week Bench Press Program | PowerBuilder",
     description:
-      "A laser-focused 6-week bench press specialization program. Build serious pressing strength and chest power. €49 — instant PDF delivery.",
+      "A laser-focused 6-week bench press specialization program. Build serious pressing strength and chest power.",
   };
 }
 
@@ -23,6 +22,7 @@ export default async function BenchPressPage() {
   const bp = t.benchPress;
   const program = getProgramById("bench-press")!;
   const launchActive = isLaunchOfferActive();
+  const applyHref = "/questionnaire?program=bench-press";
 
   return (
     <div className="bg-brand-bg pt-16">
@@ -48,7 +48,7 @@ export default async function BenchPressPage() {
                 {program.description}
               </p>
               <div className="flex flex-wrap gap-3">
-                {[program.duration, program.sessionsPerWeek, pd.instantPdf, ...program.focus].map((tag) => (
+                {[program.duration, program.sessionsPerWeek, ...program.focus].map((tag) => (
                   <span key={tag} className="border border-brand-border text-zinc-400 text-xs font-bold uppercase tracking-wider px-3 py-1.5">
                     {tag}
                   </span>
@@ -56,7 +56,7 @@ export default async function BenchPressPage() {
               </div>
             </div>
 
-            {/* Purchase card */}
+            {/* Apply card */}
             <div className="bg-brand-card border border-brand-border p-8 md:p-10">
               <div className="h-1 -mt-8 -mx-8 md:-mt-10 md:-mx-10 mb-8 bg-red-600" />
               <div className="mb-6">
@@ -82,19 +82,9 @@ export default async function BenchPressPage() {
                 )}
                 <p className="text-zinc-600 text-sm mt-1">{pd.priceNote}</p>
               </div>
-              <StaticProgramBuyButton
-                slug="bench-press"
-                price={program.price}
-                consentLabel={t.checkout.widerrufConsent}
-                consentRequiredMessage={t.checkout.consentRequired}
-                consentAriaLabel={t.checkout.consentAriaLabel}
-                payPrefix={t.paypal.payPrefix}
-                paySuffix={t.paypal.paySuffix}
-                connectingLabel={t.paypal.connecting}
-                secureNote={t.paypal.secureNote}
-                errorFallback={t.paypal.errorFallback}
-                className="mb-4"
-              />
+              <Link href={applyHref} className="btn-primary w-full justify-center mb-4">
+                {pd.applyCta}
+              </Link>
               <div className="border-t border-brand-border pt-6 flex flex-col gap-3">
                 {program.features.map((f, i) => (
                   <div key={i} className="flex items-center gap-3">
@@ -197,20 +187,10 @@ export default async function BenchPressPage() {
             <span className="text-red-600">{bp.ctaTitle2}</span>
           </h2>
           <p className="text-zinc-400 text-lg mb-10">{bp.ctaSubtitle}</p>
-          <StaticProgramBuyButton
-            slug="bench-press"
-            price={program.price}
-            consentLabel={t.checkout.widerrufConsent}
-            consentRequiredMessage={t.checkout.consentRequired}
-            consentAriaLabel={t.checkout.consentAriaLabel}
-            payPrefix={t.paypal.payPrefix}
-            paySuffix={t.paypal.paySuffix}
-            connectingLabel={t.paypal.connecting}
-            secureNote={t.paypal.secureNote}
-            errorFallback={t.paypal.errorFallback}
-            className="max-w-md mx-auto"
-          />
-          <p className="text-zinc-700 text-xs mt-4">{pd.ctaNote(program.price)}</p>
+          <Link href={applyHref} className="btn-primary max-w-md mx-auto justify-center">
+            {pd.applyCta}
+          </Link>
+          <p className="text-zinc-700 text-xs mt-4">{pd.applyNote}</p>
           <div className="mt-6">
             <Link href="/personalized" className="text-zinc-500 text-xs hover:text-zinc-300 transition-colors">
               {pd.personalizedLink}

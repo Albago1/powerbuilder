@@ -23,9 +23,6 @@ export default function ImpressumPage() {
                 Angaben gemäß § 5 DDG
               </h2>
               <p>{owner.name}</p>
-              <p>{owner.addressStreet}</p>
-              <p>{owner.addressCity}</p>
-              <p>{owner.addressCountry}</p>
             </div>
 
             <div>
@@ -60,10 +57,6 @@ export default function ImpressumPage() {
                 Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV
               </h2>
               <p>{owner.name}</p>
-              <p>{owner.addressStreet}</p>
-              <p>
-                {owner.addressCity}, {owner.addressCountry}
-              </p>
             </div>
 
             <div>

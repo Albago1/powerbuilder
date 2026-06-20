@@ -14,7 +14,7 @@ const inter = Inter({
   display: "swap",
 });
 
-const siteDescription = `Strength. Muscle. Discipline. Training programs, personalized coaching, and lifting systems featuring fitness expert ${owner.talentName}. A platform by ${owner.name}.`;
+const siteDescription = `Strength. Muscle. Discipline. Training programs, personalized coaching, and lifting systems by ${owner.talentName}.`;
 
 export const metadata: Metadata = {
   title: owner.brandName,

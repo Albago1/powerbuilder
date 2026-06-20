@@ -2,26 +2,19 @@ import { NextRequest, NextResponse } from "next/server";
 import type { QuestionnaireData } from "@/types/questionnaire";
 import { formatSubmissionEmail } from "@/lib/formatEmail";
 
-// ============================================================
-// QUESTIONNAIRE SUBMISSION ENDPOINT
-// ============================================================
-// Receives questionnaire data, then emails it to the trainer.
-//
-// SETUP (5 minutes):
-//   1. Sign up at https://resend.com (free)
-//   2. Add RESEND_API_KEY to .env.local
-//   3. Add TRAINER_EMAIL to .env.local
-//   4. Add RESEND_FROM_EMAIL to .env.local (must be verified domain)
-//   5. Verify your domain at https://resend.com/domains
-//      OR use Resend's sandbox for testing without domain setup.
-//
-// Without these env vars the route still works — it just logs
-// to console only (safe for local dev / before email is wired).
-// ============================================================
+const VALID_PROGRAMS = ["personalized", "bench-press"] as const;
 
 export async function POST(req: NextRequest) {
   try {
-    const data: QuestionnaireData = await req.json();
+    const raw: QuestionnaireData = await req.json();
+
+    const program = VALID_PROGRAMS.includes(
+      raw.program as (typeof VALID_PROGRAMS)[number]
+    )
+      ? raw.program
+      : "personalized";
+
+    const data: QuestionnaireData = { ...raw, program };
 
     if (!data.age || !data.mainGoal) {
       return NextResponse.json(
@@ -32,11 +25,9 @@ export async function POST(req: NextRequest) {
 
     const emailBody = formatSubmissionEmail(data);
 
-    // Always log for visibility
     console.log("=== New PowerBuilder Questionnaire Submission ===");
     console.log(emailBody);
 
-    // ── Send email via Resend ─────────────────────────────────
     const apiKey = process.env.RESEND_API_KEY;
     const trainerEmail = process.env.TRAINER_EMAIL;
     const fromEmail = process.env.RESEND_FROM_EMAIL ?? "noreply@powerbuilder.com";
@@ -45,8 +36,11 @@ export async function POST(req: NextRequest) {
       const { Resend } = await import("resend");
       const resend = new Resend(apiKey);
 
+      const programLabel =
+        program === "bench-press" ? "Bench Press" : "Personalized";
+
       const subject = [
-        "New PowerBuilder Submission",
+        `New PowerBuilder Application [${programLabel}]`,
         `${data.mainGoal.replace("_", " ")} / ${data.bodyCompositionGoal}`,
         `${data.age}y`,
         `${data.weightKg}kg`,
@@ -61,8 +55,11 @@ export async function POST(req: NextRequest) {
       });
 
       if (error) {
-        // Log but don't fail — the submission is saved, email can be resent manually
         console.error("Resend error:", error);
+        return NextResponse.json(
+          { error: "Could not deliver your application. Please try again or email us directly." },
+          { status: 502 }
+        );
       }
     } else {
       console.warn(

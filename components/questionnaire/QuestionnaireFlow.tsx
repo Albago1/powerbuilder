@@ -3,11 +3,12 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import type { QuestionnaireData } from "@/types/questionnaire";
+import type { ProgramTarget, QuestionnaireData } from "@/types/questionnaire";
 import { TOTAL_STEPS } from "@/types/questionnaire";
 import { getT, type Locale } from "@/lib/translations";
 
-const initial: QuestionnaireData = {
+const makeInitial = (program: ProgramTarget): QuestionnaireData => ({
+  program,
   age: "", heightCm: "", weightKg: "", gender: "",
   experience: "", trainingDaysPerWeek: "", gymAccess: "", benchExperience: "",
   mainGoal: "", bodyCompositionGoal: "",
@@ -16,7 +17,7 @@ const initial: QuestionnaireData = {
   additionalNotes: "",
   programLanguage: "",
   firstName: "", lastName: "", email: "", confirmEmail: "", instagram: "", phone: "",
-};
+});
 
 // ─── Reusable UI pieces ────────────────────────────────────────────────────
 
@@ -438,10 +439,16 @@ function Step8({ data, errors, update, q }: StepProps) {
 
 // ─── Main component ─────────────────────────────────────────────────────────
 
-export default function QuestionnaireFlow({ locale }: { locale: Locale }) {
+export default function QuestionnaireFlow({
+  locale,
+  program = "personalized",
+}: {
+  locale: Locale;
+  program?: ProgramTarget;
+}) {
   const q = getT(locale).questionnaire;
   const [step, setStep] = useState(1);
-  const [data, setData] = useState<QuestionnaireData>(initial);
+  const [data, setData] = useState<QuestionnaireData>(() => makeInitial(program));
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const router = useRouter();
@@ -513,15 +520,25 @@ export default function QuestionnaireFlow({ locale }: { locale: Locale }) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!validate()) return;
     setSubmitting(true);
     try {
-      localStorage.setItem("pb_questionnaire_pending", JSON.stringify(data));
-      router.push(`/questionnaire/confirmation?email=${encodeURIComponent(data.email)}`);
-    } catch {
+      const res = await fetch("/api/questionnaire", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) {
+        const json = (await res.json().catch(() => ({}))) as { error?: string };
+        throw new Error(json.error ?? `Server error ${res.status}`);
+      }
+      router.push(
+        `/questionnaire/confirmation?email=${encodeURIComponent(data.email)}&program=${encodeURIComponent(program)}`
+      );
+    } catch (err) {
       setSubmitting(false);
-      alert(q.errors.submitFailed);
+      alert(err instanceof Error ? err.message : q.errors.submitFailed);
     }
   };
 
@@ -562,7 +579,10 @@ export default function QuestionnaireFlow({ locale }: { locale: Locale }) {
               {q.nav.back}
             </button>
           ) : (
-            <Link href="/personalized" className="text-zinc-600 text-sm hover:text-zinc-400 transition-colors">
+            <Link
+              href={program === "bench-press" ? "/programs/bench-press" : "/personalized"}
+              className="text-zinc-600 text-sm hover:text-zinc-400 transition-colors"
+            >
               {q.nav.cancel}
             </Link>
           )}
