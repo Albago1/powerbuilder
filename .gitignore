@@ -27,6 +27,12 @@ yarn-error.log*
 .env*.local
 .env
 
+# loose secret/key dumps — never commit
+API.txt
+*.api.txt
+secrets.txt
+*.secret
+
 # vercel
 .vercel
 
