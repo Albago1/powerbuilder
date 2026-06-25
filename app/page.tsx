@@ -116,9 +116,55 @@ const HUB_HREFS = [
   { href: "/programs" },
   { href: "/supplements" },
   { href: "/calculator" },
-  { href: "https://www.tiktok.com/@artur.contentalb?is_from_webapp=1&sender_device=pc" },
   { href: "https://youtube.com/@artur.mehmetii?si=ILYBKWUIkXGrS9Nu" },
 ];
+
+// ─── Sponsor card ─────────────────────────────────────────────────────────────
+
+interface SponsorCardProps {
+  name: string;
+  subtitle: string;
+  code: string;
+  href: string;
+  sponsorLabel: string;
+  codeLabel: string;
+}
+
+function SponsorCard({ name, subtitle, code, href, sponsorLabel, codeLabel }: SponsorCardProps) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer sponsored"
+      className="group"
+    >
+      <div className="flex items-center gap-4 p-5 border border-brand-border bg-brand-card hover:border-red-600/40 hover:bg-[#1a1a1f] transition-all duration-200">
+        <div className="flex-1 min-w-0">
+          <p className="text-red-500 text-[10px] font-bold uppercase tracking-[0.2em] mb-0.5">
+            {sponsorLabel}
+          </p>
+          <h3 className="text-white font-black text-sm uppercase tracking-tight leading-tight">
+            {name}
+          </h3>
+          <p className="text-zinc-500 text-xs mt-1 leading-relaxed">{subtitle}</p>
+          <div className="flex items-center gap-2 mt-2">
+            <span className="text-zinc-600 text-[9px] uppercase tracking-widest font-bold">
+              {codeLabel}
+            </span>
+            <span className="bg-red-600/10 border border-red-600/40 text-red-400 text-xs font-black px-2 py-0.5 tracking-wider">
+              {code}
+            </span>
+          </div>
+        </div>
+        <div className="shrink-0 pl-2">
+          <span className="text-red-600 font-black text-xl group-hover:translate-x-1 transition-transform duration-200 inline-block">
+            →
+          </span>
+        </div>
+      </div>
+    </a>
+  );
+}
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
@@ -267,6 +313,28 @@ export default async function BrandHub() {
         <div className="flex flex-col gap-2.5 mb-9">
           {hubItems.map((item) => (
             <HubCard key={item.href} {...item} />
+          ))}
+        </div>
+
+        {/* Sponsors divider */}
+        <div className="flex items-center gap-3 mb-7">
+          <div className="flex-1 h-px bg-brand-border" />
+          <span className="text-zinc-700 text-[9px] uppercase tracking-widest font-bold">{t.sponsorsLabel}</span>
+          <div className="flex-1 h-px bg-brand-border" />
+        </div>
+
+        {/* Sponsor cards */}
+        <div className="flex flex-col gap-2.5 mb-9">
+          {t.sponsors.map((s) => (
+            <SponsorCard
+              key={s.href}
+              name={s.name}
+              subtitle={s.subtitle}
+              code={s.code}
+              href={s.href}
+              sponsorLabel={t.sponsorLabel}
+              codeLabel={t.sponsorCodeLabel}
+            />
           ))}
         </div>
 
