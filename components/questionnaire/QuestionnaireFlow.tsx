@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import type { ProgramTarget, QuestionnaireData } from "@/types/questionnaire";
 import { TOTAL_STEPS } from "@/types/questionnaire";
 import { getT, type Locale } from "@/lib/translations";
+import BenchShortForm from "./BenchShortForm";
 
 const makeInitial = (program: ProgramTarget): QuestionnaireData => ({
   program,
@@ -446,6 +447,10 @@ export default function QuestionnaireFlow({
   locale: Locale;
   program?: ProgramTarget;
 }) {
+  if (program === "bench-press") {
+    return <BenchShortForm locale={locale} />;
+  }
+
   const q = getT(locale).questionnaire;
   const [step, setStep] = useState(1);
   const [data, setData] = useState<QuestionnaireData>(() => makeInitial(program));
@@ -580,7 +585,7 @@ export default function QuestionnaireFlow({
             </button>
           ) : (
             <Link
-              href={program === "bench-press" ? "/programs/bench-press" : "/personalized"}
+              href="/personalized"
               className="text-zinc-600 text-sm hover:text-zinc-400 transition-colors"
             >
               {q.nav.cancel}

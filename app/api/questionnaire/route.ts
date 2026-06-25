@@ -16,7 +16,16 @@ export async function POST(req: NextRequest) {
 
     const data: QuestionnaireData = { ...raw, program };
 
-    if (!data.age || !data.mainGoal) {
+    const isBench = program === "bench-press";
+
+    if (isBench) {
+      if (!data.firstName?.trim() || !data.email?.trim()) {
+        return NextResponse.json(
+          { error: "Name and email are required" },
+          { status: 400 }
+        );
+      }
+    } else if (!data.age || !data.mainGoal) {
       return NextResponse.json(
         { error: "Incomplete questionnaire data" },
         { status: 400 }
@@ -36,16 +45,15 @@ export async function POST(req: NextRequest) {
       const { Resend } = await import("resend");
       const resend = new Resend(apiKey);
 
-      const programLabel =
-        program === "bench-press" ? "Bench Press" : "Personalized";
-
-      const subject = [
-        `New PowerBuilder Application [${programLabel}]`,
-        `${data.mainGoal.replace("_", " ")} / ${data.bodyCompositionGoal}`,
-        `${data.age}y`,
-        `${data.weightKg}kg`,
-        data.experience,
-      ].join(" — ");
+      const subject = isBench
+        ? `New Bench Press Signup — SEND PLAN + PAYMENT INFO — ${data.firstName} <${data.email}>`
+        : [
+            `New PowerBuilder Application [Personalized]`,
+            `${data.mainGoal.replace("_", " ")} / ${data.bodyCompositionGoal}`,
+            `${data.age}y`,
+            `${data.weightKg}kg`,
+            data.experience,
+          ].join(" — ");
 
       const { error } = await resend.emails.send({
         from: fromEmail,

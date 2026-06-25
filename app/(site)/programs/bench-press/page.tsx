@@ -190,7 +190,7 @@ export default async function BenchPressPage() {
           <Link href={applyHref} className="btn-primary max-w-md mx-auto justify-center">
             {pd.applyCta}
           </Link>
-          <p className="text-zinc-700 text-xs mt-4">{pd.applyNote}</p>
+          <p className="text-zinc-700 text-xs mt-4">{bp.applyNote ?? pd.applyNote}</p>
           <div className="mt-6">
             <Link href="/personalized" className="text-zinc-500 text-xs hover:text-zinc-300 transition-colors">
               {pd.personalizedLink}

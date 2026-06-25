@@ -35,7 +35,7 @@ export const staticPrograms: StaticProgram[] = [
     description:
       "A laser-focused 6-week specialization program for maximizing bench press strength and chest power. Built for lifters who want to press more.",
     duration: "6 Weeks",
-    sessionsPerWeek: "4x / Week",
+    sessionsPerWeek: "3x / Week",
     price: 49,
     originalPrice: 70,
     paypalLink: "#paypal-bench-TODO",
@@ -58,17 +58,12 @@ export const staticPrograms: StaticProgram[] = [
       {
         label: "Day 2",
         focus: "Supplementary Upper",
-        exercises: ["Overhead Press", "Incline Dumbbell Press", "Cable Fly", "Face Pulls"],
+        exercises: ["Overhead Press", "Incline Dumbbell Press", "Cable Fly", "Lateral Raises", "Face Pulls"],
       },
       {
         label: "Day 3",
         focus: "Volume Bench — Hypertrophy",
-        exercises: ["Bench Press (Volume)", "Dumbbell Press", "Cable Crossover", "Skull Crushers"],
-      },
-      {
-        label: "Day 4",
-        focus: "Technique & Accessories",
-        exercises: ["Paused Bench (Light)", "Dip", "Lateral Raises", "Tricep Work"],
+        exercises: ["Bench Press (Volume)", "Dumbbell Press", "Cable Crossover", "Dip", "Skull Crushers"],
       },
     ],
     whoIsItFor: [

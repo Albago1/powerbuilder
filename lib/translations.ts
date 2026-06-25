@@ -275,7 +275,7 @@ const en = {
 
   // ── Bench Press page ────────────────────────────────────────────────────────
   benchPress: {
-    structureTitle1: "4 Days.",
+    structureTitle1: "3 Days.",
     structureTitle2: "Maximum Bench Gains.",
     builtFor: "Built for",
     builtForAccent: "Pressers.",
@@ -287,14 +287,15 @@ const en = {
       { title: "Chest Power", description: "Hypertrophy-focused accessory work that builds the chest thickness pressing strength needs." },
       { title: "Pressing Mechanics", description: "Technique cues and form work refine your bench under load — the fastest way to add sustainable weight." },
     ],
+    applyNote: "30-second signup · No payment on the site · Plan and payment instructions arrive by email",
     process: {
       sectionLabel: "Process",
       title1: "How It",
       title2: "Works.",
       steps: [
-        { num: "01", title: "Apply", description: "Fill out the short questionnaire so Artur knows your level, equipment, and goals. Takes a few minutes." },
-        { num: "02", title: "Confirm", description: "Artur reviews your application personally and reaches out to confirm and arrange payment." },
-        { num: "03", title: "Train", description: "Receive your PDF by email in English, German, or Albanian. Follow the structured 6-week plan from Day 1." },
+        { num: "01", title: "Sign Up", description: "Enter your name and email. Takes about 30 seconds." },
+        { num: "02", title: "Receive Email", description: "Your training plan and payment instructions arrive directly in your inbox." },
+        { num: "03", title: "Train", description: "Start the structured 6-week plan from Day 1 and follow it through." },
         { num: "04", title: "Progress", description: "Track gains across the 6 weeks. Re-run the program at a higher baseline anytime — it's yours for life." },
       ],
     },
@@ -482,6 +483,27 @@ const en = {
       submit: "Submit Application →",
       submitting: "Submitting…",
     },
+    bench: {
+      meta: {
+        title: "Sign Up | 6 Week Bench Press Program",
+        description: "Sign up in 30 seconds. Your training plan and payment instructions arrive by email.",
+      },
+      heading: {
+        lead: "30 Seconds.",
+        accent: "Sign Up.",
+        subtitle: "After signup you'll receive the training plan and payment instructions by email.",
+      },
+      fields: { name: "Name", email: "Email Address" },
+      placeholders: { name: "John Smith", email: "john@example.com" },
+      errors: { nameRequired: "Name is required" },
+      submit: "Sign Up →",
+      submitting: "Submitting…",
+      cancel: "← Back",
+      note: {
+        lead: "What's next:",
+        body: "Watch your inbox. Your training plan and payment instructions will arrive shortly.",
+      },
+    },
     confirmation: {
       meta: {
         title: "Application Received | PowerBuilder",
@@ -501,6 +523,17 @@ const en = {
         { num: "02", title: "Confirmation Email", description: "Artur replies to your email to confirm the details and arrange payment." },
         { num: "03", title: "Program Delivered", description: "Once confirmed, your PDF is delivered to your email within 48 hours." },
       ],
+      bench: {
+        statusLabel: "Signup Received",
+        title1: "You're In.",
+        title2: "Check Your Inbox.",
+        body: "Your signup is in. The training plan and payment instructions will be sent to your email shortly.",
+        nextSteps: [
+          { num: "01", title: "Email Sent", description: "Your training plan and payment instructions are being sent to your email." },
+          { num: "02", title: "Pay", description: "Follow the payment instructions in the email to activate your program." },
+          { num: "03", title: "Train", description: "Start the 6-week plan from Day 1 and track your progress." },
+        ],
+      },
       questionsLabel: "Questions about your application?",
       backHome: "Back to Home",
     },
@@ -620,7 +653,7 @@ const en = {
       title2: "Builds.",
       items: [
         { title: "Personalized Training & Nutrition System", subBase: "4 weeks · Custom · €99", subDiscount: "4 weeks · Custom · €99 (was €141, Limited Offer -30%)", href: "/personalized" },
-        { title: "6 Week Bench Press Program", subBase: "PDF · 4x/week · €49", subDiscount: "PDF · 4x/week · €49 (was €70, Limited Offer -30%)", href: "/programs/bench-press" },
+        { title: "6 Week Bench Press Program", subBase: "PDF · 3x/week · €49", subDiscount: "PDF · 3x/week · €49 (was €70, Limited Offer -30%)", href: "/programs/bench-press" },
       ],
     },
     cta: {
@@ -1064,7 +1097,7 @@ const de: typeof en = {
     personalizedLink: "Etwas speziell für dich gebaut? → Individuelles System",
   },
   benchPress: {
-    structureTitle1: "4 Tage.",
+    structureTitle1: "3 Tage.",
     structureTitle2: "Maximale Bankdrück-Fortschritte.",
     builtFor: "Gebaut für",
     builtForAccent: "Drücker.",
@@ -1076,14 +1109,15 @@ const de: typeof en = {
       { title: "Brust-Power", description: "Hypertrophie-fokussierte Zusatzarbeit baut die Brustdicke auf, die Drückkraft braucht." },
       { title: "Drück-Mechanik", description: "Technik-Cues und Formarbeit verfeinern dein Bankdrücken unter Last — der schnellste Weg, nachhaltiges Gewicht hinzuzufügen." },
     ],
+    applyNote: "Anmeldung in 30 Sekunden · Keine Zahlung auf der Seite · Plan und Zahlungsinformationen kommen per E-Mail",
     process: {
       sectionLabel: "Ablauf",
       title1: "So",
       title2: "funktioniert's.",
       steps: [
-        { num: "01", title: "Bewerben", description: "Fülle den kurzen Fragebogen aus, damit Artur dein Level, Equipment und Ziele kennt. Dauert wenige Minuten." },
-        { num: "02", title: "Bestätigen", description: "Artur prüft deine Bewerbung persönlich und meldet sich, um Details zu bestätigen und die Zahlung zu vereinbaren." },
-        { num: "03", title: "Trainieren", description: "Du erhältst dein PDF per E-Mail in Englisch, Deutsch oder Albanisch. Folge dem strukturierten 6-Wochen-Plan ab Tag 1." },
+        { num: "01", title: "Anmelden", description: "Gib deinen Namen und deine E-Mail-Adresse ein. Dauert etwa 30 Sekunden." },
+        { num: "02", title: "E-Mail erhalten", description: "Dein Trainingsplan und die Zahlungsinformationen landen direkt in deinem Postfach." },
+        { num: "03", title: "Trainieren", description: "Starte den strukturierten 6-Wochen-Plan ab Tag 1 und zieh ihn durch." },
         { num: "04", title: "Fortschritt", description: "Verfolge deine Fortschritte über 6 Wochen. Wiederhole das Programm jederzeit auf höherem Niveau — es gehört dir lebenslang." },
       ],
     },
@@ -1270,6 +1304,27 @@ const de: typeof en = {
       submit: "Bewerbung absenden →",
       submitting: "Wird gesendet…",
     },
+    bench: {
+      meta: {
+        title: "Anmeldung | 6-Wochen Bankdrück-Programm",
+        description: "Anmeldung in 30 Sekunden. Trainingsplan und Zahlungsinformationen kommen per E-Mail.",
+      },
+      heading: {
+        lead: "30 Sekunden.",
+        accent: "Anmelden.",
+        subtitle: "Nach der Anmeldung erhältst du den Trainingsplan und die Zahlungsinformationen per E-Mail.",
+      },
+      fields: { name: "Name", email: "E-Mail-Adresse" },
+      placeholders: { name: "Max Mustermann", email: "max@beispiel.de" },
+      errors: { nameRequired: "Name ist erforderlich" },
+      submit: "Anmelden →",
+      submitting: "Wird gesendet…",
+      cancel: "← Zurück",
+      note: {
+        lead: "Wie es weitergeht:",
+        body: "Behalte dein Postfach im Auge. Trainingsplan und Zahlungsinformationen kommen in Kürze per E-Mail.",
+      },
+    },
     confirmation: {
       meta: {
         title: "Bewerbung erhalten | PowerBuilder",
@@ -1289,6 +1344,17 @@ const de: typeof en = {
         { num: "02", title: "Bestätigungs-E-Mail", description: "Artur antwortet auf deine E-Mail, um die Details zu bestätigen und die Zahlung zu vereinbaren." },
         { num: "03", title: "Programm geliefert", description: "Nach Bestätigung wird dein PDF innerhalb von 48 Stunden an deine E-Mail geliefert." },
       ],
+      bench: {
+        statusLabel: "Anmeldung erhalten",
+        title1: "Du bist drin.",
+        title2: "Schau in dein Postfach.",
+        body: "Deine Anmeldung ist da. Trainingsplan und Zahlungsinformationen werden in Kürze an deine E-Mail-Adresse gesendet.",
+        nextSteps: [
+          { num: "01", title: "E-Mail unterwegs", description: "Dein Trainingsplan und die Zahlungsinformationen werden an deine E-Mail geschickt." },
+          { num: "02", title: "Bezahlen", description: "Folge den Zahlungsanweisungen in der E-Mail, um dein Programm zu aktivieren." },
+          { num: "03", title: "Trainieren", description: "Starte den 6-Wochen-Plan ab Tag 1 und verfolge deinen Fortschritt." },
+        ],
+      },
       questionsLabel: "Fragen zu deiner Bewerbung?",
       backHome: "Zurück zur Startseite",
     },
@@ -1405,7 +1471,7 @@ const de: typeof en = {
       title2: "baut.",
       items: [
         { title: "Individuelles Training- & Ernährungssystem", subBase: "4 Wochen · Individuell · €99", subDiscount: "4 Wochen · Individuell · €99 (war €141, Aktion -30%)", href: "/personalized" },
-        { title: "6-Wochen Bankdrück-Programm", subBase: "PDF · 4x/Woche · €49", subDiscount: "PDF · 4x/Woche · €49 (war €70, Aktion -30%)", href: "/programs/bench-press" },
+        { title: "6-Wochen Bankdrück-Programm", subBase: "PDF · 3x/Woche · €49", subDiscount: "PDF · 3x/Woche · €49 (war €70, Aktion -30%)", href: "/programs/bench-press" },
       ],
     },
     cta: {
@@ -1848,7 +1914,7 @@ const sq: typeof en = {
     personalizedLink: "Dëshiron diçka të ndërtuar posaçërisht për ty? → Sistemi Personal",
   },
   benchPress: {
-    structureTitle1: "4 Ditë.",
+    structureTitle1: "3 Ditë.",
     structureTitle2: "Fitime Maksimale Bench Press.",
     builtFor: "Ndërtuar për",
     builtForAccent: "Shtytësit.",
@@ -1860,14 +1926,15 @@ const sq: typeof en = {
       { title: "Fuqi Gjoksi", description: "Punë ndihmëse e fokusuar në hipertrofi që ndërton trashësinë e gjoksit që forca shtytëse kërkon." },
       { title: "Mekanika e Shtytjes", description: "Sugjerime teknike dhe punë formash që rafinojnë bench press-in tënd nën ngarkesë — mënyra më e shpejtë për të shtuar peshë të qëndrueshme." },
     ],
+    applyNote: "Regjistrim për 30 sekonda · Pa pagesë në faqe · Plani dhe udhëzimet e pagesës vijnë me e-mail",
     process: {
       sectionLabel: "Procesi",
       title1: "Si",
       title2: "Funksionon.",
       steps: [
-        { num: "01", title: "Apliko", description: "Plotëso pyetësorin e shkurtër që Arturi të dijë nivelin, pajisjet dhe qëllimet e tua. Zgjat pak minuta." },
-        { num: "02", title: "Konfirmo", description: "Arturi shqyrton personalisht aplikimin tënd dhe të kontakton për të konfirmuar dhe organizuar pagesën." },
-        { num: "03", title: "Stërvitu", description: "Merr PDF-në tënd me email në anglisht, gjermanisht ose shqip. Ndiq planin e strukturuar 6-javësh nga Dita 1." },
+        { num: "01", title: "Regjistrohu", description: "Plotëso emrin dhe e-mailin. Zgjat rreth 30 sekonda." },
+        { num: "02", title: "Merr E-mailin", description: "Plani yt i stërvitjes dhe udhëzimet e pagesës mbërrijnë direkt në e-mailin tënd." },
+        { num: "03", title: "Stërvitu", description: "Fillo planin e strukturuar 6-javësh nga Dita 1 dhe ndiqe deri në fund." },
         { num: "04", title: "Progres", description: "Ndiqi përparimet gjatë 6 javëve. Ripërsërit programin në një bazë më të lartë në çdo kohë — është i yti përgjithmonë." },
       ],
     },
@@ -2054,6 +2121,27 @@ const sq: typeof en = {
       submit: "Dërgo Aplikimin →",
       submitting: "Po dërgohet…",
     },
+    bench: {
+      meta: {
+        title: "Regjistrohu | Program Bench Press 6 Javë",
+        description: "Regjistrohu për 30 sekonda. Plani i stërvitjes dhe udhëzimet e pagesës vijnë me e-mail.",
+      },
+      heading: {
+        lead: "30 Sekonda.",
+        accent: "Regjistrohu.",
+        subtitle: "Pas regjistrimit do të marrësh planin e stërvitjes dhe udhëzimet e pagesës me e-mail.",
+      },
+      fields: { name: "Emri", email: "Adresa e E-mailit" },
+      placeholders: { name: "Filan Fisteku", email: "filan@shembull.com" },
+      errors: { nameRequired: "Emri është i nevojshëm" },
+      submit: "Regjistrohu →",
+      submitting: "Po dërgohet…",
+      cancel: "← Mbrapa",
+      note: {
+        lead: "Çfarë vjen më pas:",
+        body: "Kontrollo e-mailin. Plani yt i stërvitjes dhe udhëzimet e pagesës do të mbërrijnë së shpejti.",
+      },
+    },
     confirmation: {
       meta: {
         title: "Aplikimi u Pranua | PowerBuilder",
@@ -2073,6 +2161,17 @@ const sq: typeof en = {
         { num: "02", title: "E-mail Konfirmimi", description: "Arturi përgjigjet në e-mailin tënd për të konfirmuar detajet dhe organizuar pagesën." },
         { num: "03", title: "Programi i Dorëzuar", description: "Pas konfirmimit, PDF-i yt dorëzohet në e-mailin tënd brenda 48 orëve." },
       ],
+      bench: {
+        statusLabel: "Regjistrimi u Pranua",
+        title1: "Je Brenda.",
+        title2: "Kontrollo E-mailin.",
+        body: "Regjistrimi yt mbërriti. Plani i stërvitjes dhe udhëzimet e pagesës do të dërgohen së shpejti në e-mailin tënd.",
+        nextSteps: [
+          { num: "01", title: "E-mail në Rrugë", description: "Plani yt i stërvitjes dhe udhëzimet e pagesës po dërgohen në e-mailin tënd." },
+          { num: "02", title: "Paguaj", description: "Ndiq udhëzimet e pagesës në e-mail për të aktivizuar programin." },
+          { num: "03", title: "Stërvitu", description: "Fillo planin 6-javësh nga Dita 1 dhe ndiq progresin." },
+        ],
+      },
       questionsLabel: "Pyetje rreth aplikimit?",
       backHome: "Kthehu te Faqja Kryesore",
     },
@@ -2189,7 +2288,7 @@ const sq: typeof en = {
       title2: "Arturi.",
       items: [
         { title: "Sistemi Personal i Stërvitjes & Ushqimit", subBase: "4 javë · Personal · €99", subDiscount: "4 javë · Personal · €99 (ishte €141, Ofertë e Kufizuar -30%)", href: "/personalized" },
-        { title: "Program Bench Press 6 Javë", subBase: "PDF · 4x/javë · €49", subDiscount: "PDF · 4x/javë · €49 (ishte €70, Ofertë e Kufizuar -30%)", href: "/programs/bench-press" },
+        { title: "Program Bench Press 6 Javë", subBase: "PDF · 3x/javë · €49", subDiscount: "PDF · 3x/javë · €49 (ishte €70, Ofertë e Kufizuar -30%)", href: "/programs/bench-press" },
       ],
     },
     cta: {

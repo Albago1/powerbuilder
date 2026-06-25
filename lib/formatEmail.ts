@@ -28,6 +28,28 @@ export function formatSubmissionEmail(data: QuestionnaireData): string {
 
   const productLine = programLabels[data.program] ?? data.program;
 
+  if (data.program === "bench-press") {
+    return `
+NEW BENCH PRESS SIGNUP
+==========================================
+Submitted:  ${timestamp}
+Product:    ${productLine}
+==========================================
+
+CUSTOMER
+  Name:   ${data.firstName}
+  Email:  ${data.email}
+
+==========================================
+ACTION REQUIRED
+  Send the customer:
+    1. The 6 Week Bench Press training plan (PDF)
+    2. Payment instructions (bank transfer details)
+==========================================
+Source: powerbuilder.com/questionnaire?program=bench-press
+    `.trim();
+  }
+
   return `
 NEW POWERBUILDER QUESTIONNAIRE SUBMISSION
 ==========================================

@@ -13,10 +13,17 @@ export default async function ConfirmationPage({
 }: {
   searchParams: Promise<{ email?: string; program?: string }>;
 }) {
-  const { email } = await searchParams;
+  const { email, program } = await searchParams;
   const locale = await getLocale();
   const t = getT(locale);
   const c = t.questionnaire.confirmation;
+  const isBench = program === "bench-press";
+
+  const statusLabel = isBench ? c.bench.statusLabel : c.statusLabel;
+  const title1 = isBench ? c.bench.title1 : c.title1;
+  const title2 = isBench ? c.bench.title2 : c.title2;
+  const body = isBench ? c.bench.body : c.body;
+  const nextSteps = isBench ? c.bench.nextSteps : c.nextSteps;
 
   return (
     <div className="bg-brand-bg min-h-screen pt-16">
@@ -29,14 +36,14 @@ export default async function ConfirmationPage({
             </svg>
           </div>
 
-          <p className="section-label mb-4">{c.statusLabel}</p>
+          <p className="section-label mb-4">{statusLabel}</p>
           <h1 className="section-heading mb-6">
-            {c.title1}
+            {title1}
             <br />
-            <span className="text-red-600">{c.title2}</span>
+            <span className="text-red-600">{title2}</span>
           </h1>
           <p className="text-zinc-400 text-lg leading-relaxed max-w-xl mx-auto">
-            {c.body}
+            {body}
           </p>
           {email && (
             <p className="text-zinc-500 text-sm mt-3">
@@ -50,7 +57,7 @@ export default async function ConfirmationPage({
         <div className="mb-12">
           <p className="section-label mb-8 text-center">{c.whatHappensNext}</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {c.nextSteps.map((step, i) => (
+            {nextSteps.map((step, i) => (
               <div key={i} className="bg-brand-card border border-brand-border p-6">
                 <span className="text-red-600 font-black text-3xl leading-none block mb-3 opacity-50">
                   {step.num}
